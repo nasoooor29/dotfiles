@@ -1,0 +1,9 @@
+[Unit]
+
+Description=make any service access brillo
+[Service]
+
+ExecStart=/usr/local/bin/changePerm.sh
+
+[Install]
+WantedBy=multi-user.target
