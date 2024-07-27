@@ -100,7 +100,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zshconfig="nvim ~/.zshrc"
+alias code="code --ozone-platform=wayland "
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # bun completions
@@ -111,3 +112,4 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias config='/usr/bin/git --git-dir=$HOME/bare --work-tree=$HOME'
+BROWSER="firefox"
