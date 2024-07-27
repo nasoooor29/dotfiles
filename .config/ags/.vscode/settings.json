@@ -1,4 +1,4 @@
 {
-  "code-runner.customCommand": "ags",
+  "code-runner.customCommand": "clear; killall ags; ags",
   "cSpell.words": ["hyprland", "systemtray"]
 }

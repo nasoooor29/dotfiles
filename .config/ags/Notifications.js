@@ -1,5 +1,5 @@
 const notifications = await Service.import("notifications")
-let arr = []
+
 /** @param {import('resource:///com/github/Aylur/ags/service/notifications.js').Notification} n */
 function NotificationIcon({ app_entry, app_icon, image }) {
     if (image) {
@@ -114,9 +114,9 @@ export function NotificationPopups(monitor = 0) {
         class_name: "notification-popups",
         anchor: ["top", "right"],
         child: Widget.Box({
-            css: "min-width: 2px; min-height: 2px;",
+            css: "min-width: 280px; min-height: 200px;",
             class_name: "notifications",
-            vertical: true,
+            // vertical: true,
             child: list,
         }),
     })

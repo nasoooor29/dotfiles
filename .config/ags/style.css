@@ -30,11 +30,14 @@ label {
     color: @theme_selected_bg_color;
 }
 
-.notification {
-    color: yellow;
-}
 
 levelbar block,
 highlight {
-    min-height: 10px;
+    min-height: 8px;
+}
+
+.notification-popups {
+    background-color: #021526;
+    border-radius: 10px;
+    padding-top: 30px;
 }
