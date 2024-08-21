@@ -112,7 +112,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias config='/usr/bin/git --git-dir=$HOME/bare --work-tree=$HOME'
-BROWSER="firefox"
 
 
 export GOPATH=$HOME/go
