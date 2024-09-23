@@ -26,3 +26,6 @@ vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 vim.opt.relativenumber = true
+
+
+vim.api.nvim_set_option("clipboard", "unnamed")
