@@ -2,7 +2,8 @@
 
 
 just make sure to have iwd and iwctl installed 
-update pacman
+
+first things first update pacman
 ```
 sudo pacman -Syu
 ```
