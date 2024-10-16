@@ -5,4 +5,4 @@ systemctl enable iwd && systemctl start iwd
 #
 #
 #
-yay  --answerclean   None --answerdiff    None --answeredit    None --answerupgrade None --noconfirm   --askyesremovemake -S $(cat program-list)
+yay  --answerclean   None --answerdiff    None --answeredit    None --answerupgrade None --noconfirm   --askyesremovemake -S $(cat scripts/pkgs.txt)
