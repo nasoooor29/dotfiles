@@ -26,8 +26,12 @@ archinstall --config /mnt/user_configuration.json --creds /mnt/user_credentials.
 ## connect to the net
 ```bash
 # clone the repo
-
+git clone https://github.com/nasoooor29/dotfiles
+#run bootstrap.sh
+sudo bash scripts/bootstrap.sh
 # run services.sh
+sudo bash scripts/services.sh
+
 ```
 
 ## run the apps installer
