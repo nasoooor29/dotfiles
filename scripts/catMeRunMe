@@ -1,0 +1,4 @@
+sudo bash services.sh > /dev/null
+while read pkg; do yay -S --needed  --answerclean   None --answerdiff    None --answeredit    None --answerupgrade None --noconfirm   --askyesremovemake $pkg; done < scripts/pkgs.txt
+sudo bash services.sh 
+stow .
