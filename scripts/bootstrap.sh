@@ -5,4 +5,4 @@ systemctl enable iwd && systemctl start iwd
 #
 #
 #
-LANG=C yay --noprovides --answerdiff None --answerclean None --mflags "--noconfirm" -S $(cat scripts/pkgs.txt)
+LANG=C yay --answerdiff None --answerclean None --mflags "--noconfirm" -S $(cat scripts/pkgs.txt)
