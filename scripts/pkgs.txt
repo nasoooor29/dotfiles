@@ -7,6 +7,7 @@ bind
 vencord
 bluetui-bin
 brightnessctl
+impala
 btop
 clipman
 docker
@@ -34,4 +35,4 @@ wofi
 xdg-desktop-portal-hyprland
 zip
 zsh
-
+aylurs-gtk-shell

@@ -1,4 +1,5 @@
 sudo bash services.sh > /dev/null
 while read pkg; do yay -S --needed  --answerclean   None --answerdiff    None --answeredit    None --answerupgrade None --noconfirm   --askyesremovemake $pkg; done < scripts/pkgs.txt
 sudo bash services.sh 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 stow .
