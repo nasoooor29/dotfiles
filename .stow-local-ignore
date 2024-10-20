@@ -1,4 +1,5 @@
-README.md
-.git
-scripts
-yay-bin
+^/README.md
+/scripts
+\.git
+\.gitignore
+\.yay-bin

@@ -36,3 +36,5 @@ xdg-desktop-portal-hyprland
 zip
 zsh
 aylurs-gtk-shell
+unzip
+tmux
