@@ -3,10 +3,10 @@ return {
 	build = ":TSUpdate",
 	opts = {
 		ensure_installed = {
-		"go",
-		"python",
-		"markdown"
-	},
+			"go",
+			"python",
+			"markdown",
+		},
 		auto_install = true,
 		sync_install = false,
 		indent = { enable = true },
@@ -14,7 +14,4 @@ return {
 			enable = true,
 		},
 	},
-	config = function(_, opts)
-		require("nvim-treesitter.configs").setup(opts)
-	end,
 }
