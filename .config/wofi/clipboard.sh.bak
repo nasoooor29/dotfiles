@@ -1,8 +1,0 @@
-CONFIG="$HOME/.config/wofi/config"
-STYLE="$HOME/.config/wofi/themes/mocha.css"
-
-if [[ ! $(pidof wofi) ]]; then
-    cliphist list | wofi --conf ${CONFIG} --style ${STYLE} -S dmenu | cliphist decode | wl-copy
-else
-    pkill wofi
-fi
