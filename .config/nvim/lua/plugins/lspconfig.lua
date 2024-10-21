@@ -3,6 +3,8 @@ return {
 	dependencies = {
 
 		"neovim/nvim-lspconfig",
+
+		"hrsh7th/cmp-nvim-lsp",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
@@ -10,11 +12,14 @@ return {
 		require("mason").setup({})
 		local lspconfig = require("lspconfig")
 		local masonLspCfg = require("mason-lspconfig")
-
+		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local capablities = cmp_nvim_lsp.default_capabilities()
 		masonLspCfg.setup()
 		masonLspCfg.setup_handlers({
 			function(server)
-				lspconfig[server].setup({})
+				lspconfig[server].setup({
+					capablities = capablities,
+				})
 			end,
 		})
 
@@ -30,30 +35,25 @@ return {
 				"gopls",
 				"lua_ls",
 				"stylua",
+				"ts_ls",
 				"html",
 				"bashls",
 				"cssls",
-				-- "htmx",
 			},
 		})
 
-		-- just so it can work right with the nvim config
 		lspconfig["lua_ls"].setup({
-			settings = { -- custom settings for lua
 				Lua = {
-					-- make the language server recognize "vim" global
 					diagnostics = {
 						globals = { "vim" },
 					},
 					workspace = {
-						-- make language server aware of runtime files
 						library = {
 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 							[vim.fn.stdpath("config") .. "/lua"] = true,
 						},
 					},
 				},
-			},
 		})
 	end,
 }
