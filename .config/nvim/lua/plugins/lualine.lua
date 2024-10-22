@@ -10,6 +10,33 @@ return {
 		-- Credit: glepnir
 		local lualine = require("lualine")
 
+		local command_input = ""
+
+		-- Function to update command_input variable
+		local function update_command_input()
+			local input = vim.fn.getcmdline() -- Get the current command line input
+			command_input = input
+		end
+
+		-- Autocommand to capture command input in normal mode
+		vim.api.nvim_create_autocmd("CmdlineChanged", {
+			callback = function()
+				update_command_input()
+			end,
+		})
+
+		-- Function to update the input_text variable
+		local function update_input_text()
+			local current_line = vim.fn.getline(".")
+			input_text = current_line
+		end
+
+		-- Set an autocommand to update input_text on key press in normal mode
+		vim.api.nvim_create_autocmd({ "InsertLeave", "InsertEnter" }, {
+			callback = function()
+				update_input_text()
+			end,
+		})
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
@@ -35,13 +62,7 @@ local colors = {
 				-- Disable sections and component separators
 				component_separators = "",
 				section_separators = "",
-				theme = {
-					-- We are going to use lualine_c an lualine_x as left and
-					-- right section. Both are highlighted by c theme .  So we
-					-- are just setting default looks o statusline
-					normal = { c = { fg = colors.fg, bg = colors.bg } },
-					inactive = { c = { fg = colors.fg, bg = colors.bg } },
-				},
+				theme = "auto",
 			},
 			sections = {
 				-- these are to remove the defaults
@@ -132,6 +153,12 @@ local colors = {
 			color = { fg = "#ffffff", gui = "bold" },
 		})
 
+		ins_right({
+			"command", -- Custom command component
+			function()
+				return command_input -- Show the current command input
+			end,
+		})
 		ins_right({
 			"branch",
 			icon = "",

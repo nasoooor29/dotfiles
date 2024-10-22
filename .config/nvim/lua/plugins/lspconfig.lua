@@ -13,16 +13,29 @@ return {
 		local lspconfig = require("lspconfig")
 		local masonLspCfg = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local capablities = cmp_nvim_lsp.default_capabilities()
+		-- dont be an idiot and renam it to capablities don't be stupid
+		local cap = cmp_nvim_lsp.default_capabilities()
 		masonLspCfg.setup()
 		masonLspCfg.setup_handlers({
 			function(server)
 				lspconfig[server].setup({
-					capablities = capablities,
+					capablities = cap,
 				})
 			end,
 		})
 
+		lspconfig["gopls"].setup({
+			capabilities = cap,
+			settings = {
+				gopls = {
+					analyses = {
+						unusedparams = true,
+						unreachable = true,
+					},
+					staticcheck = true,
+				},
+			},
+		})
 		require("mason-tool-installer").setup({
 			ensure_installed = {
 				"bash-language-server",
@@ -56,7 +69,6 @@ return {
 				},
 			},
 		})
-
 		-- keybinds
 
 		vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, { desc = "[G]oto [D]efinition" })
