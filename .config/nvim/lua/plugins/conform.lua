@@ -6,6 +6,8 @@ return {
 		conform.setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
+				javascript = { "prettier" },
+				go = { "goimports", "gofumpt" },
 			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
