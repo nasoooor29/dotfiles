@@ -15,6 +15,9 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "paste from system clipboard" })
 vim.keymap.set("n", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set("x", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set("n", "<leader>d", '"+d', { desc = "cut to system clipboard" })
+vim.keymap.set("x", "<leader>d", '"+d', { desc = "cut to system clipboard" })
+
 function get_distro_name()
 	local handle = io.popen("echo $WSL_DISTRO_NAME")
 	local hostname = handle:read("*a")

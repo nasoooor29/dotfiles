@@ -106,7 +106,7 @@ return { -- Autocompletion
 			}),
 
 			sources = {
-				{ name = "luasnip" },
+				{ name = "luasnip", max_item_count = 5 },
 				{ name = "copilot" },
 				{
 					name = "lazydev",
