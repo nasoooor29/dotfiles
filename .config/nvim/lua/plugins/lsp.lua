@@ -54,6 +54,7 @@ return {
 		local servers = {
 			gopls = {},
 			ts_ls = {},
+			sqlls = {},
 
 			lua_ls = {
 				settings = {
