@@ -21,6 +21,13 @@ return {
 			callback = function(event)
 				vim.keymap.set(
 					"n",
+					"<leader>q",
+					vim.diagnostic.setloclist,
+					{ desc = "Open diagnostic [Q]uickfix list" }
+				)
+
+				vim.keymap.set(
+					"n",
 					"gd",
 					require("telescope.builtin").lsp_definitions,
 					{ desc = "[G]oto [D]efinition" }
@@ -45,8 +52,7 @@ return {
 					{ desc = "[W]orkspace [S]ymbols" }
 				)
 				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
-				vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-				vim.keymap.set("x", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+				vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
 			end,
 		})

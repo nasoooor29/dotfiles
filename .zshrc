@@ -17,3 +17,5 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 
+export RUN_CMD="go run ."
+export RUN_CMD="clear; echo -e 'Running...\n$RUN_CMD'; $RUN_CMD"
