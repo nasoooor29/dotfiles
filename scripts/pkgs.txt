@@ -40,3 +40,4 @@ unzip
 tmux
 lazydocker
 lazysql
+zoxide
