@@ -10,10 +10,27 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "paste from system clipboard" })
-vim.keymap.set("n", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
-vim.keymap.set("x", "<leader>y", '"+y', { desc = "Copy to system clipboard" })
-vim.keymap.set("n", "<leader>d", '"+d', { desc = "cut to system clipboard" })
-vim.keymap.set("x", "<leader>d", '"+d', { desc = "cut to system clipboard" })
+vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+vim.keymap.set({ "n", "x" }, "<leader>d", '"+d', { desc = "cut to system clipboard" })
+
+-- these shortcuts is to make it look abit fimiliar to vscode
+--
+vim.api.nvim_set_keymap("n", "<Tab>", ">>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<S-Tab>", "<<", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<Tab>", ">gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+
+-- vim.api.nvim_set_keymap("n", "<C-]>", ">>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<C-]>", ">gv", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-[>", "<<", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<C-[>", "<gv", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<C-s>", "<cmd>w<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-S-j>", "yyp", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<A-S-k>", "yyP", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-w>", "<cmd>bd<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-n>", ":enew<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-f>", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
 
 function get_distro_name()
 	local handle = io.popen("echo $WSL_DISTRO_NAME")
