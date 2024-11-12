@@ -58,6 +58,7 @@ return {
 		})
 
 		local servers = {
+			gopls = {},
 			ts_ls = {},
 			sqlls = {},
 
@@ -86,7 +87,7 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local lspconfig = require("lspconfig")
 
-		local cap = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+		local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 		lspconfig["lua_ls"].setup({
 			Lua = {
 				diagnostics = {
@@ -105,7 +106,7 @@ return {
 		masonLspCfg.setup_handlers({
 			function(server)
 				lspconfig[server].setup({
-					capablities = cap,
+					capablities = capabilities,
 				})
 			end,
 		})

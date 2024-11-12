@@ -1,5 +1,6 @@
 -- TIP: Disable arrow keys in normal mode
 -- movement keymaps
+vim.keymap.set("n", "<esc><esc>", "<cmd>noh<CR>", { desc = "finish no search highlight", silent = true })
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
@@ -16,7 +17,7 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set({ "n", "v" }, "<leader>ww", "<cmd>wa<CR><cmd>qa<CR>", { desc = "exit neovim" })
+vim.keymap.set({ "n", "v" }, "<leader>ww", "<cmd>Neotree close<CR><cmd>wa<CR><cmd>qa<CR>", { desc = "exit neovim" })
 
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "paste from system clipboard" })
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })

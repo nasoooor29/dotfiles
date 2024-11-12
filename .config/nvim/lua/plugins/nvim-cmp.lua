@@ -27,11 +27,6 @@ return { -- Autocompletion
 		local lspkind = require("lspkind")
 		cmp.setup({
 			window = {
-				-- completion = {
-				--     col_offset = -3,
-				--     side_padding = 1,
-				--     winhighlight = 'Normal:#32302F',
-				-- },
 				documentation = {
 					cmp.config.window.bordered(),
 					winblend = 0,
@@ -107,7 +102,7 @@ return { -- Autocompletion
 			}),
 
 			sources = {
-				{ name = "luasnip", max_item_count = 5 },
+				{ name = "luasnip" },
 				{ name = "copilot" },
 				{
 					name = "lazydev",
