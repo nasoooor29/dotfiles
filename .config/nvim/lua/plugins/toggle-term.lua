@@ -19,8 +19,8 @@ return {
 		vim.keymap.set({ "n", "t" }, "<leader>ls", "<cmd>lua LazySql:toggle()<CR>", { noremap = true, silent = true })
 		vim.keymap.set({ "n", "t" }, "<leader>ld", "<cmd>lua LazyDoc:toggle()<CR>", { noremap = true, silent = true })
 
-		vim.keymap.set("n", "<C-`>", "<cmd>lua EmptyTerm:toggle()<CR>", { desc = "" })
-		vim.keymap.set("t", "<C-`>", "<cmd>lua EmptyTerm:toggle()<CR>", { desc = "" })
+		-- vim.keymap.set("n", "<C-`>", "<cmd>lua CommandTerm:toggle()<CR>", { desc = "" })
+		-- vim.keymap.set("t", "<C-`>", "<cmd>lua CommandTerm:toggle()<CR>", { desc = "" })
 
 		-- vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "" })
 		-- vim.keymap.set("t", "<Esc><Esc>", "<cmd>ToggleTermToggleAll<CR>", { desc = "" })
@@ -31,6 +31,6 @@ return {
 		end, { desc = "" })
 		vim.keymap.set("t", "<C-S-Enter>", cmd .. "<CR>", { desc = "" })
 
-		vim.keymap.set({ "t", "n" }, "<C-j>", "<cmd>lua CommandTerm:toggle()<CR>", { desc = "" })
+		vim.keymap.set({ "t", "n" }, "<C-`>", "<cmd>lua CommandTerm:toggle()<CR>", { desc = "" })
 	end,
 }
