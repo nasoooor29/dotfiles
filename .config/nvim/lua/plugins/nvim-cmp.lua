@@ -25,46 +25,47 @@ return { -- Autocompletion
 		luasnip.config.setup({})
 		require("luasnip.loaders.from_vscode").lazy_load()
 		local lspkind = require("lspkind")
-		cmp.setup({
-			window = {
-				documentation = {
-					cmp.config.window.bordered(),
-					winblend = 0,
-					border = "rounded",
-					winhighlight = "Normal:None,FloatBorder:None",
-					col_offset = -3,
-					side_padding = 1,
-				},
-				completion = {
-					cmp.config.window.bordered(),
-					winblend = 0,
-					border = "rounded",
-					winhighlight = "Normal:None,FloatBorder:None",
-					col_offset = -3,
-					side_padding = 1,
-				},
-			},
 
-			formatting = {
-				-- fields = { "kind", "abbr", "menu" },
-				format = lspkind.cmp_format({
-					mode = "symbol_text", -- show only symbol annotations
-					maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-					ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-					menu = {
-						nvim_lsp = "[LSP]",
-						luasnip = "[LUASNIP]",
-						nvim_lua = "[NVIM_LUA]",
-						buffer = "[BUFFER]",
-						path = "[PATH]",
-						Copilot = "[Copilot]",
-					},
-					symbol_map = {
-						Copilot = "",
-					},
-					-- before = require("tailwindcss-colorizer-cmp").formatter,
-				}),
-			},
+		cmp.setup({
+			-- window = {
+			-- 	documentation = {
+			-- 		cmp.config.window.bordered(),
+			-- 		winblend = 0,
+			-- 		border = "rounded",
+			-- 		winhighlight = "Normal:None,FloatBorder:None",
+			-- 		col_offset = -3,
+			-- 		side_padding = 1,
+			-- 	},
+			-- 	completion = {
+			-- 		cmp.config.window.bordered(),
+			-- 		winblend = 0,
+			-- 		border = "rounded",
+			-- 		winhighlight = "Normal:None,FloatBorder:None",
+			-- 		col_offset = -3,
+			-- 		side_padding = 1,
+			-- 	},
+			-- },
+			--
+			-- formatting = {
+			-- 	-- fields = { "kind", "abbr", "menu" },
+			-- 	format = lspkind.cmp_format({
+			-- 		mode = "symbol_text", -- show only symbol annotations
+			-- 		maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+			-- 		ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+			-- 		menu = {
+			-- 			nvim_lsp = "[LSP]",
+			-- 			luasnip = "[LUASNIP]",
+			-- 			nvim_lua = "[NVIM_LUA]",
+			-- 			buffer = "[BUFFER]",
+			-- 			path = "[PATH]",
+			-- 			Copilot = "[Copilot]",
+			-- 		},
+			-- 		symbol_map = {
+			-- 			Copilot = "",
+			-- 		},
+			-- 		-- before = require("tailwindcss-colorizer-cmp").formatter,
+			-- 	}),
+			-- },
 
 			snippet = {
 				expand = function(args)
@@ -75,6 +76,7 @@ return { -- Autocompletion
 			preselect = "none",
 			mapping = cmp.mapping.preset.insert({
 				-- Select the [n]ext item
+
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				-- Select the [p]revious item
 				["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -88,7 +90,6 @@ return { -- Autocompletion
 				["<C-k>"] = cmp.mapping.select_prev_item(),
 				["<C-Space>"] = cmp.mapping.complete({}),
 
-				-- TODO:change it to tab and s tab
 				["<TAB>"] = cmp.mapping(function()
 					if luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()

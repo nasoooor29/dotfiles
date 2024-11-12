@@ -15,47 +15,25 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-			callback = function(event)
-				vim.keymap.set(
-					"n",
-					"<leader>q",
-					vim.diagnostic.setloclist,
-					{ desc = "Open diagnostic [Q]uickfix list" }
-				)
+		require("mason").setup()
+		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local lspconfig = require("lspconfig")
+		local masonLspCfg = require("mason-lspconfig")
+		cmp_nvim_lsp.setup()
+		masonLspCfg.setup({})
 
-				vim.keymap.set(
-					"n",
-					"gd",
-					require("telescope.builtin").lsp_definitions,
-					{ desc = "[G]oto [D]efinition" }
-				)
-				vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "[G]oto [R]eferences" })
-				vim.keymap.set(
-					"n",
-					"gI",
-					require("telescope.builtin").lsp_implementations,
-					{ desc = "[G]oto [I]mplementation" }
-				)
-				vim.keymap.set(
-					"n",
-					"<leader>ds",
-					require("telescope.builtin").lsp_document_symbols,
-					{ desc = "[D]ocument [S]ymbols" }
-				)
-				vim.keymap.set(
-					"n",
-					"<leader>ws",
-					require("telescope.builtin").lsp_dynamic_workspace_symbols,
-					{ desc = "[W]orkspace [S]ymbols" }
-				)
-				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
-				vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
-			end,
-		})
-
+		local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+		local on_attach = function(client, bufnr)
+			local bufopts = { noremap = true, silent = true, buffer = bufnr }
+			local t = require("telescope.builtin")
+			vim.keymap.set("n", "gd", t.lsp_definitions, bufopts)
+			vim.keymap.set("n", "gi", t.lsp_implementations, bufopts)
+			vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+			vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+		end
 		local servers = {
 			gopls = {},
 			ts_ls = {},
@@ -72,10 +50,6 @@ return {
 			},
 		}
 
-		require("mason").setup()
-
-		-- You can add other tools here that you want Mason to install
-		-- for you, so that they are available from within Neovim.
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
@@ -83,10 +57,16 @@ return {
 		require("mason-tool-installer").setup({
 			ensure_installed = ensure_installed,
 		})
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local lspconfig = require("lspconfig")
 
-		local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+		masonLspCfg.setup_handlers({
+			function(server)
+				lspconfig[server].setup({
+					on_attach = on_attach,
+					capablities = capabilities,
+				})
+			end,
+		})
+
 		lspconfig["lua_ls"].setup({
 			Lua = {
 				diagnostics = {
@@ -99,15 +79,6 @@ return {
 					},
 				},
 			},
-		})
-
-		local masonLspCfg = require("mason-lspconfig")
-		masonLspCfg.setup_handlers({
-			function(server)
-				lspconfig[server].setup({
-					capablities = capabilities,
-				})
-			end,
 		})
 	end,
 }
