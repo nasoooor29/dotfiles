@@ -19,10 +19,9 @@ return {
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local lspconfig = require("lspconfig")
 		local masonLspCfg = require("mason-lspconfig")
-		cmp_nvim_lsp.setup()
-		masonLspCfg.setup({})
 
-		local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
 		local on_attach = function(client, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			local t = require("telescope.builtin")
@@ -58,13 +57,14 @@ return {
 			ensure_installed = ensure_installed,
 		})
 
-		masonLspCfg.setup_handlers({
-			function(server)
-				lspconfig[server].setup({
-					on_attach = on_attach,
-					capablities = capabilities,
-				})
-			end,
+		masonLspCfg.setup({
+			handlers = {
+				function(server_name)
+					local server = servers[server_name] or {}
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					require("lspconfig")[server_name].setup(server)
+				end,
+			},
 		})
 
 		lspconfig["lua_ls"].setup({
