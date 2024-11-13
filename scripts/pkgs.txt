@@ -41,3 +41,4 @@ tmux
 lazydocker
 lazysql
 zoxide
+eza
