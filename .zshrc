@@ -6,26 +6,30 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-
+# Plugins
+source ~/.zsh/p10k/powerlevel9k.zsh-theme
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# fpath=($HOME/.zsh/zsh-autosuggestions $fpath)
 
 # install zap if not exists
 
-if ! type "$plug" > /dev/null; then
-  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-fi
-
-# Created by Zap installer
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/supercharge"
-# plug "zap-zsh/zap-prompt"
-plug "zsh-users/zsh-syntax-highlighting"
-# plug "zettlrobert/simple-prompt"
-# Load and initialise completion system
-plug "romkatv/powerlevel10k"
-autoload -Uz compinit
-compinit
-
+# if ! type "$plug" > /dev/null; then
+#   zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+# fi
+#
+# # Created by Zap installer
+# [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+# plug "zsh-users/zsh-autosuggestions"
+# plug "zap-zsh/supercharge"
+# # plug "zap-zsh/zap-prompt"
+# plug "zsh-users/zsh-syntax-highlighting"
+# # plug "zettlrobert/simple-prompt"
+# # Load and initialise completion system
+# plug "romkatv/powerlevel10k"
+# autoload -Uz compinit
+# compinit
+#
 
 bindkey -e
 source $HOME/.scripts.zsh
