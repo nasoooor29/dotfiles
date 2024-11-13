@@ -18,7 +18,7 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 vim.keymap.set({ "n", "v" }, "<leader>ww", "<cmd>Neotree close<CR><cmd>wa<CR><cmd>qa<CR>", { desc = "exit neovim" })
-
+vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>wa<CR>", { desc = "exit neovim" })
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "paste from system clipboard" })
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
 vim.keymap.set({ "n", "x" }, "<leader>d", '"+d', { desc = "cut to system clipboard" })
