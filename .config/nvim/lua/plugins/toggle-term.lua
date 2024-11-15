@@ -25,8 +25,10 @@ return {
 		-- vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "" })
 		-- vim.keymap.set("t", "<Esc><Esc>", "<cmd>ToggleTermToggleAll<CR>", { desc = "" })
 
-		vim.keymap.set("n", "<C-S-Enter>", function()
+		vim.keymap.set({ "i", "n" }, "<C-S-Enter>", function()
+			vim.cmd("wa")
 			CommandTerm:open()
+
 			CommandTerm:send(cmd)
 		end, { desc = "" })
 		vim.keymap.set("t", "<C-S-Enter>", cmd .. "<CR>", { desc = "" })

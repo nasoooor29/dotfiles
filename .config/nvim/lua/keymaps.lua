@@ -37,6 +37,8 @@ vim.keymap.set("n", "<C-n>", ":enew<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-f>", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-Backspace>", "<esc>bciw", { noremap = true, silent = true })
 
+-- Define VM_maps in Lua
+
 function get_distro_name()
 	local handle = io.popen("echo $WSL_DISTRO_NAME")
 	local hostname = handle:read("*a")
