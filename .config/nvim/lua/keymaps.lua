@@ -37,7 +37,11 @@ vim.keymap.set("n", "<C-n>", ":enew<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-f>", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-Backspace>", "<esc>bciw", { noremap = true, silent = true })
 
--- Define VM_maps in Lua
+-- Keymaps for resizing using Control + Shift + hjkl
+vim.keymap.set("n", "<C-A-h>", ":vertical resize -5<CR>", { silent = true }) -- Shrink width (left)
+vim.keymap.set("n", "<C-A-l>", ":vertical resize +5<CR>", { silent = true }) -- Increase width (right)
+vim.keymap.set("n", "<C-A-j>", ":resize -5<CR>", { silent = true }) -- Shrink height (down)
+vim.keymap.set("n", "<C-A-k>", ":resize +5<CR>", { silent = true }) -- Increase height (up)
 
 function get_distro_name()
 	local handle = io.popen("echo $WSL_DISTRO_NAME")
