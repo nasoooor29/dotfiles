@@ -34,5 +34,6 @@ return {
 		vim.keymap.set("t", "<C-S-Enter>", cmd .. "<CR>", { desc = "" })
 
 		vim.keymap.set({ "t", "n" }, "<C-`>", "<cmd>lua CommandTerm:toggle()<CR>", { desc = "" })
+		vim.keymap.set({ "t", "n" }, "<A-`>", "<cmd>lua CommandTerm:toggle()<CR>", { desc = "" })
 	end,
 }
