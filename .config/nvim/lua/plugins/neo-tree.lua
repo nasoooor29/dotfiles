@@ -9,7 +9,7 @@ return {
 	},
 	config = function()
 		vim.keymap.set("n", "<leader>fe", "<cmd>Neotree toggle<CR>", { desc = "Toggle neotree" })
-		vim.keymap.set("n", "<leader>tt", "<cmd>Neotree toggle<CR>", { desc = "Toggle neotree" })
+		-- vim.keymap.set("n", "<leader>tt", "<cmd>Neotree toggle<CR>", { desc = "Toggle neotree" })
 		vim.keymap.set("n", "<C-b>", "<cmd>Neotree toggle<CR>", { desc = "Toggle neotree" })
 	end,
 }
