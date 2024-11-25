@@ -29,5 +29,6 @@ for entry in "${ext[@]}"; do
   fi
 done
 
+source ~/.zsh/.p10k.zsh
 autoload -Uz compinit
 compinit

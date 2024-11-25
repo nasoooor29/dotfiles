@@ -6,25 +6,18 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
+bindkey -e
 
 source ~/.zsh/alias.zsh
 source ~/.zsh/ext.zsh
 source ~/.zsh/customFuncs.zsh
+source ~/.zsh/scripts.zsh
+source ~/.zsh/env.zsh
 
 
-bindkey -e
-source $HOME/.scripts.zsh
 export EDITOR='nvim'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-
-export RUN_CMD="clear; go run ."
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-export PATH=$PATH:$(go env GOPATH)/bin
-export PATH="/home/nasoooor/.bun/bin:$PATH"
 
 eval "$(zoxide init --cmd cd zsh)"
