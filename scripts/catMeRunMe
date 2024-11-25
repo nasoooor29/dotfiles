@@ -4,3 +4,8 @@ while read pkg; do yay -S --needed  --answerclean   None --answerdiff    None --
 sudo bash services.sh 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 stow .
+
+
+
+
+

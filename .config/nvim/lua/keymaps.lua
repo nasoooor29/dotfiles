@@ -53,10 +53,16 @@ set("n", "<C-A-l>", ":vertical resize +5<CR>", opts) -- Increase width (right)
 set("n", "<C-A-j>", ":resize -5<CR>", opts) -- Shrink height (down)
 set("n", "<C-A-k>", ":resize +5<CR>", opts) -- Increase height (up)
 
-set("n", "<leader>rrr", ":luafile %<CR>", opts) -- Increase height (up)
+set("n", "<leader>rr", ":luafile %<CR>", opts) -- Increase height (up)
 
-function get_distro_name()
+-- don't ask why but if u remove it you would suffer
+vim.api.nvim_del_keymap("n", "<Esc>")
+
+local function get_distro_name()
 	local handle = io.popen("echo $WSL_DISTRO_NAME")
+	if handle == nil then
+		return
+	end
 	local hostname = handle:read("*a")
 	handle:close()
 	return hostname:match("^%s*(.-)%s*$")
