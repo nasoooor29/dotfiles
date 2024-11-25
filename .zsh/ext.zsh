@@ -1,4 +1,7 @@
 # Define an array of extensions with paths, repos, and activation files
+
+# if you want to add new ext make sure the next new line will be like
+# <install location>|<git link>|<activation script>
 ext=(
   "$HOME/.zsh/p10k|https://github.com/bhilburn/powerlevel9k.git|$HOME/.zsh/p10k/powerlevel9k.zsh-theme" 
   "$HOME/.zsh/zsh-autosuggestions|https://github.com/zsh-users/zsh-autosuggestions.git|$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" 

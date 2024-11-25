@@ -41,5 +41,10 @@ return {
 		vim.keymap.set("n", "<leader>the", pickers.ensured, { desc = "Huez ensured" })
 
 		vim.cmd.colorscheme("horizon")
+
+		local hl = vim.api.nvim_set_hl
+
+		hl(0, "MiniTablineCurrent", { fg = "red" })
+		hl(0, "CursorLineNr", { fg = "red" })
 	end,
 }
