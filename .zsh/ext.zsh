@@ -3,7 +3,7 @@
 # if you want to add new ext make sure the next new line will be like
 # <install location>|<git link>|<activation script>
 ext=(
-  "$HOME/.zsh/p10k|https://github.com/bhilburn/powerlevel9k.git|$HOME/.zsh/p10k/powerlevel9k.zsh-theme" 
+  "$HOME/.zsh/powerlevel10k|https://github.com/romkatv/powerlevel10k|$HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme" 
   "$HOME/.zsh/zsh-autosuggestions|https://github.com/zsh-users/zsh-autosuggestions.git|$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" 
   "$HOME/.zsh/zsh-syntax-highlighting|https://github.com/zsh-users/zsh-syntax-highlighting.git|$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" 
   "$HOME/.zsh/supercharge|https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/supercharge.git|$HOME/.zsh/supercharge/supercharge.plugin.zsh" 
