@@ -42,7 +42,7 @@ return {
 			})
 		end
 
-		vim.keymap.set("n", "<leader>ea", open_float, { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>e", open_float, { noremap = true, silent = true })
 		local servers = {
 			gopls = {},
 			ts_ls = {
