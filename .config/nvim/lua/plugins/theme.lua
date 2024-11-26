@@ -44,7 +44,7 @@ return {
 
 		local hl = vim.api.nvim_set_hl
 
-		hl(0, "MiniTablineCurrent", { fg = "red" })
-		hl(0, "CursorLineNr", { fg = "red" })
+		hl(0, "MiniTablineCurrent", { fg = "#e95678" })
+		hl(0, "CursorLineNr", { fg = "#e95678" })
 	end,
 }

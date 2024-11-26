@@ -35,7 +35,9 @@ return {
 		end
 		local servers = {
 			gopls = {},
-			ts_ls = {},
+			ts_ls = {
+				enable = false,
+			},
 			sqlls = {},
 
 			lua_ls = {
