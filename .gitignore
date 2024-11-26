@@ -3,3 +3,4 @@
 .zsh/zsh-autosuggestions
 .zsh/zsh-syntax-highlighting
 .config/lazygit
+.config/go/telemetry/local

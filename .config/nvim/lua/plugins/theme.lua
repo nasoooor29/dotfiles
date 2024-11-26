@@ -42,9 +42,11 @@ return {
 
 		vim.cmd.colorscheme("horizon")
 
+		local accent = "#e95678"
 		local hl = vim.api.nvim_set_hl
 
-		hl(0, "MiniTablineCurrent", { fg = "#e95678" })
-		hl(0, "CursorLineNr", { fg = "#e95678" })
+		hl(0, "MiniTablineCurrent", { fg = accent })
+		hl(0, "CursorLineNr", { fg = accent })
+		hl(0, "FloatBorder", { fg = accent })
 	end,
 }
