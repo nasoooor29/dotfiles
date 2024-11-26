@@ -25,14 +25,24 @@ return {
 		local on_attach = function(client, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			local t = require("telescope.builtin")
+
 			vim.keymap.set("n", "gd", t.lsp_definitions, bufopts)
 			vim.keymap.set("n", "gi", t.lsp_implementations, bufopts)
 			vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-			vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 		end
+
+		local function open_float()
+			vim.diagnostic.open_float({
+				border = "rounded",
+				scope = "cursor",
+			})
+		end
+
+		vim.keymap.set("n", "<leader>ea", open_float, { noremap = true, silent = true })
 		local servers = {
 			gopls = {},
 			ts_ls = {
