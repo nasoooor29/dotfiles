@@ -30,26 +30,36 @@ return {
 			vim.keymap.set("n", "gi", t.lsp_implementations, bufopts)
 			vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-
+			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
+			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 		end
 
-		local function open_float()
-			vim.diagnostic.open_float({
-				border = "rounded",
+		vim.diagnostic.config({
+			float = {
 				scope = "cursor",
-			})
-		end
+				border = "rounded",
+				max_width = 80, -- Set the maximum width for the floating window
+			},
+		})
+		vim.filetype.add({ pattern = { [".*%.ansible%..*"] = "yaml.ansible" } }) -- this will match playboook.ansible.yaml
+		-- local function open_float()
+		-- 	vim.diagnostic.open_float({
+		--
+		-- 	})
+		-- end
 
-		vim.keymap.set("n", "<leader>e", open_float, { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 		local servers = {
 			gopls = {},
 			ts_ls = {
 				enable = false,
 			},
 			sqlls = {},
-
+			ansiblels = {
+				filetypes = { "yaml", "yml", "ansible" },
+			},
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -64,6 +74,7 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
+			"ansiblels",
 		})
 
 		require("mason-tool-installer").setup({
