@@ -47,6 +47,7 @@ return { -- Autocompletion
 			},
 
 			formatting = {
+				expandable_indicator = true,
 				-- fields = { "kind", "abbr", "menu" },
 				format = lspkind.cmp_format({
 					mode = "symbol_text", -- show only symbol annotations
@@ -73,32 +74,36 @@ return { -- Autocompletion
 				end,
 			},
 			completion = { completeopt = "menu,menuone,noinsert" },
-			preselect = "none",
+			preselect = "None",
 			mapping = cmp.mapping.preset.insert({
-				-- Select the [n]ext item
-
-				["<C-n>"] = cmp.mapping.select_next_item(),
-				-- Select the [p]revious item
-				["<C-p>"] = cmp.mapping.select_prev_item(),
-
-				-- Scroll the documentation window [b]ack / [f]orward
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				["<C-j>"] = cmp.mapping.select_next_item(),
 
+				["<C-n>"] = cmp.mapping.select_next_item(),
+				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<C-j>"] = cmp.mapping.select_next_item(),
 				["<C-k>"] = cmp.mapping.select_prev_item(),
 				["<C-Space>"] = cmp.mapping.complete({}),
 
-				["<TAB>"] = cmp.mapping(function()
+				["<TAB>"] = cmp.mapping(function(fallback)
 					if luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
+						return
 					end
+					fallback() -- Allows cmp to handle the shift-tab if no snippet is active
 				end, { "i", "s" }),
-				["<S-Tab>"] = cmp.mapping(function()
+				["<S-Tab>"] = cmp.mapping(function(fallback)
 					if luasnip.locally_jumpable(-1) then
 						luasnip.jump(-1)
+						return
 					end
+					fallback() -- Allows cmp to handle the shift-tab if no snippet is active
+				end, { "i", "s" }),
+
+				["<BS>"] = cmp.mapping(function(fallback)
+					-- Let backspace behave like normal in insert mode without affecting the snippet
+					fallback() -- Pass the backspace key to cmp without additional logic
 				end, { "i", "s" }),
 			}),
 
