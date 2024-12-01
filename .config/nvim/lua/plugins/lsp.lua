@@ -43,7 +43,8 @@ return {
 				max_width = 80, -- Set the maximum width for the floating window
 			},
 		})
-		vim.filetype.add({ pattern = { [".*%.ansible%..*"] = "yaml.ansible" } }) -- this will match playboook.ansible.yaml
+		vim.filetype.add({ pattern = { [".yml"] = "yaml.ansible" } }) -- this will match playboook.ansible.yaml
+		vim.filetype.add({ pattern = { [".yaml"] = "yaml.ansible" } }) -- this will match playboook.ansible.yaml
 		-- local function open_float()
 		-- 	vim.diagnostic.open_float({
 		--
