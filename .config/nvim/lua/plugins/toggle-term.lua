@@ -2,6 +2,7 @@ return {
 	-- amongst your other plugins
 	"akinsho/toggleterm.nvim",
 	version = "*",
+	enabled = false,
 
 	config = function()
 		require("toggleterm").setup({})
