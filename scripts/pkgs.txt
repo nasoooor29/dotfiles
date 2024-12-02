@@ -42,3 +42,11 @@ lazydocker
 lazysql
 zoxide
 eza
+bluez-utils
+brightnessctl
+hyprlock
+pipewire
+pipewire-pulse
+python
+ttf-jetbrains-mono-nerd
+wireplumber
