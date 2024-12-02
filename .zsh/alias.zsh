@@ -1,8 +1,10 @@
 
  
 
+
 alias ls="eza"
-alias l="ls -alh"
+alias l="eza -alh"
+alias lt="eza -atlh"
 alias lg="lazygit"
 
 alias z=zellij
