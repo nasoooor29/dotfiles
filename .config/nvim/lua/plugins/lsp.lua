@@ -54,9 +54,7 @@ return {
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 		local servers = {
 			gopls = {},
-			ts_ls = {
-				enable = false,
-			},
+			ts_ls = {},
 			sqlls = {},
 			ansiblels = {
 				filetypes = { "yaml", "yml", "ansible" },
