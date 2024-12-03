@@ -26,3 +26,19 @@ export QT_STYLE_OVERRIDE=Adwaita-Dark
 
 
 eval "$(zoxide init --cmd cd zsh)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/nasoooor/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/nasoooor/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "/home/nasoooor/.miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/nasoooor/.miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
