@@ -9,6 +9,7 @@ alias lg="lazygit"
 
 alias t=tmux
 alias ta="tmux a"
+alias tls="tmux ls"
 
 alias n=nvim
 alias z=zellij

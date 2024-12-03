@@ -10,12 +10,13 @@ bindkey -e
 
 source ~/.zsh/alias.zsh
 source ~/.zsh/ext.zsh
-source ~/.zsh/customFuncs.zsh
-source ~/.zsh/scripts.zsh
 source ~/.zsh/env.zsh
+source ~/.zsh/fzf.zsh
 
 
 export EDITOR='nvim'
+
+export PATH=$PATH:"~/.zsh/scripts"
 
 
 export GTK_THEME=Adwaita:dark

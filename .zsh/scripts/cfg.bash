@@ -1,7 +1,6 @@
 
+
 cfg() {
-
-
 base_path="$HOME/.config"
 local custom_files=(
     "$HOME/.zshrc"
@@ -37,5 +36,6 @@ if [[ -d $selected_file ]]; then
 else 
     nvim $selected_file
 fi
-
 }
+
+
