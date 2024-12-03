@@ -1,5 +1,21 @@
 # Define an array of extensions with paths, repos, and activation files
 
+# Function to update all Zsh extensions
+update_zsh() {
+  for entry in "${ext[@]}"; do
+    # Split the entry into components
+    IFS='|' read -r dir repo activate <<< "$entry"
+    
+    # Update the extension if the directory exists
+    if [[ -d $dir ]]; then
+      echo "Updating $dir..."
+      git -C "$dir" pull --rebase || echo "Failed to update $dir"
+    else
+      echo "$dir does not exist, skipping."
+    fi
+  done
+}
+
 # if you want to add new ext make sure the next new line will be like
 # <install location>|<git link>|<activation script>
 ext=(
@@ -32,3 +48,5 @@ done
 source ~/.zsh/.p10k.zsh
 autoload -Uz compinit
 compinit
+
+
