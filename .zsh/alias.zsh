@@ -10,6 +10,7 @@ alias lg="lazygit"
 alias t=tmux
 alias ta="tmux a"
 alias tls="tmux ls"
+alias tka="tmux kill-server"
 
 alias n=nvim
 alias z=zellij

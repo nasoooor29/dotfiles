@@ -19,4 +19,6 @@ export FZF_DEFAULT_OPTS="
 --bind '?:toggle-preview'
 --bind 'ctrl-t:execute(echo {+} | xargs -o nvim)'
 --bind 'ctrl-y:execute-silent(echo {+} | xclip -selection clipboard)+abort'
+--bind 'alt-k:up,alt-j:down'
+--bind 'ctrl-k:up,ctrl-j:down'
 "
