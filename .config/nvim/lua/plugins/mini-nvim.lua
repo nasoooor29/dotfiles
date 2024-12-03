@@ -21,6 +21,14 @@ return { -- Collection of various small independent plugins/modules
 		-- require("mini.starter").setup()
 		require("mini.pairs").setup()
 		require("mini.cursorword").setup()
+		require("mini.indentscope").setup({
+			symbol = "▎",
+			-- draw = {
+			-- 	animation = indent.gen_animation.none(),
+			-- },
+			--
+		})
+
 		-- require('mini.statusline').setup { use_icons = vim.g.have_nerd_font }
 	end,
 }

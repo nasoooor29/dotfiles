@@ -1,11 +1,8 @@
 return {
-	"vague2k/huez.nvim",
-	-- if you want registry related features, uncomment this
-	-- import = "huez-manager.import"
-	branch = "stable",
-	event = "UIEnter",
+	"catppuccin/nvim",
+	name = "catppuccin",
+	priority = 1000,
 	dependencies = {
-
 		{
 			"akinsho/horizon.nvim",
 			opts = {
@@ -30,17 +27,9 @@ return {
 		},
 	},
 
-	import = "huez-manager.import",
 	config = function()
-		require("huez").setup({})
-		local pickers = require("huez.pickers")
-
-		vim.keymap.set("n", "<leader>thh", pickers.themes, { desc = "Huez themes" })
-		vim.keymap.set("n", "<leader>thf", pickers.favorites, { desc = "Huez favorites" })
-		vim.keymap.set("n", "<leader>thl", pickers.live, { desc = "Huez live" })
-		vim.keymap.set("n", "<leader>the", pickers.ensured, { desc = "Huez ensured" })
-
-		vim.cmd.colorscheme("horizon")
+		-- vim.cmd.colorscheme("horizon")
+		vim.cmd.colorscheme("catppuccin-mocha")
 
 		local accent = "#e95678"
 		local hl = vim.api.nvim_set_hl
