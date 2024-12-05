@@ -41,6 +41,9 @@ return { -- Autoformat
 			typescript = { "prettier" },
 			typescriptreact = { "prettier" },
 			go = { "goimports", "gofumpt" },
+			bash = { "shfmt" },
+			zsh = { "shfmt" },
+			sh = { "shfmt" },
 		},
 	},
 }

@@ -43,21 +43,15 @@ return {
 				max_width = 80, -- Set the maximum width for the floating window
 			},
 		})
-		vim.filetype.add({ pattern = { [".yml"] = "yaml.ansible" } }) -- this will match playboook.ansible.yaml
-		vim.filetype.add({ pattern = { [".yaml"] = "yaml.ansible" } }) -- this will match playboook.ansible.yaml
-		-- local function open_float()
-		-- 	vim.diagnostic.open_float({
-		--
-		-- 	})
-		-- end
 
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 		local servers = {
 			gopls = {},
 			ts_ls = {},
 			sqlls = {},
+			bashls = {},
 			ansiblels = {
-				filetypes = { "yaml", "yml", "ansible" },
+				filetypes = { ".yaml", ".yml", ".ansible" },
 			},
 			lua_ls = {
 				settings = {
@@ -70,15 +64,6 @@ return {
 			},
 		}
 
-		-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
-		-- 	pattern = { "tmux.conf", ".tmux.conf" },
-		-- 	callback = function()
-		-- 		vim.lsp.start({
-		-- 			name = "tmux",
-		-- 			cmd = { "tmux-language-server" },
-		-- 		})
-		-- 	end,
-		-- })
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
