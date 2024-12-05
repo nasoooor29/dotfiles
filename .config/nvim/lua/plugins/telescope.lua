@@ -27,6 +27,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			defaults = {
 				mappings = {
 					i = {
+						["<A-j>"] = "move_selection_next",
+						["<A-k>"] = "move_selection_previous",
 						["<C-j>"] = "move_selection_next",
 						["<C-k>"] = "move_selection_previous",
 					},
