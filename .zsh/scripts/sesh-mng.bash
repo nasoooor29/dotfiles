@@ -1,7 +1,7 @@
 # --bind 'alt-3:change-prompt(  )+reload(sesh list -c)' \
 
 sesh connect "$(
-sesh list -t | grep -v "scratch" | fzf-tmux -p 70%,60%  --border \
+sesh list -t | grep -v "scratch" | fzf-tmux -p 60%,40%  --border --margin=0\
     --header '  A-1 tmux  A-2 zoxide  A-3 My Repos  A-4 find  A-d kill ' \
     --no-sort --ansi --border-label ' sesh ' --prompt '  ' --border=rounded \
     --bind 'tab:down,btab:up' \
