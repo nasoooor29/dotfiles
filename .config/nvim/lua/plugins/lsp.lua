@@ -50,9 +50,7 @@ return {
 			ts_ls = {},
 			sqlls = {},
 			bashls = {},
-			ansiblels = {
-				filetypes = { ".yaml", ".yml", ".ansible" },
-			},
+			ansiblels = {},
 			lua_ls = {
 				settings = {
 					Lua = {
