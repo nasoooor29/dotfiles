@@ -64,6 +64,7 @@ vim.keymap.set("n", "<C-A-k>", "<cmd>resize +5<CR>", opts)
 
 vim.keymap.set("n", "<leader>rr", "<cmd>luafile %<CR>", opts)
 
+-- wsl on windows auto detection for clipboard
 local function get_distro_name()
 	local handle = io.popen("echo $WSL_DISTRO_NAME")
 	if handle == nil then
