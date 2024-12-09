@@ -46,7 +46,14 @@ return {
 
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 		local servers = {
+			cssls = {},
+			css_variables = {},
+			marksman = {},
+			pyright = {},
+			shfmt = {},
+			stylua = {},
 			gopls = {},
+			goimports = {},
 			ts_ls = {},
 			sqlls = {},
 			bashls = {},
@@ -65,7 +72,7 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
-			"ansiblels",
+			"ansible-lint", -- Used to format Lua code
 		})
 
 		require("mason-tool-installer").setup({
