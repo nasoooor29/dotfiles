@@ -4,7 +4,7 @@ local StatusLineOpts = {
 		active = function()
 			local check_macro_recording = function()
 				if vim.fn.reg_recording() ~= "" then
-					return "Recording @" .. vim.fn.reg_recording()
+					return "Reg @" .. vim.fn.reg_recording()
 				else
 					return ""
 				end

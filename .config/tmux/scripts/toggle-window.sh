@@ -38,7 +38,7 @@ function run_command {
     if [[ -f "go.mod" ]]; then
         tmux send-keys -t 2 "go run ." Enter
     elif [[ -f "package.json" ]]; then
-        tmux send-keys -t 2 "npm start" Enter
+        tmux send-keys -t 2 "bun run dev" Enter
     elif [[ -f "pyproject.toml" || -f "requirements.txt" ]]; then
         tmux send-keys -t 2 "python3 main.py" Enter
     else

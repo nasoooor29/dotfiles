@@ -20,7 +20,7 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
 
 -- file save and quitting mappings
-vim.keymap.set({ "n", "v" }, "<leader>ww", "<cmd>wa<CR><cmd>qa<CR>", opts)
+vim.keymap.set({ "n", "v" }, "<leader>ww", "<cmd>wa<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>wa<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>wa", "<cmd>wa<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>wq", "<cmd>wq<CR>", opts)
