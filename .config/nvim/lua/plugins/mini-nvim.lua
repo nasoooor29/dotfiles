@@ -39,25 +39,19 @@ return { -- Collection of various small independent plugins/modules
 	"echasnovski/mini.nvim",
 	version = false,
 	config = function()
-		require("mini.ai").setup({ n_lines = 500 })
 		require("mini.statusline").setup(StatusLineOpts)
+		require("mini.ai").setup()
 		require("mini.surround").setup()
 		require("mini.move").setup()
 		require("mini.tabline").setup()
 		require("mini.starter").setup()
 		require("mini.pairs").setup()
 		require("mini.cursorword").setup()
-		require("mini.indentscope").setup({
-			symbol = "▎",
-			-- draw = {
-			-- 	animation = indent.gen_animation.none(),
-			-- },
+		require("mini.indentscope").setup()
+		require("mini.hipatterns").setup({
+			highlighters = {
+				hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
+			},
 		})
-		-- TODO: Ask ebrahim about the the colors of #fffff
-		-- require("mini.hipatterns").setup({
-		-- 	highlighters = {
-		-- 		hex_color = hipatterns.gen_highlighter.hex_color(),
-		-- 	},
-		-- })
 	end,
 }
