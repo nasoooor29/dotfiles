@@ -31,11 +31,11 @@ return {
 		-- vim.cmd.colorscheme("horizon")
 		vim.cmd.colorscheme("catppuccin-mocha")
 
-		local accent = "#e95678"
+		local accent = "#cba6f7"
 		local hl = vim.api.nvim_set_hl
 
 		hl(0, "MiniTablineCurrent", { fg = accent })
 		hl(0, "CursorLineNr", { fg = accent })
-		hl(0, "FloatBorder", { fg = accent, bg = "#232530" })
+		hl(0, "FloatBorder", { fg = accent, bg = "#cba6f7" })
 	end,
 }
