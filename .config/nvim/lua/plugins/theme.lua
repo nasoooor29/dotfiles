@@ -36,6 +36,6 @@ return {
 
 		hl(0, "MiniTablineCurrent", { fg = accent })
 		hl(0, "CursorLineNr", { fg = accent })
-		hl(0, "FloatBorder", { fg = accent, bg = "#cba6f7" })
+		hl(0, "FloatBorder", { fg = accent })
 	end,
 }
