@@ -42,3 +42,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="/home/nasoooor/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/nasoooor/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
