@@ -28,11 +28,7 @@ return {
 			vim.keymap.set("n", "gd", t.lsp_definitions, bufopts)
 			vim.keymap.set("n", "gi", t.lsp_implementations, bufopts)
 			vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
-			-- vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-
-			vim.keymap.set("n", "K", function()
-				vim.lsp.buf.hover(winOpts)
-			end, bufopts)
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
@@ -40,27 +36,7 @@ return {
 		end
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
-		local servers = {
-			cssls = {},
-			css_variables = {},
-			marksman = {},
-			pyright = {},
-			shfmt = {},
-			gopls = {},
-			goimports = {},
-			ts_ls = {},
-			sqlls = {},
-			bashls = {},
-			ansiblels = {},
-			lua_ls = {},
-			stylua = {},
-			["ansible-lint"] = {},
-		}
-
-		require("mason-tool-installer").setup({
-			ensure_installed = servers,
-		})
-
+		local servers = require("servers")
 		masonLspCfg.setup({
 			handlers = {
 				function(server_name)

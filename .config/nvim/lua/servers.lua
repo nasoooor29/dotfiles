@@ -1,0 +1,17 @@
+return {
+	cssls = {},
+	css_variables = {},
+	marksman = {},
+	pyright = {},
+	shfmt = {},
+	gopls = {},
+	goimports = {},
+	ts_ls = {},
+	sqlls = {},
+	bashls = {},
+	ansiblels = {},
+	lua_ls = {},
+	stylua = {},
+	templ = {},
+	["ansible-lint"] = {},
+}
