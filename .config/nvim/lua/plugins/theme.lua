@@ -34,6 +34,13 @@ return {
 		local accent = "#cba6f7"
 		local hl = vim.api.nvim_set_hl
 
+		vim.diagnostic.config({
+			float = {
+				scope = "cursor",
+				border = "rounded",
+				max_width = 80, -- Set the maximum width for the floating window
+			},
+		})
 		hl(0, "MiniTablineCurrent", { fg = accent })
 		hl(0, "CursorLineNr", { fg = accent })
 		hl(0, "FloatBorder", { fg = accent })
