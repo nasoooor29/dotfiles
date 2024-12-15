@@ -7,7 +7,6 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 	},
 	config = function()
-		print("kaka")
 		require("go").setup({})
 	end,
 	event = { "CmdlineEnter" },
