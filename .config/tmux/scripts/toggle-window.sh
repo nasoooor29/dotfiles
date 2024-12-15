@@ -33,16 +33,20 @@ function run_command {
     if [[ "$window_command" == "nvim" ]]; then
         tmux send -t "${nvim_session}:1" Escape ":wa" Enter
     fi
-
     open_window
-    if [[ -f "go.mod" ]]; then
+
+    if [[ -f "makefile" ]]; then
+        tmux send-keys -t 2 "make run" Enter
+    elif [[ -f ".air.toml" ]]; then
+        tmux send-keys -t 2 "air" Enter
+    elif [[ -f "go.mod" ]]; then
         tmux send-keys -t 2 "go run ." Enter
     elif [[ -f "package.json" ]]; then
         tmux send-keys -t 2 "bun run dev" Enter
     elif [[ -f "pyproject.toml" || -f "requirements.txt" ]]; then
         tmux send-keys -t 2 "python3 main.py" Enter
     else
-        tmux send-keys -t 2 "echo 'Language not detected or supported'" Enter
+        tmux send-keys -t 2 "echo 'no makefile and no supported language'" Enter
     fi
 }
 
