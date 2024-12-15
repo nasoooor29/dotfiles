@@ -20,11 +20,6 @@ return {
 				["<C-k>"] = { "select_prev", "fallback" },
 				["<C-j>"] = { "select_next", "fallback" },
 			},
-			-- completion = {
-			-- 	menu = {
-			-- 		border = "rounded",
-			-- 	},
-			-- },
 
 			snippets = {
 				expand = function(snippet)
