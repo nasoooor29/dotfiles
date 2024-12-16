@@ -44,5 +44,6 @@ return {
 				end,
 			},
 		})
+		require("plugins.langs.lua")
 	end,
 }
