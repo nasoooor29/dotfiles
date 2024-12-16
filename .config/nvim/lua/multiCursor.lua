@@ -1,58 +1,54 @@
 local opts = { noremap = true, silent = true }
+function SendKeys(command, mode)
+	if mode == nil then
+		mode = "n"
+	end
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(command, true, true, true), mode, false)
+end
 
 vim.keymap.set("n", "<leader>ra", function()
-	-- Get the word under the cursor
 	local word = vim.fn.expand("<cword>")
-	-- Prompt the user for the replacement word
 	local replacement = vim.fn.input('Replace "' .. word .. '" with: ')
-	-- Ensure a valid replacement is entered
 	if replacement ~= "" then
-		-- Perform interactive substitution with confirmation (`gc`)
 		vim.cmd(":%s/\\<" .. word .. "\\>/" .. replacement .. "/gc")
 	else
 		print("No replacement provided. Aborting.")
 	end
 end, opts)
 
-function SendKeys(command, mode)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(command, true, true, true), mode, false)
-end
 vim.keymap.set("n", "<leader>ri", function()
 	local command = ":%s/\\<" .. vim.fn.expand("<cword>") .. "\\>//g"
 	SendKeys(command, "n")
 	SendKeys("<Left><Left>", "n")
-end, { noremap = true, silent = true })
+end, opts)
 
-vim.keymap.set("n", "<leader>rii", function()
-	local command = ":%s/\\<" .. vim.fn.expand("<cword>") .. "\\>//gc"
-	vim.cmd(command)
-end, { noremap = true, silent = true })
+word_to_edit = ""
 
-local macro_register = "z" -- The register to store the macro
-
--- Record and execute a macro on the current word, stopping after the first occurrence
-vim.keymap.set("n", "<leader>rc", function()
-	local word = vim.fn.expand("<cword>") -- Get the word under the cursor
-	if word == "" then
-		vim.notify("No word under the cursor", vim.log.levels.WARN)
+vim.keymap.set("v", "co", function()
+	vim.cmd("normal! y")
+	word_to_edit = vim.fn.getreg('"')
+	if word_to_edit == "" then
+		print("No word/selection to apply the macro to!")
 		return
 	end
+	vim.cmd("normal! qz")
+end, opts)
 
-	-- Start recording a macro in the specified register
-	vim.cmd("normal! q" .. macro_register)
-
-	vim.notify("Recording started. Perform your action and go to the next occurrence.")
-end, { noremap = true, silent = true })
-
--- Apply the recorded macro to the next occurrence
-vim.keymap.set("n", "<leader>rn", function()
-	-- Find the next occurrence of the word
-	local found = vim.fn.search("\\<" .. vim.fn.expand("<cword>") .. "\\>", "W")
-	if found == 0 then
-		vim.notify("No more occurrences found", vim.log.levels.INFO)
+vim.keymap.set("n", "co", function()
+	word_to_edit = vim.fn.expand("<cword>")
+	if word_to_edit == "" then
+		print("No word to apply the macro to!")
 		return
 	end
-
-	-- Execute the macro on the current match
-	vim.cmd("normal! @" .. macro_register)
+	vim.cmd("normal! qz")
 end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "cp", function()
+	if word_to_edit == "" then
+		print("No word to apply the macro to!")
+		return
+	end
+	vim.cmd("normal! /\v" .. word_to_edit .. "\n")
+	vim.cmd("normal! n")
+	vim.cmd("normal! @z")
+end, opts)

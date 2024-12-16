@@ -1,5 +1,4 @@
 -- TIP: Disable arrow keys in normal mode
--- movement keymaps
 require("multiCursor")
 
 local opts = { noremap = false, silent = true }
