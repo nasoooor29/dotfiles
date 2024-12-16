@@ -12,8 +12,6 @@ return {
 	config = function()
 		require("mason").setup()
 
-		local masonLspCfg = require("mason-lspconfig")
-
 		local on_attach = function(client, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			local t = require("telescope.builtin")
@@ -25,20 +23,23 @@ return {
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 		end
 
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 		local servers = require("servers")
-		masonLspCfg.setup({
+		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
 					require("lspconfig")[server_name].setup({
 						on_attach = on_attach,
-						capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
+						capabilities = vim.tbl_deep_extend(
+							"force",
+							vim.lsp.protocol.make_client_capabilities(),
+							require("blink.cmp").get_lsp_capabilities(),
+							server.capabilities or {}
+						),
 					})
 				end,
 			},

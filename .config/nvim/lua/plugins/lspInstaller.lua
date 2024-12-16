@@ -7,9 +7,8 @@ return {
 		},
 	},
 	config = function()
-		local lspCfg = require("mason-lspconfig")
 		require("mason-tool-installer").setup({
-			ensure_installed = lspCfg.ensure_installed,
+			ensure_installed = require("servers"),
 		})
 	end,
 }

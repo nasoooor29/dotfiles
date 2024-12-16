@@ -1,5 +1,6 @@
 require("opts")
 require("keymaps")
+require("wsl")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -9,5 +10,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
--- { 'Bilal2453/luvit-meta', lazy = true },
-require("lazy").setup("plugins")
+
+require("lazy").setup({
+	{ import = "plugins" },
+	{ import = "plugins.langs" },
+})
