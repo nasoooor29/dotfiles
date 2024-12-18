@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>ra", function()
 	local word = vim.fn.expand("<cword>")
 	local replacement = vim.fn.input('Replace "' .. word .. '" with: ')
 	if replacement ~= "" then
-		vim.cmd(":%s/\\<" .. word .. "\\>/" .. replacement .. "/gc")
+		SendKeys(":%s/\\<" .. word .. "\\>/" .. replacement .. "/gc")
 	else
 		print("No replacement provided. Aborting.")
 	end
@@ -18,20 +18,20 @@ end, opts)
 
 vim.keymap.set("n", "<leader>ri", function()
 	local command = ":%s/\\<" .. vim.fn.expand("<cword>") .. "\\>//g"
-	SendKeys(command, "n")
-	SendKeys("<Left><Left>", "n")
+	SendKeys(command)
+	SendKeys("<Left><Left>")
 end, opts)
 
 word_to_edit = ""
 
 vim.keymap.set("v", "co", function()
-	vim.cmd("normal! y")
+	SendKeys("y")
 	word_to_edit = vim.fn.getreg('"')
 	if word_to_edit == "" then
 		print("No word/selection to apply the macro to!")
 		return
 	end
-	vim.cmd("normal! qz")
+	SendKeys("qz")
 end, opts)
 
 vim.keymap.set("n", "co", function()
@@ -40,15 +40,15 @@ vim.keymap.set("n", "co", function()
 		print("No word to apply the macro to!")
 		return
 	end
-	vim.cmd("normal! qz")
-end, { noremap = true, silent = true })
+	SendKeys("qz")
+end, opts)
 
 vim.keymap.set("n", "cp", function()
 	if word_to_edit == "" then
 		print("No word to apply the macro to!")
 		return
 	end
-	vim.cmd("normal! /\v" .. word_to_edit .. "\n")
-	vim.cmd("normal! n")
-	vim.cmd("normal! @z")
+	SendKeys("/\v" .. word_to_edit .. "\n")
+	SendKeys("n")
+	SendKeys("@z")
 end, opts)
