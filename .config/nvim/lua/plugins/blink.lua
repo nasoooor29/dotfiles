@@ -36,7 +36,7 @@ return {
 				end,
 			},
 			sources = {
-				default = { "lsp", "path", "luasnip", "buffer" },
+				default = { "luasnip", "lsp", "path" },
 			},
 		})
 	end,
