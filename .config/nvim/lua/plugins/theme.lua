@@ -6,7 +6,6 @@ return {
 		{
 			"akinsho/horizon.nvim",
 			"folke/tokyonight.nvim",
-
 			"rose-pine/neovim",
 		},
 	},

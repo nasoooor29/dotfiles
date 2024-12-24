@@ -1,4 +1,8 @@
 local opts = { noremap = true, silent = true }
+
+print("mama")
+print("dada")
+
 function SendKeys(command, mode)
 	if mode == nil then
 		mode = "n"

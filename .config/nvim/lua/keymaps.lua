@@ -65,10 +65,13 @@ vim.keymap.set("n", "<leader>rk", "<cmd>resize +5<CR>", opts)
 -- keymaps for quickfix
 vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", opts)
 vim.keymap.set("n", "<leader>qp", "<cmd>cprevious<CR>", opts)
-vim.keymap.set("n", "<leader>qw", function()
-	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>"), use_regex = false })
-end, { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>qw", function()
+-- 	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>"), use_regex = false })
+-- end, { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>ref", "<cmd>luafile %<CR>", opts)
+-- vim.keymap.set("n", "<leader>ref", "<cmd>.luafile %<CR>", opts)
 vim.keymap.set("n", "<leader>rel", "<cmd>.lua<CR>", opts)
-vim.keymap.set("v", "<leader>res", "<cmd>lua<CR>", opts)
+
+vim.keymap.set("n", "<leader>ref", function()
+	vim.cmd("luafile " .. vim.api.nvim_buf_get_name(0))
+end, opts)
