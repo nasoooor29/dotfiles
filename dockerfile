@@ -7,12 +7,13 @@ RUN pacman -Syu --noconfirm && \
 
 # Create a user named 'nasoooor' with sudo access
 RUN useradd -m -G wheel -s /bin/bash nasoooor && \
-    echo 'nasoooor:password' | chpasswd && \
+    echo 'nasoooor:1032' | chpasswd && \
     echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 
-# Generate SSH host keys
 RUN ssh-keygen -A
+RUN pacman -S --noconfirm ansible
+
 
 # Configure SSH server
 RUN mkdir -p /var/run/sshd && \
