@@ -23,5 +23,10 @@ RUN mkdir -p /var/run/sshd && \
 # Expose the SSH port
 EXPOSE 22
 
+
+
+
+
+
 # Start SSH server by default
 CMD ["/usr/sbin/sshd", "-D"]
