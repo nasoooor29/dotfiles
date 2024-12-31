@@ -3,7 +3,7 @@
 .zsh/zsh-autosuggestions
 .zsh/zsh-syntax-highlighting
 .config/lazygit
-.config/go/telemetry/local
+.config/go
 .config/composer
-.config/herd-lite/bin
-.config/libreoffice/4
+.config/herd-lite
+.config/libreoffice
