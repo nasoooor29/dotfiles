@@ -8,6 +8,7 @@
   ansible.builtin.copy:
     src: ssh_keys.zip
     dest: /tmp/ssh_keys.zip
+  changed_when: false
 
 - name: Extract the decrypted zip file
   ansible.builtin.unarchive:
@@ -19,3 +20,4 @@
   ansible.builtin.file:
     path: /tmp/ssh_keys.zip
     state: absent
+
