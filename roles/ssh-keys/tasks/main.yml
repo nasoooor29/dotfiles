@@ -22,3 +22,7 @@
     state: absent
   changed_when: false
 
+- name: check
+  ansible.builtin.debug:
+    msg: "mama"
+	
