@@ -13,7 +13,6 @@
       - ansible-core
       - wget
       - btop
-      - fzf-git
       - git
       - python
       - eza
@@ -21,4 +20,5 @@
       - go
       - zoxide
       - tmux
+      # - fzf-git
     state: present
