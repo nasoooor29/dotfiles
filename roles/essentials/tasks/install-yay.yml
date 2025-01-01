@@ -18,6 +18,11 @@
   ignore_errors: true
   changed_when: false
 
+- name: a
+  ansible.builtin.debug:
+    msg: "{{ ansible_env.HOME }}"
+	
+
 - name: Clone the yay repository into the home directory if yay is not installed
   ansible.builtin.git:
     repo: https://aur.archlinux.org/yay.git
@@ -25,6 +30,7 @@
     clone: true
     update: false
   when: yay_check.rc != 0
+  become: false  # Run as the connected user
 
 - name: Build and install yay from the user's home directory
   ansible.builtin.command:
