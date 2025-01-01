@@ -1,0 +1,24 @@
+- name: Install essensial apps
+  community.general.pacman:
+    name:
+      - lazygit
+      - neovim
+      - man-db
+      - unzip
+      - zip
+      - zsh
+      - openssh
+      - stow
+      - bat
+      - ansible-core
+      - wget
+      - btop
+      - fzf-git
+      - git
+      - python
+      - eza
+      - npm
+      - go
+      - zoxide
+      - tmux
+    state: present
