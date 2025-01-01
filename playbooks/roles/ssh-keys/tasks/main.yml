@@ -12,7 +12,9 @@
 
 - name: Decrypt the zip file
   ansible.builtin.command:
-    cmd: "ansible-vault decrypt /tmp/decrypted_zip/ssh_keys.zip --output=/tmp/decrypted_zip/decrypted_ssh_keys.zip"
+    cmd: |
+      cd $HOME/dotfiles &&
+ansible-vault decrypt playbooks/roles/ssh-keys/files/ssh_keys.zip --output=playbooks/roles/ssh-keys/files/ssh_keys_dec.zip
   register: decrypt_output
 
 - name: Extract the decrypted zip file
