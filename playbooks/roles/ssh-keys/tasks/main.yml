@@ -1,14 +1,13 @@
-
-- name: Ensure temporary directory exists
-  ansible.builtin.file:
-    path: /tmp/decrypted_zip
-    state: directory
-    mode: '0700'
-
-- name: Copy encrypted zip file to temporary directory
-  ansible.builtin.copy:
-    src: ssh_keys.zip
-    dest: /tmp/decrypted_zip/ssh_keys.zip
+# - name: Ensure temporary directory exists
+#   ansible.builtin.file:
+#     path: /tmp/decrypted_zip
+#     state: directory
+#     mode: '0700'
+#
+# - name: Copy encrypted zip file to temporary directory
+#   ansible.builtin.copy:
+#     src: ssh_keys.zip
+#     dest: /tmp/decrypted_zip/ssh_keys.zip
 
 # - name: Decrypt the zip file
 #   ansible.builtin.command:
@@ -16,23 +15,23 @@
 #       ansible-vault decrypt /tmp/decrypted_zip/ssh_keys.zip
 #       --output=/tmp/decrypted_zip/ssh_keys_dec.zip
 #   register: decrypt_output
-#
-# - name: Extract the decrypted zip file
-#   ansible.builtin.unarchive:
-#     src: /tmp/decrypted_zip/ssh_keys_dec.zip
-#     dest: "{{ ssh_dir }}"
-#     remote_src: yes
-#
-# - name: Set permissions for private key
-#   ansible.builtin.file:
-#     path: "{{ ssh_dir }}/id_rsa"
-#     mode: '0600'
-#
-# - name: Set permissions for public key
-#   ansible.builtin.file:
-#     path: "{{ ssh_dir }}/id_rsa.pub"
-#     mode: '0644'
-#
+
+- name: Extract the decrypted zip file
+  ansible.builtin.unarchive:
+    src: ssh_keys.zip
+    dest: "{{ ssh_dir }}"
+    remote_src: yes
+
+- name: Set permissions for private key
+  ansible.builtin.file:
+    path: "{{ ssh_dir }}/id_rsa"
+    mode: '0600'
+
+- name: Set permissions for public key
+  ansible.builtin.file:
+    path: "{{ ssh_dir }}/id_rsa.pub"
+    mode: '0644'
+
 # - name: Clean up temporary files
 #   ansible.builtin.file:
 #     path: /tmp/decrypted_zip
