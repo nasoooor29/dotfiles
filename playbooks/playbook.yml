@@ -3,10 +3,5 @@
 ---
 - name: Setup SSH keys
   hosts: localhost
-  tasks:
-    - name: deb
-      ansible.builtin.debug:
-        - msg: "a1"
-	
-  # roles:
-  #   - ssh-keys
+  roles:
+    - ssh-keys
