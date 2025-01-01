@@ -1,24 +1,4 @@
-- name: Install essensial apps
-  community.general.pacman:
-    name:
-      - lazygit
-      - neovim
-      - man-db
-      - unzip
-      - zip
-      - zsh
-      - openssh
-      - stow
-      - bat
-      - ansible-core
-      - wget
-      - btop
-      - git
-      - python
-      - eza
-      - npm
-      - go
-      - zoxide
-      - tmux
-      # - fzf-git
-    state: present
+- name: Install essntial apps
+  ansible.builtin.import_tasks:
+    file: install-apps.yml
+  # when: ansible_distribution == "Ubuntu"

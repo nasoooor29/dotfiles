@@ -1,0 +1,37 @@
+- name: Install essensial apps
+  community.general.pacman:
+    name:
+      - lazygit
+      - neovim
+      - man-db
+      - unzip
+      - zip
+      - zsh
+      - openssh
+      - stow
+      - bat
+      - ansible-core
+      - wget
+      - btop
+      - git
+      - python
+      - eza
+      - npm
+      - go
+      - zoxide
+      - tmux
+      - base-devel ## for yay
+      # - fzf-git
+    state: present
+
+- name: Install essensial apps AUR
+  community.general.pacman:
+    yay:
+      - fzf-git
+    state: present
+
+# - name: Run stow
+#   ansible.builtin.shell:
+#     cmd: "stow . --target {{ ansible_env.HOME }} --adopt --verbose=2"
+#   register: result
+#   changed_when: 'result.stderr is search("LINK: ")'
