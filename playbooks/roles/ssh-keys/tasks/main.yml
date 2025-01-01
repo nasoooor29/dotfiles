@@ -1,31 +1,25 @@
+
 - name: Ensure temporary directory exists
   ansible.builtin.file:
     path: /tmp/decrypted_zip
     state: directory
     mode: '0700'
 
-- name: Copy encrypted zip file to temp directory
+- name: Copy encrypted zip file to temporary directory
   ansible.builtin.copy:
     src: ssh_keys.zip
     dest: /tmp/decrypted_zip/ssh_keys.zip
 
-
-- name: Change directory to dotfiles
-  ansible.builtin.shell: |
-    cd $HOME/dotfiles
-  args:
-    chdir: "$HOME/dotfiles"
-
 - name: Decrypt the zip file
   ansible.builtin.command:
     cmd: >
-      ansible-vault decrypt roles/ssh-keys/files/ssh_keys.zip
-      --output=roles/ssh-keys/files/ssh_keys_dec.zip
+      ansible-vault decrypt /tmp/decrypted_zip/ssh_keys.zip
+      --output=/tmp/decrypted_zip/ssh_keys_dec.zip
   register: decrypt_output
 
 - name: Extract the decrypted zip file
   ansible.builtin.unarchive:
-    src: /tmp/decrypted_zip/decrypted_ssh_keys.zip
+    src: /tmp/decrypted_zip/ssh_keys_dec.zip
     dest: "{{ ssh_dir }}"
     remote_src: yes
 
@@ -43,4 +37,3 @@
   ansible.builtin.file:
     path: /tmp/decrypted_zip
     state: absent
-
