@@ -14,10 +14,11 @@
   ansible.builtin.unarchive:
     src: /tmp/ssh_keys.zip
     dest: "{{ ssh_dir }}"
-    remote_src: yes
+    remote_src: true
 
 - name: Remove the zip file after extraction
   ansible.builtin.file:
     path: /tmp/ssh_keys.zip
     state: absent
+  changed_when: false
 
