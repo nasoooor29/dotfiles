@@ -6,7 +6,7 @@
   tasks:
     - name: deb
       ansible.builtin.debug:
-        msg: "a1"
+        - msg: "a1"
 	
   # roles:
   #   - ssh-keys
