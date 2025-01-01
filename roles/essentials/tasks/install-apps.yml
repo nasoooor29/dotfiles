@@ -25,9 +25,9 @@
     state: present
 
 - name: Install essensial apps AUR
-  community.general.pacman:
-    yay:
-      - fzf-git
+  yay:
+    name:
+      - lazygit
     state: present
 
 # - name: Run stow
