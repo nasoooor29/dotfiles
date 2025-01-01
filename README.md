@@ -37,3 +37,9 @@ cat scripts/catMeRunMe
 ```bash
 
 ```
+```
+
+## zip your keys
+```bash
+zsh scripts/zip-enc-ansible.sh ~/.ssh playbooks/roles/ssh-keys/files/ssh_keys.zip
+```
