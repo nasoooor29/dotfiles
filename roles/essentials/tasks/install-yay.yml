@@ -1,0 +1,40 @@
+- name: Update the system package database
+  ansible.builtin.pacman:
+    update_cache: true
+
+- name: Install base-devel and git if not already installed
+  ansible.builtin.pacman:
+    name:
+      - base-devel
+      - git
+    state: present
+
+- name: Check if yay is already installed
+  ansible.builtin.command:
+    cmd: yay --version
+  register: yay_check
+  failed_when: yay_check.rc not in [0, 1]  # Ignore errors if yay isn't installed
+  changed_when: false
+
+- name: Clone the yay repository if yay is not installed
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/yay
+    clone: true
+    update: false
+  when: yay_check.rc != 0
+
+- name: Build and install yay
+  ansible.builtin.command:
+    cmd: makepkg -si --noconfirm
+    chdir: /tmp/yay
+  args:
+    creates: /usr/bin/yay  # Ensure this task runs only if yay is not installed
+  when: yay_check.rc != 0
+
+
+- name: Remove the yay repository after installation
+  ansible.builtin.file:
+    path: /tmp/yay
+    state: absent
+  when: yay_check.rc != 0

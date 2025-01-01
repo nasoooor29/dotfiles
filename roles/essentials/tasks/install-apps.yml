@@ -23,6 +23,11 @@
       - base-devel ## for yay
       # - fzf-git
     state: present
+    update_cache: true
+
+- name: Ensure YAY exists
+  ansible.builtin.import_tasks:
+    file: install-yay.yml
 
 - name: Install essensial apps AUR
   yay:
