@@ -15,3 +15,7 @@
     dest: "{{ ssh_dir }}"
     remote_src: yes
 
+- name: Remove the zip file after extraction
+  ansible.builtin.file:
+    path: /tmp/ssh_keys.zip
+    state: absent
