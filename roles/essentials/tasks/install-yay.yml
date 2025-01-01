@@ -9,11 +9,19 @@
       - git
     state: present
 
+# - name: Check 
+#   ansible.builtin.command:
+#     cmd: which yay
+#   register: yay_check
+#   ignore_errors: true
+
 - name: Check if yay is already installed
   ansible.builtin.command:
     cmd: yay --version
   register: yay_check
-  failed_when: yay_check.rc not in [0, 1]  # Ignore errors if yay isn't installed
+  # failed_when: yay_check.rc not in [0, 1]  # Ignore errors if yay isn't installed
+  ignore_errors: true
+
 
 - name: Clone the yay repository if yay is not installed
   ansible.builtin.git:
