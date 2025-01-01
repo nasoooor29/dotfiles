@@ -3,5 +3,6 @@
 ---
 - name: Setup SSH keys
   hosts: localhost
+  become: true
   roles:
     - ssh-keys
