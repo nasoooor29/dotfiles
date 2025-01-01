@@ -1,6 +1,7 @@
 - name: Update the system package database
   community.general.pacman:
     update_cache: true
+  become: true
 
 - name: Install base-devel and git if not already installed
   community.general.pacman:
@@ -8,41 +9,34 @@
       - base-devel
       - git
     state: present
-
-# - name: Check 
-#   ansible.builtin.command:
-#     cmd: which yay
-#   register: yay_check
-#   ignore_errors: true
+  become: true
 
 - name: Check if yay is already installed
   ansible.builtin.command:
     cmd: yay --version
   register: yay_check
-  # failed_when: yay_check.rc not in [0, 1]  # Ignore errors if yay isn't installed
   ignore_errors: true
+  changed_when: false
 
-
-- name: Clone the yay repository if yay is not installed
+- name: Clone the yay repository into the home directory if yay is not installed
   ansible.builtin.git:
     repo: https://aur.archlinux.org/yay.git
-    dest: /tmp/yay
+    dest: "{{ ansible_env.HOME }}/yay"
     clone: true
     update: false
   when: yay_check.rc != 0
 
-- name: Build and install yay
+- name: Build and install yay from the user's home directory
   ansible.builtin.command:
     cmd: makepkg -si --noconfirm
-    chdir: /tmp/yay
+    chdir: "{{ ansible_env.HOME }}/yay"
   args:
-    creates: /usr/bin/yay  # Ensure this task runs only if yay is not installed
+    creates: /usr/bin/yay
   when: yay_check.rc != 0
-  become: false
-
+  become: false  # Run as the connected user
 
 - name: Remove the yay repository after installation
   ansible.builtin.file:
-    path: /tmp/yay
+    path: "{{ ansible_env.HOME }}/yay"
     state: absent
   when: yay_check.rc != 0
