@@ -38,6 +38,7 @@
   args:
     creates: /usr/bin/yay  # Ensure this task runs only if yay is not installed
   when: yay_check.rc != 0
+  become: false
 
 
 - name: Remove the yay repository after installation
