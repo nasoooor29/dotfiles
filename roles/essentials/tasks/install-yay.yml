@@ -20,7 +20,7 @@
 
 - name: a
   ansible.builtin.debug:
-    msg: "{{ ansible_env.HOME }}"
+    - "{{ ansible_env.HOME }}"
 	
 
 - name: Clone the yay repository into the home directory if yay is not installed
