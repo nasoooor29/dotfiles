@@ -1,4 +1,3 @@
----
 - name: Ensure temporary directory exists
   ansible.builtin.file:
     path: /tmp/decrypted_zip
@@ -10,11 +9,18 @@
     src: ssh_keys.zip
     dest: /tmp/decrypted_zip/ssh_keys.zip
 
+
+- name: Change directory to dotfiles
+  ansible.builtin.shell: |
+    cd $HOME/dotfiles
+  args:
+    chdir: "$HOME/dotfiles"
+
 - name: Decrypt the zip file
   ansible.builtin.command:
-    cmd: |
-      cd $HOME/dotfiles &&
-ansible-vault decrypt playbooks/roles/ssh-keys/files/ssh_keys.zip --output=playbooks/roles/ssh-keys/files/ssh_keys_dec.zip
+    cmd: >
+      ansible-vault decrypt playbooks/roles/ssh-keys/files/ssh_keys.zip
+      --output=playbooks/roles/ssh-keys/files/ssh_keys_dec.zip
   register: decrypt_output
 
 - name: Extract the decrypted zip file
