@@ -1,9 +1,9 @@
 - name: Update the system package database
-  ansible.builtin.pacman:
+  community.general.pacman:
     update_cache: true
 
 - name: Install base-devel and git if not already installed
-  ansible.builtin.pacman:
+  community.general.pacman:
     name:
       - base-devel
       - git
@@ -14,7 +14,6 @@
     cmd: yay --version
   register: yay_check
   failed_when: yay_check.rc not in [0, 1]  # Ignore errors if yay isn't installed
-  changed_when: false
 
 - name: Clone the yay repository if yay is not installed
   ansible.builtin.git:
