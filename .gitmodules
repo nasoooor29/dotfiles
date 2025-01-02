@@ -3,7 +3,7 @@
 	url = https://github.com/zap-zsh/supercharge
 
 [submoduel ".zsh/p10k"]
-	path = .zsh/p10k
+	path = .zsh/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k
 
 [submodule ".zsh/zsh-syntax-highlighting"]
