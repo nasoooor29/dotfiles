@@ -1,7 +1,15 @@
+- name: Echo the home directory
+  ansible.builtin.debug:
+    msg: "Home directory: {{ ansible_env.HOME }}"
+
 - name: Update the system package database
   community.general.pacman:
     update_cache: true
   become: true
+
+- name: Echo the home directory before installing dependencies
+  ansible.builtin.debug:
+    msg: "Home directory: {{ ansible_env.HOME }}"
 
 - name: Install base-devel and git if not already installed
   community.general.pacman:
@@ -11,6 +19,10 @@
     state: present
   become: true
 
+- name: Echo the home directory before checking for yay
+  ansible.builtin.debug:
+    msg: "Home directory: {{ ansible_env.HOME }}"
+
 - name: Check if yay is already installed
   ansible.builtin.command:
     cmd: yay --version
@@ -18,10 +30,9 @@
   ignore_errors: true
   changed_when: false
 
-- name: a
+- name: Echo the home directory before cloning yay
   ansible.builtin.debug:
-    - "{{ ansible_env.HOME }}"
-	
+    msg: "Home directory: {{ ansible_env.HOME }}"
 
 - name: Clone the yay repository into the home directory if yay is not installed
   ansible.builtin.git:
@@ -32,6 +43,20 @@
   when: yay_check.rc != 0
   become: false  # Run as the connected user
 
+- name: Echo the home directory before changing ownership
+  ansible.builtin.debug:
+    msg: "Home directory: {{ ansible_env.HOME }}"
+
+- name: Ensure the yay directory is owned by the current user
+  ansible.builtin.command:
+    cmd: chown -R {{ ansible_user_id }}:{{ ansible_user_id }} "{{ ansible_env.HOME }}/yay"
+  when: yay_check.rc != 0
+  become: true  # Root privileges to change ownership
+
+- name: Echo the home directory before building yay
+  ansible.builtin.debug:
+    msg: "Home directory: {{ ansible_env.HOME }}"
+
 - name: Build and install yay from the user's home directory
   ansible.builtin.command:
     cmd: makepkg -si --noconfirm
@@ -41,8 +66,13 @@
   when: yay_check.rc != 0
   become: false  # Run as the connected user
 
+- name: Echo the home directory before cleaning up yay
+  ansible.builtin.debug:
+    msg: "Home directory: {{ ansible_env.HOME }}"
+
 - name: Remove the yay repository after installation
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/yay"
     state: absent
   when: yay_check.rc != 0
+  become: false  # Run as the connected user
