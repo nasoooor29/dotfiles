@@ -1,11 +1,10 @@
----
 - name: Setup SSH keys
   hosts: localhost
   become: true
   roles:
-    - essentials
+    - role: essentials
       tags:
         - essentials
-    - ssh-keys
+    - role: ssh-keys
       tags:
         - essentials
