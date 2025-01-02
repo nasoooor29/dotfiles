@@ -1,3 +1,12 @@
+
+- name: Check effective user
+  ansible.builtin.command:
+    cmd: whoami
+  register: whoami_result
+- name: Debug user
+  ansible.builtin.debug:
+    msg: "Running as: {{ whoami_result.stdout }}"
+
 - name: Echo the current user and home directory
   ansible.builtin.debug:
     msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
