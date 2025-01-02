@@ -24,7 +24,7 @@
     #     name: ssh-keys
 
     - name: Run stow
-      shell: "stow --adopt . --target {{ lookup('env', 'USER') }}"
+      shell: "stow --adopt . --target /home/{{ lookup('env', 'USER') }}"
       register: result
       changed_when: 'result.stderr is search("LINK: ")'
 
