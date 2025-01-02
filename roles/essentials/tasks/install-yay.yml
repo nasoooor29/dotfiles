@@ -7,6 +7,10 @@
   ansible.builtin.debug:
     msg: "Running as: {{ whoami_result.stdout }}"
 
+- name: Debug user
+  ansible.builtin.debug:
+    msg: "{{ lookup('env', 'USER') }}"
+
 - name: Echo the current user and home directory
   ansible.builtin.debug:
     msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
