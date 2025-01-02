@@ -23,6 +23,11 @@
     #   import_role:
     #     name: ssh-keys
 
+    - name: Set default shell for a user
+      ansible.builtin.user:
+        name: "{{ lookup('env', 'USER') }}"  # Replace with the actual username
+        shell: /bin/zsh  # Replace with the desired shell
+
     - name: Run stow
       shell: "stow --adopt . --target /home/{{ lookup('env', 'USER') }}"
       register: result
