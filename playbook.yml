@@ -5,5 +5,5 @@
   hosts: localhost
   become: true
   roles:
-    - ssh-keys
     - essentials
+    - ssh-keys
