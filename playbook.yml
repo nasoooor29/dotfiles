@@ -24,7 +24,7 @@
     #     name: ssh-keys
 
     - name: Run stow
-      shell: "stow  {{ lookup('env', 'USER') }}/dotfiles --target --adopt {{ lookup('env', 'USER') }}"
+      shell: "stow --adopt . --target {{ lookup('env', 'USER') }}"
       register: result
       changed_when: 'result.stderr is search("LINK: ")'
 
