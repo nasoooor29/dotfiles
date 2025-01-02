@@ -13,6 +13,7 @@ RUN useradd -m -G wheel -s /bin/bash nasoooor && \
 
 RUN ssh-keygen -A
 RUN pacman -S --noconfirm ansible
+RUN pacman -S --noconfirm make
 
 
 # Configure SSH server
@@ -22,6 +23,7 @@ RUN mkdir -p /var/run/sshd && \
 
 # Expose the SSH port
 EXPOSE 22
+
 
 
 
