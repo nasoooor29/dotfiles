@@ -16,15 +16,15 @@
       import_role:
         name: essentials
 
-    - name: Decrypt and save ssh keys
-      ignore_errors: true
-      tags:
-        - essentials
-      import_role:
-        name: ssh-keys
+    # - name: Decrypt and save ssh keys
+    #   ignore_errors: true
+    #   tags:
+    #     - essentials
+    #   import_role:
+    #     name: ssh-keys
 
     - name: Run stow
-      shell: "stow . --target --adopt {{ lookup('env', 'USER') }}"
+      shell: "stow  {{ lookup('env', 'USER') }}/dotfiles --target --adopt {{ lookup('env', 'USER') }}"
       register: result
       changed_when: 'result.stderr is search("LINK: ")'
 

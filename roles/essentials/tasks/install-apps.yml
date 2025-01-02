@@ -18,6 +18,7 @@
       - eza
       - npm
       - go
+      - jq
       - zoxide
       - tmux
       - make
@@ -35,8 +36,8 @@
       - fzf-git
     state: present
 
-- name: Run stow
-  ansible.builtin.shell:
-    cmd: "stow . --target {{ ansible_env.HOME }} --adopt --verbose=2"
-  register: result
-  changed_when: 'result.stderr is search("LINK: ")'
+# - name: Run stow
+#   ansible.builtin.shell:
+#     cmd: "stow . --target {{ ansible_env.HOME }} --adopt --verbose=2"
+#   register: result
+#   changed_when: 'result.stderr is search("LINK: ")'
