@@ -1,28 +1,8 @@
 
-- name: Check effective user
-  ansible.builtin.command:
-    cmd: whoami
-  register: whoami_result
-- name: Debug user
-  ansible.builtin.debug:
-    msg: "Running as: {{ whoami_result.stdout }}"
-
-- name: Debug user
-  ansible.builtin.debug:
-    msg: "{{ lookup('env', 'USER') }}"
-
-- name: Echo the current user and home directory
-  ansible.builtin.debug:
-    msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
-
 - name: Update the system package database
   community.general.pacman:
     update_cache: true
   become: true
-
-- name: Echo the current user and home directory before installing dependencies
-  ansible.builtin.debug:
-    msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
 
 - name: Install base-devel and git if not already installed
   community.general.pacman:
@@ -32,20 +12,13 @@
     state: present
   become: true
 
-- name: Echo the current user and home directory before checking for yay
-  ansible.builtin.debug:
-    msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
-
 - name: Check if yay is already installed
   ansible.builtin.command:
     cmd: yay --version
   register: yay_check
   ignore_errors: true
   changed_when: false
-
-- name: Echo the current user and home directory before cloning yay
-  ansible.builtin.debug:
-    msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
+  become: false  # Ensure this task runs as the non-root user
 
 - name: Clone the yay repository into the home directory if yay is not installed
   ansible.builtin.git:
@@ -54,21 +27,14 @@
     clone: true
     update: false
   when: yay_check.rc != 0
-  become: false  # Run as the connected user
-
-- name: Echo the current user and home directory before changing ownership
-  ansible.builtin.debug:
-    msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"  # Switch to the current non-root user
 
 - name: Ensure the yay directory is owned by the current user
   ansible.builtin.command:
-    cmd: chown -R {{ ansible_user_id }}:{{ ansible_user_id }} "{{ ansible_env.HOME }}/yay"
+    cmd: chown -R {{ lookup('env', 'USER') }}:{{ lookup('env', 'USER') }} "{{ ansible_env.HOME }}/yay"
   when: yay_check.rc != 0
-  become: true  # Root privileges to change ownership
-
-- name: Echo the current user and home directory before building yay
-  ansible.builtin.debug:
-    msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
+  become: true  # Root privileges for ownership change
 
 - name: Build and install yay from the user's home directory
   ansible.builtin.command:
@@ -77,15 +43,13 @@
   args:
     creates: /usr/bin/yay
   when: yay_check.rc != 0
-  become: false  # Run as the connected user
-
-- name: Echo the current user and home directory before cleaning up yay
-  ansible.builtin.debug:
-    msg: "Current user: {{ ansible_env.USER }}, Home directory: {{ ansible_env.HOME }}"
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"  # Switch to the current non-root user
 
 - name: Remove the yay repository after installation
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/yay"
     state: absent
   when: yay_check.rc != 0
-  become: false  # Run as the connected user
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"  # Run as the non-root user
