@@ -8,3 +8,4 @@
     - role: ssh-keys
       tags:
         - essentials
+      ignore_errors: true
