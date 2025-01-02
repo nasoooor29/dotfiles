@@ -33,7 +33,7 @@
 - name: Install essensial apps AUR
   yay:
     name:
-      - lazygit
+      - fzf-git
     state: present
 
 # - name: Run stow
