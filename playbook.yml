@@ -1,11 +1,24 @@
 - name: Setup SSH keys
   hosts: localhost
   become: true
-  roles:
-    - role: essentials
+  tasks:
+    - name: Update all submodules
+      tags:
+        - submodules
+        - nvim
+      command:
+        cmd: git submodule update --force --init --recursive --jobs 4
+      changed_when: false
+
+    - name: Install essentials
       tags:
         - essentials
-    - role: ssh-keys
-      tags:
-        - essentials
+      import_role:
+        name: essentials
+
+    - name: Decrypt and save ssh keys
       ignore_errors: true
+      tags:
+        - essentials
+      import_role:
+        name: ssh-keys

@@ -2,3 +2,8 @@
   ansible.builtin.import_tasks:
     file: install-apps.yml
   # when: ansible_distribution == "Ubuntu"
+
+- name: Run stow
+  shell: "stow . --target {{ ansible_env.HOME }} --verbose=2"
+  register: result
+  changed_when: 'result.stderr is search("LINK: ")'
