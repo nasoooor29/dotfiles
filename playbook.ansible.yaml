@@ -6,4 +6,8 @@
   become: true
   roles:
     - essentials
-    # - ssh-keys
+      tags:
+        - essentials
+    - ssh-keys
+      tags:
+        - essentials

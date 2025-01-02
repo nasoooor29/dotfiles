@@ -22,7 +22,6 @@
       - tmux
       - make
       - base-devel ## for yay
-      # - fzf-git
     state: present
     update_cache: true
 
