@@ -4,3 +4,6 @@
 .zsh/zsh-syntax-highlighting
 .config/lazygit
 .config/go/telemetry/local
+.config/libreoffice/4
+.config/herd-lite/bin
+.config/composer
