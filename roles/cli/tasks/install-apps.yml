@@ -1,28 +1,42 @@
 - name: Install essensial apps
   community.general.pacman:
     name:
-      - lazygit
       - neovim
       - man-db
       - unzip
       - zip
       - zsh
-      - openssh
       - stow
-      - bat
-      - ansible-core
       - wget
-      - btop
       - git
-      - python
       - eza
-      - npm
-      - go
       - jq
       - zoxide
       - tmux
-      - make
       - base-devel ## for yay
+    state: present
+    update_cache: true
+
+- name: Install programming things
+  community.general.pacman:
+    name:
+      - python
+      - npm
+      - go
+      - lazygit
+      - make
+      - lazygit
+    state: present
+    update_cache: true
+
+- name: Install Optionals
+  community.general.pacman:
+    name:
+      - ansible-core
+      - openssh
+      - bat
+      - btop
+      - net-tools
     state: present
     update_cache: true
 
@@ -35,9 +49,3 @@
     name:
       - fzf-git
     state: present
-
-# - name: Run stow
-#   ansible.builtin.shell:
-#     cmd: "stow . --target {{ ansible_env.HOME }} --adopt --verbose=2"
-#   register: result
-#   changed_when: 'result.stderr is search("LINK: ")'

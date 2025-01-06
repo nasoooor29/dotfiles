@@ -25,7 +25,7 @@ local StatusLineOpts = {
 				{ hl = mode_hl, strings = { mode } },
 				{ hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics } },
 				"%<", -- Mark general truncate point
-				{ hl = "MiniStatuslineFilename", strings = { filename } },
+				{ hl = "MiniStatuslineFilename", strings = { "" } },
 				"%=", -- End left alignment
 				{ hl = "MiniStatuslineFilename", strings = { macro } },
 				{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
