@@ -1,0 +1,53 @@
+- name: Update the system package database
+  community.general.pacman:
+    update_cache: true
+  become: true
+
+- name: Install base-devel and git if not already installed
+  community.general.pacman:
+    name:
+      - base-devel
+      - git
+    state: present
+  become: true
+
+- name: Check if yay is already installed
+  ansible.builtin.command:
+    cmd: yay --version
+  register: yay_check
+  ignore_errors: true
+  changed_when: false
+  become: false  # Run as the connected user
+
+- name: Clone the yay repository into the user's home directory if yay is not installed
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: "/home/{{ lookup('env', 'USER') }}/yay"
+    clone: true
+    update: false
+  when: yay_check.rc != 0
+  become: false  # Run as the connected user
+
+- name: Ensure the yay directory is owned by the current user
+  ansible.builtin.command:
+    cmd: chown -R {{ lookup('env', 'USER') }}:{{ lookup('env', 'USER') }} "/home/{{ lookup('env', 'USER') }}/yay"
+  when: yay_check.rc != 0
+  become: true  # Root privileges for ownership change
+
+- name: Build and install yay from the user's home directory
+  ansible.builtin.command:
+    cmd: makepkg -si --noconfirm
+    chdir: "/home/{{ lookup('env', 'USER') }}/yay"
+  args:
+    creates: /usr/bin/yay
+  when: yay_check.rc != 0
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"  # Switch to the current non-root user
+
+- name: Remove the yay repository after installation
+  ansible.builtin.file:
+    path: "/home/{{ lookup('env', 'USER') }}/yay"
+    state: absent
+  when: yay_check.rc != 0
+  become: true
+  become_user: "{{ lookup('env', 'USER') }}"  # Run as the non-root user
