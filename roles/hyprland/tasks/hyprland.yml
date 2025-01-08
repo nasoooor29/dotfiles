@@ -1,0 +1,24 @@
+- name: Install laptop hyprland essential apps
+  community.general.pacman:
+    name:
+      - nwg-look
+      - ly
+      - wofi
+      - xdg-desktop-portal-hyprland
+      - aylurs-gtk-shell
+      - pipewire
+      - pipewire-pulse
+      - ntfs-3g
+      - ttf-jetbrains-mono-nerd
+      - wireplumber
+      - clipman
+      - dunst
+      - vencord
+      - firefox
+      - google-chrome
+      - gparted
+      - gtk
+      - hyprland
+      - kitty
+    state: present
+    update_cache: true

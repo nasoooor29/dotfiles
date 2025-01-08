@@ -13,7 +13,6 @@
     - essentials
 
 - name: Update all submodules
-
   ansible.builtin.command:
     cmd: git submodule update --force --init --recursive --jobs 4
   tags:

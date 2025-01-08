@@ -1,35 +1,9 @@
 - name: Setup SSH keys
   hosts: localhost
   become: true
-  tasks:
-    - name: Update all submodules
-      tags:
-        - submodules
-        - nvim
-      command:
-        cmd: git submodule update --force --init --recursive --jobs 4
-      changed_when: false
-
-    - name: Install essentials
-      tags:
-        - essentials
-      import_role:
-        name: essentials
-
-    # - name: Decrypt and save ssh keys
-    #   ignore_errors: true
-    #   tags:
-    #     - essentials
-    #   import_role:
-    #     name: ssh-keys
-
-    - name: Set default shell for a user
-      ansible.builtin.user:
-        name: "{{ lookup('env', 'USER') }}"  # Replace with the actual username
-        shell: /bin/zsh  # Replace with the desired shell
-
-    - name: Run stow
-      shell: "stow --adopt . --target /home/{{ lookup('env', 'USER') }}"
-      register: result
-      changed_when: 'result.stderr is search("LINK: ")'
-
+  roles:
+    - essentials
+    - stow
+    - programming
+    - optionals
+    - ssh-keys

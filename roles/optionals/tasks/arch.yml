@@ -1,0 +1,11 @@
+- name: Install Optionals
+  community.general.pacman:
+    name:
+      - ansible-core
+      - openssh
+      - bat
+      - btop
+      - net-tools
+    state: present
+    update_cache: true
+

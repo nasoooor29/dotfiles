@@ -1,0 +1,11 @@
+- name: Install programming things
+  community.general.pacman:
+    name:
+      - python
+      - npm
+      - go
+      - lazygit
+      - make
+      - lazygit
+    state: present
+    update_cache: true

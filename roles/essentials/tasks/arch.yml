@@ -13,7 +13,6 @@
       - jq
       - zoxide
       - tmux
-      - base-devel ## for yay
     state: present
     update_cache: true
 
