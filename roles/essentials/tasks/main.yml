@@ -1,7 +1,7 @@
 - name: Install essntial apps
   ansible.builtin.import_tasks:
     file: arch.yml
-  when: ansible_distribution == "Arch"
+  when: ansible_distribution == "Archlinux"
 
 - name: a1
   ansible.builtin.debug:
