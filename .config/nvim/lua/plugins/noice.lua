@@ -18,11 +18,8 @@ return {
 		require("noice").setup({
 			messages = {
 				enabled = true, -- enables the Noice messages UI
-				view = "mini",
-				view_error = "mini",
-				view_info = "mini",
-				view_history = "mini",
-				view_search = "mini",
+				view = "mini", -- default view for messages
+				view_error = "mini", -- view for errors
 			},
 			-- you can enable a preset for easier configuration
 			presets = {

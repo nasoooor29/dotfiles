@@ -39,6 +39,7 @@ return { -- Autoformat
 			html = { "prettier" },
 			javascriptreact = { "prettier" },
 			typescript = { "prettier" },
+			json = { "prettier" },
 			typescriptreact = { "prettier" },
 			go = { "goimports", "gofumpt" },
 			bash = { "shfmt" },

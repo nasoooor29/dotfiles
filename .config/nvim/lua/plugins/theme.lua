@@ -5,27 +5,37 @@ return {
 	dependencies = {
 		{
 			"akinsho/horizon.nvim",
-			"folke/tokyonight.nvim",
-			"rose-pine/neovim",
+			opts = {
+				plugins = {
+					cmp = true,
+					indent_blankline = true,
+					nvim_tree = true,
+					telescope = true,
+					which_key = true,
+					barbar = true,
+					notify = true,
+					symbols_outline = true,
+					neo_tree = true,
+					gitsigns = true,
+					crates = true,
+					hop = true,
+					navic = true,
+					quickscope = true,
+					flash = true,
+				},
+			},
 		},
 	},
 
 	config = function()
-		vim.cmd.colorscheme("horizon")
-		-- vim.cmd.colorscheme("catppuccin-mocha")
-		-- vim.cmd.colorscheme("tokyonight-night")
-		-- vim.cmd.colorscheme("rose-pine")
+		-- vim.cmd.colorscheme("horizon")
+		vim.cmd.colorscheme("catppuccin-mocha")
 
-		local accent = "#cba6f7"
-		vim.diagnostic.config({
-			float = {
-				scope = "cursor",
-				border = "rounded",
-				max_width = 80, -- Set the maximum width for the floating window
-			},
-		})
-		vim.api.nvim_set_hl(0, "MiniTablineCurrent", { fg = accent })
-		vim.api.nvim_set_hl(0, "CursorLineNr", { fg = accent })
-		vim.api.nvim_set_hl(0, "FloatBorder", { fg = accent })
+		local accent = "#e95678"
+		local hl = vim.api.nvim_set_hl
+
+		hl(0, "MiniTablineCurrent", { fg = accent })
+		hl(0, "CursorLineNr", { fg = accent })
+		hl(0, "FloatBorder", { fg = accent, bg = "#232530" })
 	end,
 }

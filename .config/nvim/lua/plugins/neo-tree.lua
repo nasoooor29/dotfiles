@@ -60,5 +60,4 @@ return {
 		-- vim.keymap.set("n", "<leader>tt", "<cmd>Neotree toggle<CR>", { desc = "Toggle neotree" })
 		vim.keymap.set("n", "<C-b>", "<cmd>Neotree toggle<CR>", { desc = "Toggle neotree" })
 	end,
-	-- enabled = false,
 }

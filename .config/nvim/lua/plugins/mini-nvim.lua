@@ -4,7 +4,7 @@ local StatusLineOpts = {
 		active = function()
 			local check_macro_recording = function()
 				if vim.fn.reg_recording() ~= "" then
-					return "Reg @" .. vim.fn.reg_recording()
+					return "Recording @" .. vim.fn.reg_recording()
 				else
 					return ""
 				end
@@ -25,7 +25,7 @@ local StatusLineOpts = {
 				{ hl = mode_hl, strings = { mode } },
 				{ hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics } },
 				"%<", -- Mark general truncate point
-				{ hl = "MiniStatuslineFilename", strings = { "" } },
+				{ hl = "MiniStatuslineFilename", strings = { filename } },
 				"%=", -- End left alignment
 				{ hl = "MiniStatuslineFilename", strings = { macro } },
 				{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
@@ -43,7 +43,7 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.ai").setup()
 		require("mini.surround").setup()
 		require("mini.move").setup()
-		-- require("mini.tabline").setup()
+		require("mini.tabline").setup()
 		require("mini.starter").setup()
 		require("mini.pairs").setup()
 		require("mini.cursorword").setup()
