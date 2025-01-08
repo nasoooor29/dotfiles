@@ -2,3 +2,7 @@
   ansible.builtin.import_tasks:
     file: arch.yml
   when: ansible_distribution == "Arch"
+
+- name: a1
+  ansible.builtin.debug:
+    msg: "{{ ansible_distribution }}"
