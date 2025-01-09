@@ -6,6 +6,11 @@
       - bat
       - btop
       - net-tools
+      - bind
+      - lazydocker
+      - lazysql
+      - net-tools
+      - docker
     state: present
     update_cache: true
 

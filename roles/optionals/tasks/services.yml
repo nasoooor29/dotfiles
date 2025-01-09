@@ -1,0 +1,14 @@
+---
+
+- name: Ensure LY display manager is enabled and started
+  ansible.builtin.service:
+    name: ly
+    enabled: true
+    state: started
+
+- name: Ensure Docker is enabled and started
+  ansible.builtin.service:
+    name: docker
+    enabled: true
+    state: started
+
