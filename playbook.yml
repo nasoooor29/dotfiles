@@ -5,6 +5,6 @@
     - essentials
     - programming
     - optionals
-    - stow
+    - stow # move after essntials
     # - ssh-keys
     # - hyprland

@@ -7,10 +7,15 @@
       - btop
       - net-tools
       - bind
-      - lazydocker
       - lazysql
       - net-tools
       - docker
     state: present
     update_cache: true
+
+- name: Install essensial apps AUR
+  yay:
+    name:
+      - lazydocker
+    state: present
 

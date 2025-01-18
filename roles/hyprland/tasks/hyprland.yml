@@ -22,3 +22,9 @@
       - kitty
     state: present
     update_cache: true
+
+- name: Ensure LY display manager is enabled and started
+  ansible.builtin.service:
+    name: ly
+    enabled: true
+    state: started
