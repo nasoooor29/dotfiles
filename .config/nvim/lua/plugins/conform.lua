@@ -40,6 +40,7 @@ return { -- Autoformat
 			javascriptreact = { "prettier" },
 			typescript = { "prettier" },
 			json = { "prettier" },
+			graphql = { "prettier" },
 			typescriptreact = { "prettier" },
 			go = { "goimports", "gofumpt" },
 			bash = { "shfmt" },
