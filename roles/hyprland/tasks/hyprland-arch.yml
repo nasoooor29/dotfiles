@@ -5,7 +5,6 @@
       - ly
       - wofi
       - xdg-desktop-portal-hyprland
-      - aylurs-gtk-shell
       - pipewire
       - pipewire-pulse
       - ntfs-3g
@@ -20,6 +19,14 @@
       - gtk
       - hyprland
       - kitty
+    state: present
+    update_cache: true
+
+- name: Install laptop hyprland essential apps AUR
+  community.general.pacman:
+    name:
+      - aylurs-gtk-shell
+      
     state: present
     update_cache: true
 
