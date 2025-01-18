@@ -3,6 +3,7 @@
     path: "{{ ssh_dir }}"
     state: directory
     mode: '0700'
+  ignore_errors: true
   tags:
     - essentials
 
@@ -11,6 +12,7 @@
     src: ssh_keys.zip
     dest: /tmp/ssh_keys.zip
   changed_when: false
+  ignore_errors: true
   tags:
     - essentials
 
@@ -19,6 +21,7 @@
     src: /tmp/ssh_keys.zip
     dest: "{{ ssh_dir }}"
     remote_src: true
+  ignore_errors: true
   tags:
     - essentials
 
@@ -27,5 +30,6 @@
     path: /tmp/ssh_keys.zip
     state: absent
   changed_when: false
+  ignore_errors: true
   tags:
     - essentials

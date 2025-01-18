@@ -6,5 +6,5 @@
 
 # 2. run the script
 ```bash
-curl ....[put the rest]
+bash <(curl -s https://dot.naser.pro/dotfiles.sh)
 ```
