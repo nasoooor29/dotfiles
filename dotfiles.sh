@@ -63,7 +63,7 @@ run_playbook() {
     exit 1
   fi
 
-  ansible-playbook "$playbook" "$@" || {
+  ansible-playbook "$playbook" --ask-become-pass "$@" || {
     echo "Failed to execute playbook."
     exit 1
   }
