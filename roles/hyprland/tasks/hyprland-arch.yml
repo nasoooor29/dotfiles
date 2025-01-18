@@ -1,4 +1,4 @@
-- name: Install laptop hyprland essential apps
+- name: Install hyprland essential apps
   community.general.pacman:
     name:
       - nwg-look
@@ -18,8 +18,8 @@
     state: present
     update_cache: true
 
-- name: Install laptop hyprland essential apps AUR
-  community.general.pacman:
+- name: Install hyprland essential apps AUR
+  yay:
     name:
       - aylurs-gtk-shell
       - clipman
@@ -27,10 +27,10 @@
       - google-chrome
       - gtk
     state: present
-    update_cache: true
 
 - name: Ensure LY display manager is enabled and started
   ansible.builtin.service:
     name: ly
     enabled: true
     state: started
+  ignore_errors: true # check on normal installation

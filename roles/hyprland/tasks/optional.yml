@@ -1,6 +1,5 @@
-- name: Install laptop hyprland essential apps
-  community.general.pacman:
+- name: Install hyprland optional apps AUR
+  yay:
     name:
       - onlyoffice-bin
     state: present
-    update_cache: true

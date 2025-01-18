@@ -1,6 +1,6 @@
 
 run:
-	git pull && ansible-playbook playbook.yml --ask-become-pass 
+	ansible-playbook playbook.yml 
 	# git pull && ansible-playbook playbook.yml --ask-vault-pass --ask-become-pass
 
 

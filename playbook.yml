@@ -3,8 +3,8 @@
   become: true
   roles:
     - essentials
-    - stow # move after essntials
+    - stow
     - programming
     - optionals
     - hyprland
-    # - ssh-keys
+    - ssh-keys

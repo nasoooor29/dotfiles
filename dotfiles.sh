@@ -1,68 +1,75 @@
 #!/bin/bash
 
-# Function to install Ansible on Ubuntu/Debian-based distributions
-install_ansible_debian() {
-  echo "Updating apt package list..."
-  sudo apt update
-
-  echo "Installing Ansible on Ubuntu/Debian-based distribution..."
-  sudo apt install -y software-properties-common
-  sudo add-apt-repository --yes --update ppa:ansible/ansible
-  sudo apt install -y ansible
+# Function to install Git and Ansible on Arch-based systems
+install_dependencies_arch() {
+  echo "Installing Git and Ansible on Arch Linux-based distribution..."
+  sudo pacman -Syu --noconfirm git ansible
 }
 
-# Function to install Ansible on RHEL/CentOS/Fedora-based distributions
-install_ansible_rhel() {
-  echo "Installing EPEL repository..."
-  sudo yum install -y epel-release || sudo dnf install -y epel-release
-
-  echo "Installing Ansible on RHEL/CentOS/Fedora-based distribution..."
-  sudo yum install -y ansible || sudo dnf install -y ansible
-}
-
-# Function to install Ansible on SUSE-based distributions
-install_ansible_suse() {
-  echo "Installing Ansible on openSUSE/SLES-based distribution..."
-  sudo zypper install -y ansible
-}
-
-# Function to install Ansible on Arch Linux and Arch-based distributions
-install_ansible_arch() {
-  echo "Installing Ansible on Arch Linux-based distribution..."
-  sudo pacman -Syu --noconfirm ansible
-}
-
-# Check the Linux distribution and install Ansible accordingly
-if [ -f /etc/os-release ]; then
-  . /etc/os-release
-
-  case "$ID" in
-  ubuntu | debian)
-    install_ansible_debian
-    ;;
-  centos | rhel | fedora)
-    install_ansible_rhel
-    ;;
-  suse | opensuse)
-    install_ansible_suse
-    ;;
-  arch | manjaro)
-    install_ansible_arch
-    ;;
-  *)
-    echo "Unsupported distribution: $ID"
+# Function to detect the OS and install dependencies
+install_dependencies() {
+  if [ -f /etc/os-release ]; then
+    source /etc/os-release
+    case "$ID" in
+    arch | manjaro)
+      install_dependencies_arch
+      ;;
+    *)
+      echo "This script currently supports Arch Linux-based distributions only."
+      exit 1
+      ;;
+    esac
+  else
+    echo "Cannot detect the operating system. /etc/os-release not found."
     exit 1
-    ;;
-  esac
-else
-  echo "Unable to detect distribution. This script only works on Linux-based systems."
-  exit 1
-fi
+  fi
+}
 
-# Check if Ansible was installed successfully
-if command -v ansible >/dev/null 2>&1; then
-  echo "Ansible has been installed successfully!"
-else
-  echo "Ansible installation failed!"
-  exit 1
-fi
+# Function to clone the repository with Ansible roles
+clone_repo() {
+  local repo_url="https://github.com/nasoooor29/dotfiles" # Replace this with your actual repository URL
+  local repo_dir="$HOME/dotfiles"                         # Change this to the desired local directory
+
+  echo "Cloning repository..."
+  if [ -d "$repo_dir" ]; then
+    echo "Repository directory already exists. Pulling latest changes..."
+    cd "$repo_dir" && git pull || {
+      echo "Failed to pull changes."
+      exit 1
+    }
+  else
+    git clone "$repo_url" "$repo_dir" || {
+      echo "Failed to clone repository."
+      exit 1
+    }
+    cd "$repo_dir" || {
+      echo "Failed to enter repository directory."
+      exit 1
+    }
+  fi
+}
+
+# Function to execute the Ansible playbook
+run_playbook() {
+  local playbook="playbook.yml" # Replace with the actual playbook file name if different
+
+  echo "Running Ansible playbook..."
+  if [ ! -f "$playbook" ]; then
+    echo "Error: $playbook not found in the repository directory."
+    exit 1
+  fi
+
+  ansible-playbook "$playbook" "$@" || {
+    echo "Failed to execute playbook."
+    exit 1
+  }
+}
+
+# Main script
+echo "Starting system bootstrap..."
+install_dependencies
+clone_repo
+run_playbook "$@" # Pass all additional arguments to the playbook
+
+echo "System setup complete! Switching to zsh..."
+exec zsh
