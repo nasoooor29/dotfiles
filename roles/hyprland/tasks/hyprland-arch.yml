@@ -10,7 +10,6 @@
       - ntfs-3g
       - ttf-jetbrains-mono-nerd
       - wireplumber
-      - clipman
       - dunst
       - vencord
       - firefox
@@ -26,6 +25,7 @@
   community.general.pacman:
     name:
       - aylurs-gtk-shell
+      - clipman
       
     state: present
     update_cache: true
