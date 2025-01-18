@@ -53,6 +53,24 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>fs", builtin.builtin, { desc = "[F]ind [S]elect Telescope" })
 		vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[F]ind current [W]ord" })
 		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind by [G]rep" })
+
+		vim.keymap.set("v", "<leader>fg", function()
+			-- Get the visually selected text
+			local start_row, start_col = unpack(vim.api.nvim_buf_get_mark(0, "<"))
+			local end_row, end_col = unpack(vim.api.nvim_buf_get_mark(0, ">"))
+			local lines = vim.api.nvim_buf_get_lines(0, start_row - 1, end_row, false)
+
+			-- Extract the selected text
+			if #lines > 0 then
+				lines[1] = string.sub(lines[1], start_col + 1)
+				lines[#lines] = string.sub(lines[#lines], 1, end_col + 1)
+			end
+			local search_text = table.concat(lines, " ")
+			print(search_text)
+
+			-- Open Telescope live_grep with the selected text as input
+			require("telescope.builtin").grep_string({ search = search_text })
+		end, { desc = "Search selected text with Telescope" })
 		vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[F]ind [D]iagnostics" })
 		vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
 		vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })

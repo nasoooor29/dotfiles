@@ -1,43 +1,71 @@
 return {
 	"saghen/blink.cmp",
-	lazy = false, -- lazy loading handled internally
+	-- optional: provides snippets for the snippet source
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 		{ "L3MON4D3/LuaSnip", version = "v2.*" },
-
-		"stevearc/vim-vscode-snippets",
+		{
+			"stevearc/vim-vscode-snippets",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+			end,
+		},
 	},
-	version = "v0.*",
+
+	-- use a release tag to download pre-built binaries
+	version = "*",
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
-	config = function()
-		local luasnip = require("luasnip")
-		luasnip.config.setup({})
-		require("luasnip.loaders.from_vscode").lazy_load()
-		require("blink.cmp").setup({
-			keymap = {
-				preset = "enter",
-				["<C-k>"] = { "select_prev", "fallback" },
-				["<C-j>"] = { "select_next", "fallback" },
-			},
+	opts = {
+		keymap = {
+			preset = "enter",
+			["<C-k>"] = { "select_prev", "fallback" },
+			["<C-j>"] = { "select_next", "fallback" },
 
-			snippets = {
-				expand = function(snippet)
-					luasnip.lsp_expand(snippet)
-				end,
-				active = function(filter)
-					if filter and filter.direction then
-						return require("luasnip").jumpable(filter.direction)
-					end
-					return require("luasnip").in_snippet()
-				end,
-				jump = function(direction)
-					require("luasnip").jump(direction)
-				end,
+			["<A-k>"] = { "select_prev", "fallback" },
+			["<A-j>"] = { "select_next", "fallback" },
+		},
+
+		appearance = {
+			use_nvim_cmp_as_default = true,
+			nerd_font_variant = "mono",
+		},
+
+		sources = {
+			default = { "lsp", "path", "snippets" },
+			providers = {
+				snippets = {
+					max_items = 10,
+				},
 			},
-			sources = {
-				default = { "luasnip", "lsp", "path" },
+		},
+		snippets = { preset = "luasnip" },
+		completion = {
+			list = {
+				selection = {
+					preselect = function(ctx)
+						return ctx.mode ~= "cmdline"
+					end,
+					auto_insert = false,
+				},
 			},
-		})
-	end,
+			menu = {
+				draw = {
+					columns = {
+						{ "label", "label_description", gap = 1 },
+						{ "kind_icon" },
+						{ "source_name" },
+					},
+				},
+			},
+			-- trigger = {
+			-- 	show_on_keyword = false,
+			-- },
+			documentation = {
+				auto_show = true,
+				auto_show_delay_ms = 1,
+			},
+		},
+	},
+	opts_extend = { "sources.default" },
 }

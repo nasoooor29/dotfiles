@@ -12,6 +12,7 @@ return {
 	config = function()
 		require("mason").setup()
 
+		---@diagnostic disable-next-line: unused-local
 		local on_attach = function(client, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			local t = require("telescope.builtin")
@@ -28,6 +29,7 @@ return {
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
 		local servers = require("servers")
+		---@diagnostic disable-next-line: missing-fields
 		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
@@ -44,6 +46,5 @@ return {
 				end,
 			},
 		})
-		require("plugins.langs.lua")
 	end,
 }
