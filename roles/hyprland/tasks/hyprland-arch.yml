@@ -11,7 +11,6 @@
       - ttf-jetbrains-mono-nerd
       - wireplumber
       - dunst
-      - vencord
       - firefox
       - google-chrome
       - gparted
@@ -26,7 +25,7 @@
     name:
       - aylurs-gtk-shell
       - clipman
-      
+      - vencord
     state: present
     update_cache: true
 
