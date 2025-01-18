@@ -1,5 +1,8 @@
 #!/bin/bash
 
+repo_url="https://github.com/nasoooor29/dotfiles" # Replace this with your actual repository URL
+repo_dir="$HOME/dotfiles"                         # Change this to the desired local directory
+
 # Function to install Git and Ansible on Arch-based systems
 install_dependencies_arch() {
   echo "Installing Git and Ansible on Arch Linux-based distribution..."
@@ -27,8 +30,6 @@ install_dependencies() {
 
 # Function to clone the repository with Ansible roles
 clone_repo() {
-  local repo_url="https://github.com/nasoooor29/dotfiles" # Replace this with your actual repository URL
-  local repo_dir="$HOME/dotfiles"                         # Change this to the desired local directory
 
   echo "Cloning repository..."
   if [ -d "$repo_dir" ]; then
@@ -47,10 +48,12 @@ clone_repo() {
       exit 1
     }
   fi
+  git checkout ansible
 }
 
 # Function to execute the Ansible playbook
 run_playbook() {
+  cd $repo_dir
   local playbook="playbook.yml" # Replace with the actual playbook file name if different
 
   echo "Running Ansible playbook..."
