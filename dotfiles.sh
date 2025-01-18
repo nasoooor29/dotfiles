@@ -6,7 +6,8 @@ repo_dir="$HOME/dotfiles"                         # Change this to the desired l
 # Function to install Git and Ansible on Arch-based systems
 install_dependencies_arch() {
   echo "Installing Git and Ansible on Arch Linux-based distribution..."
-  sudo pacman -Syu --noconfirm git ansible
+  # sudo pacman -Syu --noconfirm git ansible
+  echo skip
 }
 
 # Function to detect the OS and install dependencies
