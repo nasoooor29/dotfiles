@@ -1,6 +1,10 @@
 ^/README.md
 /scripts
+/roles
 \.git
 \.gitignore
 \.yay-bin
 dockerfile
+makefile
+playbook.yml
+ansible.cfg
