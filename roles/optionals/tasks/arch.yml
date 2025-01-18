@@ -7,7 +7,6 @@
       - btop
       - net-tools
       - bind
-      - lazysql
       - net-tools
       - docker
     state: present
@@ -17,5 +16,5 @@
   yay:
     name:
       - lazydocker
+      - lazysql
     state: present
-
