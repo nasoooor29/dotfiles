@@ -25,7 +25,7 @@
       - clipman
       - vencord
       - google-chrome
-      - gtk
+      - gtk # may need to be removed
     state: present
 
 - name: Ensure LY display manager is enabled and started
