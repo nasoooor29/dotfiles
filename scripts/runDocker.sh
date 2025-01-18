@@ -1,4 +1,4 @@
-docker build -t archy .
+docker build -t archy . --file scripts/dockerfile
 sudo docker run --rm -it archy /bin/bash -c "
 su - nasoooor -c '
   cd ~ &&

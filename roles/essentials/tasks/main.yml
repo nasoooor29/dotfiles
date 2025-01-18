@@ -1,6 +1,6 @@
 - name: Install essntial apps
   ansible.builtin.import_tasks:
-    file: arch.yml
+    file: ./arch.yml
   when: ansible_distribution == "Archlinux"
   tags:
     - essentials
