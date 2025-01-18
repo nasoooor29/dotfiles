@@ -2,6 +2,7 @@
   ansible.builtin.import_tasks:
     file: ./arch.yml
   when: ansible_distribution == "Archlinux"
+  remote_user: true
   tags:
     - essentials
 
