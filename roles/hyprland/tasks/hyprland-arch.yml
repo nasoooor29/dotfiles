@@ -13,7 +13,6 @@
       - dunst
       - firefox
       - gparted
-      - gtk
       - hyprland
       - kitty
     state: present
@@ -26,6 +25,7 @@
       - clipman
       - vencord
       - google-chrome
+      - gtk
     state: present
     update_cache: true
 
