@@ -7,26 +7,15 @@ return {
 			config = true,
 		}, -- NOTE: Must be loaded before dependants
 		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim", -- Useful status updates for LSP.
-		{
-			"j-hui/fidget.nvim",
-			opts = {},
-		}, -- Allows extra capabilities provided by nvim-cmp
-		"hrsh7th/cmp-nvim-lsp",
+		"saghen/blink.cmp",
 	},
 	config = function()
 		require("mason").setup()
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-		local lspconfig = require("lspconfig")
-		local masonLspCfg = require("mason-lspconfig")
 
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
 		---@diagnostic disable-next-line: unused-local
 		local on_attach = function(client, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
 			local t = require("telescope.builtin")
-
 			vim.keymap.set("n", "gd", t.lsp_definitions, bufopts)
 			vim.keymap.set("n", "gi", t.lsp_implementations, bufopts)
 			vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
@@ -37,13 +26,7 @@ return {
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 		end
 
-		vim.diagnostic.config({
-			float = {
-				scope = "cursor",
-				border = "rounded",
-				max_width = 80, -- Set the maximum width for the floating window
-			},
-		})
+		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
 		local servers = require("servers")
 		---@diagnostic disable-next-line: missing-fields
@@ -53,7 +36,12 @@ return {
 					local server = servers[server_name] or {}
 					require("lspconfig")[server_name].setup({
 						on_attach = on_attach,
-						capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {}),
+						capabilities = vim.tbl_deep_extend(
+							"force",
+							vim.lsp.protocol.make_client_capabilities(),
+							require("blink.cmp").get_lsp_capabilities(),
+							server.capabilities or {}
+						),
 					})
 				end,
 			},

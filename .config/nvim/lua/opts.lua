@@ -55,3 +55,12 @@ vim.filetype.add({
 vim.diagnostic.config({
 	virtual_text = false,
 })
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "0"
+vim.opt.foldlevel = 99
+-- vim.opt.foldlevelstart = 4
+vim.opt.foldnestmax = 9
+vim.opt.foldtext = ""
+-- vim.opt.foldmethod = "lsp"
+-- vim.opt.foldtext = ""

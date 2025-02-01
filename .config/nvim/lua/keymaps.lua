@@ -1,8 +1,8 @@
 -- TIP: Disable arrow keys in normal mode
--- movement keymaps
+require("multiCursor")
 
 local opts = { noremap = false, silent = true }
-vim.keymap.set("n", "--", "<cmd>noh<CR>", opts)
+vim.keymap.set("n", "<ESC>", "<cmd>noh<CR>", opts)
 vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>', opts)
 vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>', opts)
 vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>', opts)
@@ -20,14 +20,14 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
 
 -- file save and quitting mappings
-vim.keymap.set({ "n", "v" }, "<leader>ww", "<cmd>wa<CR><cmd>qa<CR>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>wa<CR>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>wa", "<cmd>wa<CR>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>wq", "<cmd>wq<CR>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>wqa", "<cmd>wqa<CR>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>qa!<CR>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>bd<CR>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>qq", "<cmd>bd!<CR>", opts)
+vim.keymap.set({ "n", "v" }, "<laader>ww", "<cmd>wa<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>wa", "<cmd>wa<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>wq", "<cmd>wq<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>wqa", "<cmd>wqa<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>qa!<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>bd<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>qq", "<cmd>bd!<CR>", opts) -- vim
 -- vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>%bd|e#<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>%bdelete|edit#|bdelete#<CR>", opts)
 
@@ -57,36 +57,21 @@ vim.keymap.set("i", "<C-Backspace>", "<esc>bciw", opts)
 vim.keymap.set("i", "<C-Enter>", "<esc>o", opts)
 
 -- Keymaps for resizing using Control + Shift + hjkl
-vim.keymap.set("n", "<C-A-h>", "<cmd>vertical resize -5<CR>", opts)
-vim.keymap.set("n", "<C-A-l>", "<cmd>vertical resize +5<CR>", opts)
-vim.keymap.set("n", "<C-A-j>", "<cmd>resize -5<CR>", opts)
-vim.keymap.set("n", "<C-A-k>", "<cmd>resize +5<CR>", opts)
+vim.keymap.set("n", "<leader>rh", "<cmd>vertical resize -5<CR>", opts)
+vim.keymap.set("n", "<leader>rl", "<cmd>vertical resize +5<CR>", opts)
+vim.keymap.set("n", "<leader>rj", "<cmd>resize -5<CR>", opts)
+vim.keymap.set("n", "<leader>rk", "<cmd>resize +5<CR>", opts)
 
-vim.keymap.set("n", "<leader>rr", "<cmd>luafile %<CR>", opts)
+-- keymaps for quickfix
 vim.keymap.set("n", "<leader>qn", "<cmd>cnext<CR>", opts)
 vim.keymap.set("n", "<leader>qp", "<cmd>cprevious<CR>", opts)
+-- vim.keymap.set("n", "<leader>qw", function()
+-- 	require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>"), use_regex = false })
+-- end, { noremap = true, silent = true })
 
-local function get_distro_name()
-	local handle = io.popen("echo $WSL_DISTRO_NAME")
-	if handle == nil then
-		return
-	end
-	local hostname = handle:read("*a")
-	handle:close()
-	return hostname:match("^%s*(.-)%s*$")
-end
+-- vim.keymap.set("n", "<leader>ref", "<cmd>.luafile %<CR>", opts)
+vim.keymap.set("n", "<leader>rel", "<cmd>.lua<CR>", opts)
 
-if get_distro_name() ~= "" then
-	vim.g.clipboard = {
-		name = "WslClipboard",
-		copy = {
-			["+"] = "clip.exe",
-			["*"] = "clip.exe",
-		},
-		paste = {
-			["+"] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-			["*"] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-		},
-		cache_enabled = 0,
-	}
-end
+vim.keymap.set("n", "<leader>ref", function()
+	vim.cmd("luafile " .. vim.api.nvim_buf_get_name(0))
+end, opts)
