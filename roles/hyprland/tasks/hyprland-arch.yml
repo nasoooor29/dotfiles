@@ -15,6 +15,11 @@
       - gparted
       - hyprland
       - kitty
+      # for dark mode
+      - gnome-themes-extra
+      - adwaita-qt5-git
+      - adwaita-qt6-git
+
     state: present
     update_cache: true
 

@@ -1,4 +1,5 @@
 return { -- Autocompletion
+	enabled = false,
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -25,6 +26,7 @@ return { -- Autocompletion
 		luasnip.config.setup({})
 		require("luasnip.loaders.from_vscode").lazy_load()
 		local lspkind = require("lspkind")
+		
 
 		cmp.setup({
 			window = {

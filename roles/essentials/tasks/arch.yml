@@ -13,6 +13,8 @@
       - jq
       - zoxide
       - tmux
+      - ripgrep
+
     state: present
     update_cache: true
 
@@ -24,5 +26,6 @@
 - name: Install essensial apps AUR
   yay:
     name:
+      - sesh-bin
       - fzf-git
     state: present
