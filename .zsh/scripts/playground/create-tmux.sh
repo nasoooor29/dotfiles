@@ -1,3 +1,8 @@
+if [[ -z "$1" ]]; then
+    echo "Error: No module name provided."
+    exit 1
+fi
+
 if tmux info &>/dev/null; then
     tmux new-session -d -s "$project_name" \;
 else

@@ -66,7 +66,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				lines[#lines] = string.sub(lines[#lines], 1, end_col + 1)
 			end
 			local search_text = table.concat(lines, " ")
-			print(search_text)
 
 			-- Open Telescope live_grep with the selected text as input
 			require("telescope.builtin").grep_string({ search = search_text })

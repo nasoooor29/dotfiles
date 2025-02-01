@@ -5,27 +5,21 @@ BASE_DIR="$HOME/repos/playground"
 rm -rf $BASE_DIR/*
 BASE_PLAGROUND="$HOME/.zsh/scripts/playground"
 
-# Ensure BASE_DIR exists
-mkdir -p "$BASE_DIR"
-
 if [[ ! -d $BASE_DIR/.git ]]; then
-    git init "$BASE_DIR"
+    echo "please clone your repo"
+    exit 1
 fi
 
 # Function to initialize a new project/playground
-
-choice=$($BASE_PLAGROUND/ask.sh "wdyw?" open new)
+choice=$($BASE_PLAGROUND/ask-choice.sh "what do you want?" "open" "new" "clear")
 if [[ ! -n "$choice" ]]; then
     exit 1
 fi
 
-# Handle the selection
-case $choice in
-"new")
-    source $BASE_PLAGROUND/create-project.sh
-    ;;
-"open")
+if [ "$choice" = "new" ]; then
+    echo "new"
+elif [ "$choice" = "open" ]; then
     echo "open"
-    ;;
-*) ;;
-esac
+elif [ "$choice" = "clear" ]; then
+    echo "clear"
+fi

@@ -36,6 +36,7 @@ return { -- Autoformat
 			astro = { "prettierd", "prettier", stop_after_first = true },
 
 			javascript = { "prettier" },
+			json = { "prettier" },
 			html = { "prettier" },
 			javascriptreact = { "prettier" },
 			typescript = { "prettier" },

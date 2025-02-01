@@ -1,5 +1,5 @@
 return {
-	"saghen/blink.cmp",
+	"Saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
 	dependencies = {
 		"rafamadriz/friendly-snippets",
@@ -8,12 +8,14 @@ return {
 			"stevearc/vim-vscode-snippets",
 			config = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip.loaders.from_vscode").lazy_load({ paths = "./my_snippets" })
 			end,
 		},
 	},
 
 	-- use a release tag to download pre-built binaries
-	version = "*",
+	version = false,
+	-- version = "*",
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
@@ -36,6 +38,7 @@ return {
 			providers = {
 				snippets = {
 					max_items = 10,
+					-- score_offset = 10,
 				},
 			},
 		},
@@ -50,6 +53,7 @@ return {
 				},
 			},
 			menu = {
+				-- max_height = 30,
 				draw = {
 					columns = {
 						{ "label", "label_description", gap = 1 },
