@@ -14,10 +14,8 @@
       - zoxide
       - tmux
       - ripgrep
-
     state: present
     update_cache: true
-
 
 - name: Ensure YAY exists
   ansible.builtin.import_tasks:

@@ -11,6 +11,7 @@
       - ttf-jetbrains-mono-nerd
       - wireplumber
       - dunst
+      - thunar
       - firefox
       - gparted
       - hyprland
