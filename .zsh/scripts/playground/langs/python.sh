@@ -3,10 +3,10 @@ if [[ -z "$1" ]]; then
     exit 1
 fi
 
-cat <<'EOF' >main.py
+cat <<EOF >main.py
 def main():
     print("Hello, World!")
-    print("$1")
+    print("${1}")
 
 if __name__ == "__main__":
     main()

@@ -49,6 +49,7 @@ vim.filetype.add({
 		[".*/roles/.*/handlers/.*%.yml"] = "yaml.ansible",
 		[".*/roles/.*/handlers/.*%.yaml"] = "yaml.ansible",
 		[".*%.tmux%.conf"] = "tmux",
+		[".*.kbd"] = "lisp",
 	},
 })
 
