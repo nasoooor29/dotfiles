@@ -1,0 +1,88 @@
+;; defsrc is still necessary
+(defcfg
+  process-unmapped-keys yes
+)
+
+;; example:
+;; =================
+;; (defsrc
+;;   caps
+;; )
+;;
+;; (deflayer base
+;;   (tap-hold 150 200 esc (layer-while-held layer2))
+;; )
+;; =================
+;; focus this is shit it's positional params 
+;; so "caps" => <first arg on the deflayer> so (tap-hold 150 200 esc (layer-while-held layer2))
+
+
+;; go to https://github.com/jtroo/kanata/blob/main/parser/src/keys/mod.rs => 172
+(defsrc
+  caps
+  esc
+
+  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+  0
+  -
+  =
+  ;; lshift
+)
+
+(defvar
+  tap-time 150
+  hold-time 200
+)
+
+(deflayer base
+  (tap-hold 150 200 esc (layer-while-held layer2))
+  `
+  (tap-hold $tap-time $hold-time 1 (macro S-1))
+  (tap-hold $tap-time $hold-time 2 (macro S-2))
+  (tap-hold $tap-time $hold-time 3 (macro S-3))
+  (tap-hold $tap-time $hold-time 4 (macro S-4))
+  (tap-hold $tap-time $hold-time 5 (macro S-5))
+  (tap-hold $tap-time $hold-time 6 (macro S-6))
+  (tap-hold $tap-time $hold-time 7 (macro S-7))
+  (tap-hold $tap-time $hold-time 8 (macro S-8))
+  (tap-hold $tap-time $hold-time 9 (macro S-9))
+  (tap-hold $tap-time $hold-time 0 (macro S-0))
+  (tap-hold $tap-time $hold-time - (macro S--))
+  (tap-hold $tap-time $hold-time = (macro S-=))
+)
+
+(deflayermap (layer2)
+    h left
+    j down
+    k up
+    l right
+
+    w up
+    a left
+    s down
+    d right
+
+    1 F1
+    2 F2
+    3 F3
+    4 F4
+    5 F5
+    6 F6
+    7 F7
+    8 F8
+    9 F9
+    0 F10
+
+    x Delete
+    q Enter
+
+)
+

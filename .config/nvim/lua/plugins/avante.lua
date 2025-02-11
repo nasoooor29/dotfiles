@@ -38,8 +38,6 @@ return {
 	},
 
 	keys = {
-		{ "<leader>ava", ":AvanteToggle<CR>", silent = true, desc = "Avante Toggle" },
-		{ "<leader>avc", ":AvanteClear<CR>", silent = true, desc = "Avante Clear" },
-		{ "<leader>ave", ":AvanteEdit<CR>", silent = true, desc = "Avante Edit" },
+		{ "<leader>ava", ":AvanteClear<CR>:AvanteToggle<CR>", silent = true, desc = "Avante Toggle" },
 	},
 }
