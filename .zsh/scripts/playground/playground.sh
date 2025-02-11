@@ -55,7 +55,7 @@ backup_and_connect() {
 
 # current_branch=$(git -C "$BASE_DIR" rev-parse --abbrev-ref HEAD)
 branches=$(git -C "$BASE_DIR" branch --sort=-committerdate --format '%(refname:short)' | grep -v "main")
-COMMAND=$(ask_choice "Select a branch" "new" "clear" "unpack" "fetch-all" "$branches")
+COMMAND=${1:-$(ask_choice "Select a branch" "new" "clear" "unpack" "fetch-all" "$branches" "echo-branches")}
 
 if [[ -z "$COMMAND" ]]; then
     exit 0
@@ -121,6 +121,9 @@ elif [ "$COMMAND" = "fetch-all" ]; then
             git -C "$BASE_DIR" branch --track "$branch" "origin/$branch" >/dev/null
         fi
     done
+
+elif [ "$COMMAND" = "echo-branches" ]; then
+    echo "$branches"
 else
     backup_and_connect "$COMMAND"
     cd "$BASE_DIR" || exit

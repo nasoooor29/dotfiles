@@ -1,6 +1,6 @@
 if ! command -v uv &>/dev/null; then
-	echo "uv command not found. Installing..."
-	curl -LsSf https://astral.sh/uv/install.sh | sh
+	echo "bun command not found. Installing..."
+	curl -fsSL https://bun.sh/install | bash
 fi
 
 if [[ -z "$1" ]]; then
@@ -8,4 +8,4 @@ if [[ -z "$1" ]]; then
 	exit 1
 fi
 
-uv init --name="$1"
+bun init -y

@@ -27,7 +27,7 @@ EOF
 
 chmod +x run.sh
 
-cat <<EOF >Makefile
+cat <<EOF >makefile
 run:
 	./run.sh
 EOF
