@@ -22,14 +22,14 @@ local StatusLineOpts = {
 			local macro = check_macro_recording()
 
 			return MiniStatusline.combine_groups({
-				{ hl = mode_hl, strings = { mode } },
+				{ hl = mode_hl,                 strings = { mode } },
 				{ hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics } },
 				"%<", -- Mark general truncate point
 				{ hl = "MiniStatuslineFilename", strings = { filename } },
 				"%=", -- End left alignment
 				{ hl = "MiniStatuslineFilename", strings = { macro } },
 				{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
-				{ hl = mode_hl, strings = { search, location } },
+				{ hl = mode_hl,                  strings = { search, location } },
 			})
 		end,
 	},
@@ -37,10 +37,13 @@ local StatusLineOpts = {
 
 return { -- Collection of various small independent plugins/modules
 	"echasnovski/mini.nvim",
+	dependencies = {
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	},
 	version = false,
 	config = function()
-		require("mini.statusline").setup(StatusLineOpts)
 		require("mini.ai").setup()
+		require("mini.statusline").setup(StatusLineOpts)
 		require("mini.surround").setup()
 		require("mini.move").setup()
 		-- require("mini.tabline").setup()
@@ -48,10 +51,63 @@ return { -- Collection of various small independent plugins/modules
 		require("mini.pairs").setup()
 		require("mini.cursorword").setup()
 		require("mini.indentscope").setup()
+
+		-- local clue = require("mini.clue")
+		-- clue.setup({
+		-- 	triggers = {
+		-- 		-- Leader triggers
+		-- 		{ mode = "n", keys = "<Leader>" },
+		-- 		{ mode = "x", keys = "<Leader>" },
+		--
+		-- 		-- Built-in completion
+		-- 		{ mode = "i", keys = "<C-x>" },
+		--
+		-- 		-- `g` key
+		-- 		{ mode = "n", keys = "g" },
+		-- 		{ mode = "x", keys = "g" },
+		-- 		-- NOTE: in the future
+		-- 		-- -- Marks https://github.com/chentoast/marks.nvim
+		-- 		-- { mode = "n", keys = "'" },
+		-- 		-- { mode = "n", keys = "`" },
+		-- 		-- { mode = "x", keys = "'" },
+		-- 		-- { mode = "x", keys = "`" },
+		-- 		-- -- Registers
+		-- 		-- { mode = "n", keys = '"' },
+		-- 		-- { mode = "x", keys = '"' },
+		-- 		-- { mode = "i", keys = "<C-r>" },
+		-- 		-- { mode = "c", keys = "<C-r>" },
+		-- 		-- -- Window commands
+		-- 		-- { mode = "n", keys = "<C-w>" },
+		-- 		-- -- `z` key
+		-- 		-- { mode = "n", keys = "z" },
+		-- 		-- { mode = "x", keys = "z" },
+		-- 	},
+		--
+		-- 	clues = {
+		-- 		clue.gen_clues.builtin_completion(),
+		-- 		clue.gen_clues.g(),
+		-- 		clue.gen_clues.marks(),
+		-- 		clue.gen_clues.registers(),
+		-- 		clue.gen_clues.windows(),
+		-- 		clue.gen_clues.z(),
+		-- 	},
+		-- 	window = {
+		-- 		config = { width = 50 },
+		-- 	},
+		-- })
+
 		require("mini.hipatterns").setup({
 			highlighters = {
 				hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
 			},
 		})
+		require('mini.comment').setup {
+			options = {
+				custom_commentstring = function()
+					return require('ts_context_commentstring').calculate_commentstring() or
+						vim.bo.commentstring
+				end,
+			},
+		}
 	end,
 }
