@@ -1,3 +1,7 @@
+if [[ "$(pwd)" != "$HOME/repos"* ]]; then
+    exit 0
+fi
+
 if tmux list-windows | grep -q "^2:"; then
     tmux kill-window -t 2
 fi
