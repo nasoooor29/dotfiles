@@ -20,7 +20,7 @@ ask_choice() {
 
 create_project() {
     cd "$BASE_DIR" || exit
-    if ! "$PLAYGROUND_LANGS/$PG_LANG_SCRIPT" "$1" >/dev/null; then
+    if ! bash "$PLAYGROUND_LANGS/$PG_LANG_SCRIPT" "$1" >/dev/null; then
         display "Project creation failed"
         exit 0 # it's exit 1 but just to shut tmux
     fi
