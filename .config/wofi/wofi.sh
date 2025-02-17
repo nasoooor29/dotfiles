@@ -9,7 +9,7 @@ if [[ $(pidof wofi) ]]; then
     pkill wofi
 fi
 
-choosen=$(echo -e "wifi\napps\nbrightness\nbluetooth" | wofii -d)
+choosen=$(echo -e "wifi\napps\nbrightness\nbluetooth\ntoggle waybar" | wofii -d)
 echo "$choosen"
 
 if [[ "$choosen" == "apps" ]]; then
@@ -18,4 +18,8 @@ fi
 
 if [[ "$choosen" == "wifi" ]]; then
     source "$HOME/.config/wofi/wofi-wifi.sh"
+fi
+
+if [[ "$choosen" == "toggle waybar" ]]; then
+    source "$HOME/.config/wofi/toggle-waybar.sh"
 fi
