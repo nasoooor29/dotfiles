@@ -61,7 +61,7 @@ window {
   margin: 0px;
   padding: 10px;
   border: 0.16em solid @lavender;
-  border-radius: 0.1em;
+  bgorder-radius: 0.1em;
   background-color: @base;
   animation: slideIn 0.1s ease-in-out both;
 }
@@ -79,11 +79,11 @@ window {
 
 /* Inner Box */
 #inner-box {
-  margin: 5px;
-  padding: 10px;
+  margin: 0px;
+  padding: 0px;
   border: none;
   background-color: @base;
-  animation: fadeIn 0.1s ease-in-out both;
+  /* animation: fadeIn 0.1s ease-in-out both; */
 }
 
 /* Fade In */
@@ -115,7 +115,7 @@ window {
 
 /* Input */
 #input {
-  margin: 5px 20px;
+  margin: 5px 5px;
   padding: 10px;
   border: none;
   border-radius: 0.1em;
