@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WALLPAPER_DIR="/home/nasoooor/Downloads/Wallpaper-Bank/wallpapers/mine/"
+WALLPAPER_DIR="$HOME/.config/hypr/wallpapers"
 CURRENT_WALL=$(hyprctl hyprpaper listloaded)
 
 # Get a random wallpaper that is not the current one
