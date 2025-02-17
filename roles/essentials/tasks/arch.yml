@@ -11,6 +11,7 @@
       - git
       - eza
       - jq
+      - sshfs
       - zoxide
       - tmux
       - ripgrep
