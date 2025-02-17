@@ -43,14 +43,9 @@ vim.keymap.set("n", "<S-Tab>", "<<", opts)
 vim.keymap.set("v", "<Tab>", ">gv", opts)
 vim.keymap.set("v", "<S-Tab>", "<gv", opts)
 
-vim.keymap.set("n", "<leader>s", "<cmd>wa<CR>", opts)
 vim.keymap.set("n", "<A-S-j>", "yyp", opts)
 vim.keymap.set("n", "<A-S-k>", "yyP", opts)
--- vim.keymap.set("v", "<S-A-j>", "Yp", opts)
--- vim.keymap.set("v", "<S-A-k>", "YP", opts)
 vim.keymap.set("n", "<leader>nn", "<cmd>enew<CR>", opts)
-vim.keymap.set("n", "<C-w>", "<cmd>wa<CR><cmd>q<CR>", opts)
-vim.keymap.set("n", "<C-f>", "<cmd>Telescope live_grep<CR>", opts)
 
 -- TODO: Fix from tmux
 vim.keymap.set("i", "<C-Backspace>", "<esc>bciw", opts)
@@ -78,6 +73,8 @@ vim.keymap.set("n", "<leader>ref", function()
 end, opts)
 
 vim.g.VM_maps = {
-	["Find Under"] = "<C-d>",
-	["Select All"] = "<leader>ra", -- Select all occurrences
+	["Find Under"]      = "<C-d>",
+	["Select All"]      = "<leader>ra",
+	["Add Cursor Down"] = '<C-A-j>',
+	["Add Cursor Up"]   = '<C-A-k>',
 }
