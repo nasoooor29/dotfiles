@@ -1,5 +1,5 @@
-
 # FZF ZSH
+# --preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git --search-path=$HOME"
 export FZF_DEFAULT_OPTS="
@@ -12,8 +12,8 @@ export FZF_DEFAULT_OPTS="
 --margin=2,5
 --exit-0
 --preview-window=:hidden
---preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 --prompt=' ' --pointer='▶' --marker='✓'
+--color=bg+:0
 --header='FZF'
 --header-first
 --bind '?:toggle-preview'
