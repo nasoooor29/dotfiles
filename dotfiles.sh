@@ -88,12 +88,7 @@ fi
 SELECTED=($CHOICES)
 for ITEM in "${SELECTED[@]}"; do
   SCRIPT="$scripts_dir/${ITEM}.sh"
-  if [[ -f "$SCRIPT" && -x "$SCRIPT" ]]; then
-    echo "Running $SCRIPT..."
-    "$SCRIPT"
-  else
-    echo "Script $SCRIPT not found or not executable."
-  fi
+  bash "$SCRIPT"
 done
 
 bash "$repo_dir/scripts/utils/set-default-shell.sh"
