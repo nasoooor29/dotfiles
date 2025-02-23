@@ -62,7 +62,7 @@ source "$repo_dir/scripts/utils/funcs.sh"
 bash "$repo_dir/scripts/utils/install-yay.sh"
 
 # Declare OPTIONS outside the function
-OPTIONS=()
+OPTIONS=$(ls "$repo_dir/scripts" | grep -v utils)
 
 # Call the function to populate OPTIONS
 get_script_options
