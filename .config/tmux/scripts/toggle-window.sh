@@ -29,6 +29,7 @@ function toggle_window {
 # Function to run a command in window 2 based on the current directory
 function run_command {
     nvim_session=$(tmux display-message -p "#S")
+
     window_command=$(tmux list-windows -F "#{window_index}:#{window_active}:#{window_name}" | grep "^1:" | awk -F ':' '{print $3}')
     if [[ "$window_command" == "nvim" ]]; then
         tmux send -t "${nvim_session}:1" Escape ":wa" Enter

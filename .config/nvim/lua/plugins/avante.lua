@@ -15,6 +15,19 @@ return {
 			opts = { file_types = { "markdown", "Avante" } },
 			ft = { "markdown", "Avante" },
 		},
+		{
+			"zbirenbaum/copilot-cmp",
+			dependencies = {
+				"zbirenbaum/copilot.lua",
+			},
+			config = function()
+				require("copilot").setup({
+					suggestion = { enabled = false },
+					panel = { enabled = false },
+				})
+				-- require("copilot_cmp").setup()
+			end,
+		}
 	},
 	build = "make",
 	opts = {
@@ -31,13 +44,13 @@ return {
 				prefix = "> ",
 				height = 4, -- Height of the input window in vertical layout
 			},
-			-- ask = {
-			-- 	floating = true, -- Open the 'AvanteAsk' prompt in a floating window
-			-- },
+			ask = {
+				floating = true, -- Open the 'AvanteAsk' prompt in a floating window
+			},
 		},
 	},
 
 	keys = {
-		{ "<leader>ava", ":AvanteClear<CR>:AvanteToggle<CR>", silent = true, desc = "Avante Toggle" },
+		{ "<leader>ava", ":AvanteClear<CR>:AvanteToggle<CR>", silent = true, desc = "avante: clear and toggle" },
 	},
 }

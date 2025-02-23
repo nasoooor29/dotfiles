@@ -1,7 +1,4 @@
 .config/nvim/lazy-lock.json
-.zsh/powerlevel10k
-.zsh/zsh-autosuggestions
-.zsh/zsh-syntax-highlighting
 .config/lazygit
 .config/go
 .config/composer

@@ -53,7 +53,6 @@ return {
 				},
 			},
 			menu = {
-				-- max_height = 30,
 				draw = {
 					columns = {
 						{ "label", "label_description", gap = 1 },
@@ -62,9 +61,6 @@ return {
 					},
 				},
 			},
-			-- trigger = {
-			-- 	show_on_keyword = false,
-			-- },
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 1,

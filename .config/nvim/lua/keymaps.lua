@@ -20,14 +20,14 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
 
 -- file save and quitting mappings
-vim.keymap.set({ "n", "v" }, "<laader>ww", "<cmd>wa<CR>", opts) -- vim
-vim.keymap.set({ "n", "v" }, "<leader>wa", "<cmd>wa<CR>", opts) -- vim
-vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w<CR>", opts) -- vim
-vim.keymap.set({ "n", "v" }, "<leader>wq", "<cmd>wq<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<laader>ww", "<cmd>wa<CR>", opts)   -- vim
+vim.keymap.set({ "n", "v" }, "<leader>wa", "<cmd>wa<CR>", opts)   -- vim
+vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w<CR>", opts)     -- vim
+vim.keymap.set({ "n", "v" }, "<leader>wq", "<cmd>wq<CR>", opts)   -- vim
 vim.keymap.set({ "n", "v" }, "<leader>wqa", "<cmd>wqa<CR>", opts) -- vim
-vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>qa!<CR>", opts) -- vim
-vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>bd<CR>", opts) -- vim
-vim.keymap.set({ "n", "v" }, "<leader>qq", "<cmd>bd!<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>qa!<CR>", opts)  -- vim
+vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>bd<CR>", opts)    -- vim
+vim.keymap.set({ "n", "v" }, "<leader>qq", "<cmd>bd!<CR>", opts)  -- vim
 -- vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>%bd|e#<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>%bdelete|edit#|bdelete#<CR>", opts)
 
@@ -43,14 +43,9 @@ vim.keymap.set("n", "<S-Tab>", "<<", opts)
 vim.keymap.set("v", "<Tab>", ">gv", opts)
 vim.keymap.set("v", "<S-Tab>", "<gv", opts)
 
-vim.keymap.set("n", "<leader>s", "<cmd>wa<CR>", opts)
 vim.keymap.set("n", "<A-S-j>", "yyp", opts)
 vim.keymap.set("n", "<A-S-k>", "yyP", opts)
--- vim.keymap.set("v", "<S-A-j>", "Yp", opts)
--- vim.keymap.set("v", "<S-A-k>", "YP", opts)
 vim.keymap.set("n", "<leader>nn", "<cmd>enew<CR>", opts)
-vim.keymap.set("n", "<C-w>", "<cmd>wa<CR><cmd>q<CR>", opts)
-vim.keymap.set("n", "<C-f>", "<cmd>Telescope live_grep<CR>", opts)
 
 -- TODO: Fix from tmux
 vim.keymap.set("i", "<C-Backspace>", "<esc>bciw", opts)
@@ -71,7 +66,15 @@ vim.keymap.set("n", "<leader>qp", "<cmd>cprevious<CR>", opts)
 
 -- vim.keymap.set("n", "<leader>ref", "<cmd>.luafile %<CR>", opts)
 vim.keymap.set("n", "<leader>rel", "<cmd>.lua<CR>", opts)
+vim.keymap.set("v", "<leader>eb", ":s/\\%V", opts)
 
 vim.keymap.set("n", "<leader>ref", function()
 	vim.cmd("luafile " .. vim.api.nvim_buf_get_name(0))
 end, opts)
+
+vim.g.VM_maps = {
+	["Find Under"]      = "<C-d>",
+	["Select All"]      = "<leader>ra",
+	["Add Cursor Down"] = '<C-A-j>',
+	["Add Cursor Up"]   = '<C-A-k>',
+}

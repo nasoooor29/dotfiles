@@ -15,7 +15,7 @@ window#waybar {
 
 /* === Drop Shadow === */
 
-window#waybar > box {
+window#waybar>box {
   background-color: transparent;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 1);
   margin: 2px;
@@ -27,9 +27,10 @@ tooltip {
   background: @main-bg;
   border: solid;
   border-width: 1.5px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   border-color: @main-br;
 }
+
 tooltip label {
   color: @main-fg;
   font-weight: normal;
@@ -40,24 +41,27 @@ tooltip label {
 
 #workspaces button {
   color: @module-fg;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   box-shadow: none;
   margin: 2px 0;
-  padding: 0 2px;
+  padding: 0 6px;
   transition: none;
 }
+
 #workspaces button:hover {
   color: @hover-fg;
   background: @hover-bg;
   text-shadow: none;
   box-shadow: none;
 }
+
 #workspaces button.active {
   color: @active-fg;
   background: @active-bg;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4);
-  margin: 2px;
+  /* text-shadow: 0 0 2px rgba(0, 0, 0, 0.6); */
+  /* box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4); */
+  /* margin: 2px; */
+  border-radius: 0px;
   padding: 0 6px;
 }
 
@@ -116,15 +120,16 @@ tooltip label {
 }
 
 /* == Workspaces == */
-
 #custom-left1 {
   color: @workspaces;
   background: @main-bg;
   padding-left: 2px;
 }
+
 #workspaces {
   background: @workspaces;
 }
+
 #custom-right1 {
   color: @workspaces;
   background: @main-bg;
@@ -136,11 +141,13 @@ tooltip label {
 #custom-paddc {
   padding-right: 22px;
 }
+
 #custom-left2 {
   color: @cpuinfo;
   background: @main-bg;
   padding-left: 3px;
 }
+
 #custom-cpuinfo {
   background: @cpuinfo;
   padding-left: 1px;
@@ -154,14 +161,17 @@ tooltip label {
   background: @cpuinfo;
   padding-left: 3px;
 }
+
 #memory {
   background: @memory;
   padding-left: 1px;
   padding-right: 0;
 }
+
 #memory.warning {
   color: @warning;
 }
+
 #memory.critical {
   color: @critical;
 }
@@ -173,9 +183,11 @@ tooltip label {
   background: @memory;
   padding-left: 3px;
 }
+
 #custom-cpu {
   background: @cpu;
 }
+
 #custom-leftin1 {
   color: @cpu;
   font-size: 12.2pt;
@@ -190,6 +202,7 @@ tooltip label {
   text-shadow: -2px 0 2px rgba(0, 0, 0, 0.6);
   padding-left: 3px;
 }
+
 #idle_inhibitor {
   color: @distro-fg;
   background: @distro-bg;
@@ -200,6 +213,7 @@ tooltip label {
   padding-left: 3px;
   text-shadow: 0 0 1.5px rgba(0, 0, 0, 1);
 }
+
 #custom-right2 {
   color: @distro-bg;
   background: @main-bg;
@@ -212,9 +226,11 @@ tooltip label {
   font-size: 12.2pt;
   margin-bottom: -2px;
 }
+
 #clock.time {
   background: @time;
 }
+
 #custom-right3 {
   color: @time;
   background: @date;
@@ -225,11 +241,13 @@ tooltip label {
 #clock.date {
   background: @date;
 }
+
 #clock.date:hover {
   color: @hover-fg;
   text-shadow: none;
   box-shadow: none;
 }
+
 #custom-right4 {
   color: @date;
   background: @tray;
@@ -242,6 +260,7 @@ tooltip label {
   padding-right: 8px;
   background: @tray;
 }
+
 #custom-wifi:hover {
   color: @hover-fg;
   text-shadow: none;
@@ -252,6 +271,7 @@ tooltip label {
   padding-right: 5px;
   background: @tray;
 }
+
 #bluetooth:hover {
   color: @hover-fg;
   text-shadow: none;
@@ -262,11 +282,13 @@ tooltip label {
   padding-right: 8px;
   background: @tray;
 }
+
 #custom-update:hover {
   color: @hover-fg;
   text-shadow: none;
   box-shadow: none;
 }
+
 #custom-right5 {
   color: @tray;
   background: @main-bg;
@@ -280,6 +302,7 @@ tooltip label {
   padding-right: 8px;
   padding-left: 8px;
 }
+
 #custom-media:hover {
   color: @hover-fg;
   text-shadow: none;
@@ -293,9 +316,11 @@ tooltip label {
   background: @main-bg;
   padding-left: 3px;
 }
+
 #pulseaudio {
   background: @pulseaudio;
 }
+
 #pulseaudio:hover {
   color: @hover-fg;
   text-shadow: none;
@@ -309,6 +334,7 @@ tooltip label {
   background: @pulseaudio;
   padding-left: 2px;
 }
+
 #custom-backlight {
   background: @backlight;
 }
@@ -320,21 +346,27 @@ tooltip label {
   background: @backlight;
   padding-left: 2px;
 }
+
 #battery {
   background: @battery;
 }
+
 #battery.full {
   color: @full;
 }
+
 #battery.good {
   color: @module-fg;
 }
+
 #battery.warning {
   color: @warning;
 }
+
 #battery.critical {
   color: @critical;
 }
+
 #battery.charging {
   color: @charging;
 }
@@ -347,16 +379,18 @@ tooltip label {
   font-size: 12.2pt;
   margin-bottom: -2px;
 }
+
 #custom-power {
   color: @main-bg;
   background: @power;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
   box-shadow: 1px 0 2px 1px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
+  /* border-radius: 10px; */
   margin: 2px 4px 2px 0;
   padding-right: 6px;
   padding-left: 9px;
 }
+
 #custom-power:hover {
   color: @hover-fg;
   background: @hover-bg;

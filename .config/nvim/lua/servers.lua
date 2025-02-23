@@ -26,4 +26,8 @@ return {
 	stylua = {},
 	templ = {},
 	["ansible-lint"] = {},
+	emmet_ls = {
+		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "php" },
+	}
+
 }
