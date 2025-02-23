@@ -12,7 +12,6 @@ scripts_dir="$repo_dir/scripts"                   # The directory containing the
 clone_repo() {
   echo "Cloning repository..."
   if [ -d "$repo_dir" ]; then
-
     echo "Repository directory already exists. Pulling latest changes..."
     cd "$repo_dir" || {
       echo "Failed to enter repository directory."
@@ -37,29 +36,29 @@ clone_repo() {
   git switch main
 }
 
-# Get list of scripts in the "scripts" directory
-get_script_options() {
-  scripts_dir="$repo_dir/scripts" # Ensure this is the correct path
-
-  # Loop through the .sh files and populate the OPTIONS array
-  for script in "$scripts_dir"/*.sh; do
-    if [[ -f "$script" && -x "$script" ]]; then
-      script_name=$(basename "$script" .sh)                # Get the name of the script without the ".sh" extension
-      echo "- $script_name"                                # Echo the script name
-      OPTIONS+=("$script_name" "Install $script_name" OFF) # Add to OPTIONS array
-    fi
-  done
-}
+# # Get list of scripts in the "scripts" directory
+# get_script_options() {
+#   scripts_dir="$repo_dir/scripts" # Ensure this is the correct path
+#
+#   # Loop through the .sh files and populate the OPTIONS array
+#   for script in "$scripts_dir"/*.sh; do
+#     if [[ -f "$script" && -x "$script" ]]; then
+#       script_name=$(basename "$script" .sh)                # Get the name of the script without the ".sh" extension
+#       echo "- $script_name"                                # Echo the script name
+#       OPTIONS+=("$script_name" "Install $script_name" OFF) # Add to OPTIONS array
+#     fi
+#   done
+# }
 
 # Main script
 echo "Starting system bootstrap..."
 
 # Clone the repository
-clone_repo
+# clone_repo
 
 # Load utilities and install yay
-source "$repo_dir/scripts/utils/funcs.sh"
-bash "$repo_dir/scripts/utils/install-yay.sh"
+bash "$repo_dir/scripts/utils/funcs.sh"
+# bash "$repo_dir/scripts/utils/install-yay.sh"
 
 OPTIONS=(
   "cli-essentials.sh" "" OFF
@@ -72,7 +71,7 @@ OPTIONS=(
 )
 
 # Call the function to populate OPTIONS
-get_script_options
+# get_script_options
 
 # Show checklist using whiptail
 CHOICES=$(whiptail --title "Setup Machine" --checklist \
@@ -87,7 +86,10 @@ fi
 # Iterate over selected options and execute scripts
 SELECTED=($CHOICES)
 for ITEM in "${SELECTED[@]}"; do
-  SCRIPT="$scripts_dir/${ITEM}.sh"
+
+  ITEM=$(echo "$ITEM" | tr -d '"') # Remove quotes around the item
+  SCRIPT="${scripts_dir}/${ITEM}"
+
   bash "$SCRIPT"
 done
 
