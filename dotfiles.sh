@@ -27,7 +27,7 @@ clone_repo() {
       exit 1
     }
   fi
-  git switch switch-ansible
+  git switch main
 }
 
 # Get list of scripts in the "scripts" directory
