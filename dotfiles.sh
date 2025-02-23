@@ -61,8 +61,15 @@ clone_repo
 source "$repo_dir/scripts/utils/funcs.sh"
 bash "$repo_dir/scripts/utils/install-yay.sh"
 
-# Declare OPTIONS outside the function
-OPTIONS=$(ls "$repo_dir/scripts" | grep -v utils)
+OPTIONS=(
+  "cli-essentials.sh" "install cli-essentials" OFF
+  "cli-optionals.sh" "install cli-optionals" OFF
+  "cli-programming.sh" "install cli-programming" OFF
+  "cli-ssh.sh" "install cli-ssh" OFF
+  "hyprland-essentials.sh" "install hyprland-essentials" OFF
+  "hyprland-laptop.sh" "install hyprland-laptop" OFF
+  "hyprland-optionals.sh" "install hyprland-optionals" OFF
+)
 
 # Call the function to populate OPTIONS
 get_script_options
