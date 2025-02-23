@@ -4,10 +4,10 @@ set -e          # Exit on any error
 set -o pipefail # Exit if any command in a pipeline fails
 set -u          # Treat unset variables as an error
 
-# Ensure script is run with sudo privileges
-if [[ $EUID -ne 0 ]]; then
-  echo "Please run as root (use sudo)." >&2
-  exit 1
+# Check if yay is already installed
+if command -v yay &>/dev/null; then
+  echo "yay is already installed."
+  exit 0
 fi
 
 # Install necessary packages
