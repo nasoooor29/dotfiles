@@ -26,8 +26,5 @@ aur_essential_apps=(
 # Call the function with the array
 install_pacman_apps "${essential_apps[@]}"
 install_aur_apps "${aur_essential_apps[@]}"
-bash "$repo_dir/scripts/utils/set-default-shell.sh"
-bash "$repo_dir/scripts/utils/stow.sh"
 
-git -C "$repo_dir" submodule update --force --init --recursive --jobs 4
 echo "Installation of essential apps."
