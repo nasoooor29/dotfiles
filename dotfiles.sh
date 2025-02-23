@@ -41,6 +41,15 @@ get_script_options() {
   done
 }
 
+# Main script
+echo "Starting system bootstrap..."
+
+# Clone the repository
+clone_repo
+
+source "$repo_dir/scripts/utils/funcs.sh"
+bash "$repo_dir/scripts/utils/install-yay.sh"
+
 # Show checklist using whiptail
 get_script_options
 CHOICES=$(whiptail --title "Setup Machine" --checklist \
@@ -53,21 +62,8 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# Convert CHOICES to an array
-SELECTED=($CHOICES)
-
-# Main script
-echo "Starting system bootstrap..."
-
-# Install dependencies before cloning the repo
-install_dependencies
-
-# Clone the repository
-clone_repo
-
-source "$repo_dir/scripts/utils/funcs.sh"
-bash "$repo_dir/scripts/utils/install-yay.sh"
 # Iterate over selected options and execute scripts
+SELECTED=($CHOICES)
 for ITEM in "${SELECTED[@]}"; do
   SCRIPT="$scripts_dir/${ITEM}.sh"
   if [[ -f "$SCRIPT" && -x "$SCRIPT" ]]; then
