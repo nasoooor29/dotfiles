@@ -32,11 +32,14 @@ clone_repo() {
 
 # Get list of scripts in the "scripts" directory
 get_script_options() {
-  OPTIONS=()
+  scripts_dir="$repo_dir/scripts" # Ensure this is the correct path
+
+  # Loop through the .sh files and populate the OPTIONS array
   for script in "$scripts_dir"/*.sh; do
     if [[ -f "$script" && -x "$script" ]]; then
-      script_name=$(basename "$script" .sh) # Get the name of the script without the ".sh" extension
-      OPTIONS+=("$script_name" "Install $script_name" OFF)
+      script_name=$(basename "$script" .sh)                # Get the name of the script without the ".sh" extension
+      echo "- $script_name"                                # Echo the script name
+      OPTIONS+=("$script_name" "Install $script_name" OFF) # Add to OPTIONS array
     fi
   done
 }
@@ -47,15 +50,20 @@ echo "Starting system bootstrap..."
 # Clone the repository
 clone_repo
 
+# Load utilities and install yay
 source "$repo_dir/scripts/utils/funcs.sh"
 bash "$repo_dir/scripts/utils/install-yay.sh"
 
-# Show checklist using whiptail
+# Declare OPTIONS outside the function
+OPTIONS=()
+
+# Call the function to populate OPTIONS
 get_script_options
+
+# Show checklist using whiptail
 CHOICES=$(whiptail --title "Setup Machine" --checklist \
   "Select components to install (Space to select, Enter to confirm):" 20 78 10 \
   "${OPTIONS[@]}" 3>&1 1>&2 2>&3)
-
 # Exit if no selection is made
 if [ $? -ne 0 ]; then
   echo "No options selected. Exiting."
