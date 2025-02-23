@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Ensure the script is run with sudo
-if [[ $EUID -ne 0 ]]; then
-  echo "Please run as root (use sudo)." >&2
-  exit 1
-fi
-
 # Get the username (replace with the actual username or use the current user)
 USER="${USER:-$(whoami)}"
 
@@ -19,6 +13,6 @@ if ! [ -x "$DESIRED_SHELL" ]; then
 fi
 
 # Change the user's shell
-chsh -s "$DESIRED_SHELL" "$USER"
+sudo chsh -s "$DESIRED_SHELL" "$USER"
 
 echo "Shell for user $USER has been set to $DESIRED_SHELL."
