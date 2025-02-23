@@ -1,7 +1,0 @@
-- name: Run stow
-  ansible.builtin.shell:
-    cmd: "stow --adopt . --target /home/{{ lookup('env', 'USER') }}"
-  register: result
-  changed_when: 'result.stderr is search("LINK: ")'
-  tags:
-    - essentials

@@ -2,7 +2,8 @@
 
 
 # 1. install arch
-### find any way to do it
+### OLD: find any way to do it
+### use endevouros install gnome
 
 # 2. run the script
 ```bash

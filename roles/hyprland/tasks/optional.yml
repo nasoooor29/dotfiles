@@ -1,5 +1,0 @@
-- name: Install hyprland optional apps AUR
-  yay:
-    name:
-      - onlyoffice-bin
-    state: present
