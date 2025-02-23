@@ -12,11 +12,18 @@ scripts_dir="$repo_dir/scripts"                   # The directory containing the
 clone_repo() {
   echo "Cloning repository..."
   if [ -d "$repo_dir" ]; then
+
     echo "Repository directory already exists. Pulling latest changes..."
-    cd "$repo_dir" && git pull || {
-      echo "Failed to pull changes."
+    cd "$repo_dir" || {
+      echo "Failed to enter repository directory."
       exit 1
     }
+
+    # Pull latest changes
+    if ! git pull; then
+      echo "Failed to pull changes."
+      exit 1
+    fi
   else
     git clone "$repo_url" "$repo_dir" || {
       echo "Failed to clone repository."
