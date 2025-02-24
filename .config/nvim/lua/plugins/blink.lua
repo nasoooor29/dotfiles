@@ -14,8 +14,8 @@ return {
 	},
 
 	-- use a release tag to download pre-built binaries
-	version = false,
-	-- version = "*",
+	-- version = false,
+	version = "*",
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
@@ -33,6 +33,13 @@ return {
 			nerd_font_variant = "mono",
 		},
 
+		fuzzy = {
+			sorts = {
+				"exact",
+				"score",
+				"sort_text",
+			}
+		},
 		sources = {
 			default = { "lsp", "path", "snippets" },
 			providers = {
@@ -55,7 +62,7 @@ return {
 			menu = {
 				draw = {
 					columns = {
-						{ "label", "label_description", gap = 1 },
+						{ "label",      "label_description", gap = 1 },
 						{ "kind_icon" },
 						{ "source_name" },
 					},
