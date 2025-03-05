@@ -11,7 +11,7 @@ selected_option=$(echo -e "$actions" | wofii -d)
 # Perform actions based on the selected option
 case "$selected_option" in
 *Lock)
-  hyprlock
+  gdmflexiserver
   ;;
 *Shutdown)
   systemctl poweroff
