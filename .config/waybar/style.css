@@ -18,7 +18,7 @@ window#waybar {
 window#waybar>box {
   background-color: transparent;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 1);
-  margin: 2px;
+  /* margin: 2px; */
 }
 
 /* === Tooltip === */
@@ -51,8 +51,10 @@ tooltip label {
 #workspaces button:hover {
   color: @hover-fg;
   background: @hover-bg;
-  text-shadow: none;
-  box-shadow: none;
+  border-radius: 0px;
+  /* padding:0px; */
+  /* text-shadow: none; */
+  /* box-shadow: none; */
 }
 
 #workspaces button.active {
@@ -383,12 +385,12 @@ tooltip label {
 #custom-power {
   color: @main-bg;
   background: @power;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-  box-shadow: 1px 0 2px 1px rgba(0, 0, 0, 0.6);
+  /* text-shadow: 0 0 2px rgba(0, 0, 0, 0.6); */
+  /* box-shadow: 1px 0 2px 1px rgba(0, 0, 0, 0.6); */
   /* border-radius: 10px; */
-  margin: 2px 4px 2px 0;
-  padding-right: 6px;
-  padding-left: 9px;
+  /* margin: 2px 4px 2px 0; */
+  padding-right: 10px;
+  padding-left: 14px;
 }
 
 #custom-power:hover {
@@ -396,4 +398,13 @@ tooltip label {
   background: @hover-bg;
   text-shadow: none;
   box-shadow: none;
+}
+#battery.critical:not(.charging)
+{
+  color                     : @critical;
+  animation-name            : blink;
+  animation-duration        : 0.2s;
+  animation-timing-function : linear;
+  animation-iteration-count : infinite;
+  animation-direction       : alternate;
 }
