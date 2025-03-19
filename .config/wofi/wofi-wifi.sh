@@ -1,4 +1,16 @@
-action_failed() {
+#!/bin/zsh
+source "$HOME/.config/wofi/source-me.sh"
+check_commands() {
+    for cmd in iwctl awk grep; do
+        if ! command -v $cmd &> /dev/null; then
+            notify-send "Error: $cmd is not installed." >&2
+            exit 1
+        fi
+    done
+}
+
+check_commands
+
     echo "Action failed" | wofii -d --prompt "Error"
 }
 
@@ -14,7 +26,11 @@ msg() {
     fi
 }
 
+source "$HOME/.config/wofi/source-me.sh"
 action=$(echo -e "Disconnect\nScan Networks\nConnect Manual" | wofii -d --prompt "Choose an action")
+if [[ $? -eq 1 ]]; then
+    notify-send "Error: Failed to choose an action."
+fi
 
 case "$action" in
 "Disconnect")

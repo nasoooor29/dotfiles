@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+source "$HOME/.config/wofi/source-me.sh"
 # Kill any running wofi instances
 pkill -x wofi && return
 

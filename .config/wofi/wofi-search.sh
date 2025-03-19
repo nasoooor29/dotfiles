@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source "$HOME/.config/wofi/source-me.sh"
 # Define search engines
 declare -A SEARCH_ENGINES=(
   ["Google"]="https://www.google.com/search?q="

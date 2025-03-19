@@ -1,11 +1,6 @@
 # if you want more thing from wofi just create a script wofi-[your thing name].sh
 # then thats it write your logic
-wofii() {
-    wofi --conf "$CONFIG" --style "$STYLE" "$@"
-}
-CONFIG="$HOME/.config/wofi/config"
-STYLE="$HOME/.config/wofi/themes/mocha.css"
-
+source "$HOME/.config/wofi/source-me.sh"
 if [[ $(pidof wofi) ]]; then
     pkill wofi
 fi
@@ -22,10 +17,10 @@ choosen=$(printf "%s\n" "${!actions[@]}" | wofii -d)
 
 echo "$choosen"
 
-if [[ -n "${actions[$choosen]}" ]]; then
-    if bash "${actions[$choosen]}"; then
-        exit 0
-    else
-        notify-send "Error" "An error occurred while executing the script."
-    fi
+if [[ ! -n "${actions[$choosen]}" ]]; then
+    notify-send "file does not exist"
+fi
+chmod +x "${actions[$choosen]}"
+if ! STYLE=1 output=$("${actions[$choosen]}" 2>&1); then
+    notify-send "An error happened" "$output"
 fi

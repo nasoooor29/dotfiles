@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+source "$HOME/.config/wofi/source-me.sh"
 RESULT_FILE="$HOME/.config/qalculate/qalc.result.history"
 if [ ! -f "$RESULT_FILE" ]; then
   touch $RESULT_FILE

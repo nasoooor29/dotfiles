@@ -1,4 +1,6 @@
 # Define available power modes
+
+source "$HOME/.config/wofi/source-me.sh"
 MODES=("power-saver" "balanced" "performance")
 
 # Show options in wofi
