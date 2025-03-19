@@ -1,4 +1,4 @@
-return {
+local servers = {
 	cssls = {},
 	css_variables = {},
 	marksman = {},
@@ -26,8 +26,10 @@ return {
 	stylua = {},
 	templ = {},
 	["ansible-lint"] = {},
+	["rust-analyzer"] = {},
 	emmet_ls = {
 		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "php" },
 	}
-
 }
+
+return servers;

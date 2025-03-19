@@ -8,6 +8,7 @@ return {
 		}, -- NOTE: Must be loaded before dependants
 		"williamboman/mason-lspconfig.nvim",
 		"saghen/blink.cmp",
+
 	},
 	config = function()
 		require("mason").setup()
@@ -23,14 +24,17 @@ return {
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
 			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
 			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, bufopts)
 		end
 
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
 		local servers = require("servers")
+		local server_names = vim.tbl_keys(servers)
 		---@diagnostic disable-next-line: missing-fields
 		require("mason-lspconfig").setup({
+			-- automatic_installation = true,
+			-- ensure_installed = server_names,
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}

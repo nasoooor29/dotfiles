@@ -34,14 +34,13 @@ return { -- Autoformat
 		formatters_by_ft = {
 			lua = { "stylua" },
 			astro = { "prettierd", "prettier", stop_after_first = true },
-
+			javascriptreact = { "prettier" },
+			typescriptreact = { "prettier" },
 			javascript = { "prettier" },
 			json = { "prettier" },
 			html = { "prettier" },
-			javascriptreact = { "prettier" },
 			typescript = { "prettier" },
 			graphql = { "prettier" },
-			typescriptreact = { "prettier" },
 			go = { "goimports", "gofumpt" },
 			bash = { "shfmt" },
 			zsh = { "shfmt" },
