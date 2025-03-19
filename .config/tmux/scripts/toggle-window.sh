@@ -36,10 +36,14 @@ function run_command {
     fi
     open_window
 
-    if [[ -f "makefile" ]]; then
+    if [[ -f "run" ]]; then
+        tmux send-keys -t 2 "$(cat run)" Enter
+    elif [[ -f "makefile" ]]; then
         tmux send-keys -t 2 "make run" Enter
     elif [[ -f ".air.toml" ]]; then
         tmux send-keys -t 2 "air" Enter
+    elif [[ -f "Cargo.toml" ]]; then
+        tmux send-keys -t 2 "cargo run" Enter
     elif [[ -f "go.mod" ]]; then
         tmux send-keys -t 2 "go run ." Enter
     elif [[ -f "package.json" ]]; then
