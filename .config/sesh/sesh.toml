@@ -1,2 +1,3 @@
 [default_session]
 startup_command = "bash $HOME/.config/sesh/auto-run.sh"
+

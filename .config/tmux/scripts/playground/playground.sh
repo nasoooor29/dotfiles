@@ -92,7 +92,8 @@ elif [ "$COMMAND" = "clear" ]; then
         display "come when you are sure"
         exit 0 # it's exit 1 but just to shut tmux
     fi
-    git -C "$BASE_DIR" restore "$BASE_DIR" >/dev/null
+    git -C "$BASE_DIR" reset --hard >/dev/null
+    git -C "$BASE_DIR" clean -fd >/dev/null
     git -C "$BASE_DIR" switch main >/dev/null
     git -C "$BASE_DIR" branch | grep -v "main" | xargs git -C "$BASE_DIR" branch -D >/dev/null
     display "All local branches deleted"
