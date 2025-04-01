@@ -2,16 +2,19 @@
 require("multiCursor")
 
 local opts = { noremap = false, silent = true }
+
+
 vim.keymap.set("n", "<ESC>", "<cmd>noh<CR>", opts)
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>', opts)
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>', opts)
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>', opts)
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>', opts)
+-- vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>', opts)
+-- vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>', opts)
+-- vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>', opts)
+-- vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>', opts)
 vim.keymap.set("i", "<C-h>", "<esc>ha", opts)
 vim.keymap.set("i", "<C-j>", "<esc>ja", opts)
 vim.keymap.set("i", "<C-k>", "<esc>ka", opts)
 vim.keymap.set("i", "<C-l>", "<esc>la", opts)
 vim.keymap.set("i", "<C-b>", "<Esc>ba", opts)
+
 
 -- move to buffers
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", opts)
