@@ -31,7 +31,7 @@
     "body": [
       "if err != nil {",
       "    slog.Error(\"error happened\", \"err\", err)",
-      "    models.PanicInternalErr(err)",
+      "    return nil, err",
       "}"
     ],
     "description": "slog error log"
