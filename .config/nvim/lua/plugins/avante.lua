@@ -44,9 +44,9 @@ return {
 				prefix = "> ",
 				height = 4, -- Height of the input window in vertical layout
 			},
-			ask = {
-				floating = true, -- Open the 'AvanteAsk' prompt in a floating window
-			},
+			-- ask = {
+			-- 	floating = true, -- Open the 'AvanteAsk' prompt in a floating window
+			-- },
 		},
 	},
 

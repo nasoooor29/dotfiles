@@ -2,12 +2,31 @@ return {
 	"stevearc/oil.nvim",
 	---@module 'oil'
 	---@type oil.SetupOpts
-	opts = {},
-	-- Optional dependencies
+	opts = {
+
+		view_options = {
+			show_hidden = true,
+		},
+
+		keymaps = {
+			["gd"] = {
+				desc = "Toggle file detail view",
+				callback = function()
+					detail = not detail
+					if detail then
+						require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+					else
+						require("oil").set_columns({ "icon" })
+					end
+				end,
+			},
+		},
+	},
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
-	-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-	-- config = function()
-	-- 	vim.keymap.set("n", "<leader>fe", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
-	-- 	vim.keymap.set("n", "<leader>f", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
-	-- end,
+	config = function(_, opts)
+		require("oil").setup(opts)
+		vim.keymap.set("n", "<leader>fe", function()
+			require("oil").toggle_float()
+		end, { desc = "Open parent directory" })
+	end,
 }
