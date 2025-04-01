@@ -10,6 +10,7 @@
 # Depends on:
 #   Arch repositories: wofi, bluez-utils (contains bluetoothctl)
 
+source "$HOME/.config/wofi/source-me.sh"
 # Constants
 divider="---------"
 goback="Back"
@@ -298,7 +299,7 @@ show_menu() {
 # Rofi command to pipe into, can add any options here
 #
 
-notify-send "conf: $CONFIG style: $STYLE"
+# notify-send "conf: $CONFIG style: $STYLE"
 wofi_command="wofi -d -i -p --conf $CONFIG --style $STYLE"
 
 case "$1" in
