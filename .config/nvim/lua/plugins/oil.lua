@@ -23,6 +23,7 @@ return {
 		},
 	},
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
+	enabled = false,
 	config = function(_, opts)
 		require("oil").setup(opts)
 		vim.keymap.set("n", "<leader>fe", function()
