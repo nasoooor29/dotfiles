@@ -28,7 +28,13 @@ local servers = {
 	["ansible-lint"] = {},
 	["rust-analyzer"] = {},
 	emmet_ls = {
-		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "php" },
+		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "php", "phtml" },
+	},
+	intelephense = {
+		filetypes = { "php", "phtml" },
+	},
+	phpactor = {
+		filetypes = { "php", "phtml" },
 	}
 }
 

@@ -45,6 +45,24 @@ return { -- Autoformat
 			bash = { "shfmt" },
 			zsh = { "shfmt" },
 			sh = { "shfmt" },
+			php = { "php" },
+			sql = { "sql_formatter" },
 		},
+
+		formatters = {
+			php = {
+				command = "php-cs-fixer",
+				args = {
+					"fix",
+					"--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
+					"$FILENAME",
+				},
+				env = {
+					PHP_CS_FIXER_IGNORE_ENV = "1",
+				},
+				stdin = false,
+			}
+		}
+
 	},
 }
