@@ -15,6 +15,12 @@
     "description": "echo php"
   },
 
+  "echo": {
+    "prefix": "ecc",
+    "body": ["<?= htmlspecialchars($${1:variable}['${value}']) ?>"],
+    "description": "echo php with html escape"
+  },
+
   "Echo with default value (ternary)": {
     "prefix": "emt",
 

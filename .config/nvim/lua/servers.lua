@@ -8,6 +8,7 @@ local servers = {
 	goimports = {},
 	ts_ls = {},
 	sqlls = {},
+	sqls = {},
 	bashls = {},
 	ansiblels = {},
 	lua_ls = {

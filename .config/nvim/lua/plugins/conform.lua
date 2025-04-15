@@ -45,7 +45,7 @@ return { -- Autoformat
 			bash = { "shfmt" },
 			zsh = { "shfmt" },
 			sh = { "shfmt" },
-			php = { "php" },
+			php = { "php", "easy-coding-standard" },
 			sql = { "sql_formatter" },
 		},
 

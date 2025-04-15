@@ -12,7 +12,7 @@ return {
 			"svelte",
 			"vue",
 			"blade",
-			"php",
+			-- "php",
 			"templ",
 			"astro",
 		},
