@@ -18,7 +18,8 @@ choosen=$(printf "%s\n" "${!actions[@]}" | wofii -d)
 echo "$choosen"
 
 if [[ ! -n "${actions[$choosen]}" ]]; then
-    notify-send "file does not exist"
+    # notify-send "file does not exist"
+    return
 fi
 chmod +x "${actions[$choosen]}"
 if ! STYLE=1 output=$("${actions[$choosen]}" 2>&1); then

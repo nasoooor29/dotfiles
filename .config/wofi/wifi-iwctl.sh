@@ -1,8 +1,8 @@
 #!/bin/zsh
 source "$HOME/.config/wofi/source-me.sh"
 check_commands() {
-    for cmd in nmcli awk grep; do
-        if ! command -v $cmd &>/dev/null; then
+    for cmd in iwctl awk grep; do
+        if ! command -v $cmd &> /dev/null; then
             notify-send "Error: $cmd is not installed." >&2
             exit 1
         fi
@@ -11,7 +11,6 @@ check_commands() {
 
 check_commands
 
-action_failed() {
     echo "Action failed" | wofii -d --prompt "Error"
 }
 
@@ -35,24 +34,24 @@ fi
 
 case "$action" in
 "Disconnect")
-    nmcli dev disconnect wlan0
+    iwctl station wlan0 disconnect
     msg
     ;;
 "Scan Networks")
-    nmcli dev wifi rescan wlan0
-    network=$(nmcli -f SSID dev wifi | wofii -d)
+    iwctl station wlan0 scan
+    network=$(iwctl station wlan0 get-networks | awk 'NR>4 && $1 ~ /^[\x20-\x7E]+$/ {print $1}' | wofii -d)
     if [[ -n "$network" ]]; then
-        if nmcli con show | grep -q "$network"; then
-            nmcli dev wifi connect "$network" ifname wlan0
+        if iwctl known-networks list | grep -Fxq "$network"; then
+            iwctl station wlan0 connect "$network"
             msg
         else
             echo "Enter password for $network (leave empty if open network):"
             WIFIPASS=$(echo "if connection is stored, hit enter" | wofii -P -d --prompt "password" --lines 1)
             if [[ -n "$WIFIPASS" ]]; then
-                nmcli dev wifi connect "$network" password "$WIFIPASS" ifname wlan0
+                iwctl station wlan0 connect "$network" --passphrase "$WIFIPASS"
                 msg
             else
-                nmcli dev wifi connect "$network" ifname wlan0
+                iwctl station wlan0 connect "$network"
                 msg
             fi
         fi
@@ -65,10 +64,10 @@ case "$action" in
     echo "Enter password for $SSID (leave empty if open network):"
     WIFIPASS=$(wofii -P -d --prompt "password" --lines 1)
     if [[ -n "$WIFIPASS" ]]; then
-        nmcli dev wifi connect "$SSID" password "$WIFIPASS" ifname wlan0
+        iwctl station wlan0 connect "$SSID" --passphrase "$WIFIPASS"
         msg
     else
-        nmcli dev wifi connect "$SSID" ifname wlan0
+        iwctl station wlan0 connect "$SSID"
         msg
     fi
     ;;
