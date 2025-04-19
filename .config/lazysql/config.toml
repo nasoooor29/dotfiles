@@ -1,5 +1,27 @@
+[application]
+DefaultPageSize = 300
+DisableSidebar = false
+
 [[database]]
 Name = 'data.db'
-Provider = 'sqlite3'
-DBName = ''
 URL = 'data.db'
+Provider = 'sqlite3'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = ''
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'db_prog'
+URL = 'mysql://admin:1234@db.1jz.cc:3306/borrow_my_charger'
+Provider = 'mysql'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'borrow_my_charger'
+URLParams = ''
+Commands = []
