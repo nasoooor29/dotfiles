@@ -28,5 +28,14 @@ return {
 		vim.keymap.set("n", "<leader>=", function()
 			harpoon:list():add()
 		end, { desc = "harpoon: add to list" })
+
+		-- Add custom commands
+		vim.api.nvim_create_user_command("HarpoonClear", function()
+			harpoon:list():clear()
+		end, { desc = "harpoon: clear list" })
+
+		vim.api.nvim_create_user_command("HarpoonAdd", function(opts)
+			harpoon:list():add({ value = opts.args, context = nil })
+		end, { desc = "harpoon: add to list", nargs = 1 })
 	end,
 }

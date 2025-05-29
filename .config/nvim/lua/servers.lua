@@ -27,7 +27,27 @@ local servers = {
 	stylua = {},
 	templ = {},
 	["ansible-lint"] = {},
-	["rust-analyzer"] = {},
+	["powershell-editor-services"] = {},
+
+	["rust_analyzer"] = {
+		assist = {
+			importEnforceGranularity = true,
+			importPrefix = "crate",
+		},
+		cargo = {
+			allFeatures = true,
+		},
+		checkOnSave = {
+			command = "clippy",
+		},
+		inlayHints = { locationLinks = false },
+		diagnostics = {
+			enable = true,
+			experimental = {
+				enable = true,
+			},
+		},
+	},
 	emmet_ls = {
 		filetypes = { "html", "css", "javascriptreact", "typescriptreact", "php", "phtml" },
 	},
@@ -36,7 +56,7 @@ local servers = {
 	},
 	phpactor = {
 		filetypes = { "php", "phtml" },
-	}
+	},
 }
 
-return servers;
+return servers
