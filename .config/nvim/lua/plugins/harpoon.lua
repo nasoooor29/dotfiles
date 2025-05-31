@@ -30,12 +30,15 @@ return {
 		end, { desc = "harpoon: add to list" })
 
 		-- Add custom commands
-		vim.api.nvim_create_user_command("HarpoonClear", function()
-			harpoon:list():clear()
-		end, { desc = "harpoon: clear list" })
-
-		vim.api.nvim_create_user_command("HarpoonAdd", function(opts)
-			harpoon:list():add({ value = opts.args, context = nil })
-		end, { desc = "harpoon: add to list", nargs = 1 })
+		-- vim.api.nvim_create_user_command("HarpoonClear", function()
+		-- 	harpoon:list():clear()
+		-- end, { desc = "harpoon: clear list" })
+		--
+		-- vim.api.nvim_create_user_command("HarpoonAdd", function(opts)
+		-- 	harpoon:list():add({ value = opts.args, context = nil })
+		-- 	require("harpoon")
+		-- 		:list()
+		-- 		:add({ value = "/home/nasoooor/dotfiles/.config/nvim/lua/plugins/avante.lua", context = { col = 1, row = 1 } })
+		-- end, { desc = "harpoon: add to list", nargs = 1 })
 	end,
 }
