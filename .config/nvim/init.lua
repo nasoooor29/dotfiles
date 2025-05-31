@@ -17,6 +17,6 @@ require("lazy").setup({
 	{ import = "plugins.langs" },
 }, {
 	install = {
-		colorscheme = { "horizon" },
+		colorscheme = { "catppuccin-mocha" },
 	},
 })
