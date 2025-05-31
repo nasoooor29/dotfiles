@@ -8,6 +8,18 @@ return {
 			show_hidden = true,
 		},
 
+		float = {
+			max_width = 40,
+			override = function(defaults)
+				-- align to the left
+				defaults["col"] = 2
+
+				-- align to the right right
+				defaults["col"] = vim.o.columns - defaults["width"] - 2
+
+				return defaults
+			end,
+		},
 		keymaps = {
 			["gd"] = {
 				desc = "Toggle file detail view",
@@ -23,7 +35,7 @@ return {
 		},
 	},
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
-	enabled = false,
+	-- enabled = false,
 	config = function(_, opts)
 		require("oil").setup(opts)
 		vim.keymap.set("n", "<leader>fe", function()
