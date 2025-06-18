@@ -3,7 +3,6 @@ require("multiCursor")
 
 local opts = { noremap = false, silent = true }
 
-
 vim.keymap.set("n", "<ESC>", "<cmd>noh<CR>", opts)
 -- vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>', opts)
 -- vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>', opts)
@@ -15,22 +14,25 @@ vim.keymap.set("i", "<C-k>", "<esc>ka", opts)
 vim.keymap.set("i", "<C-l>", "<esc>la", opts)
 vim.keymap.set("i", "<C-b>", "<Esc>ba", opts)
 
-
 -- move to buffers
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", opts)
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", opts)
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", opts)
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", opts)
 
+-- cursor middle
+vim.keymap.set("n", "k", "kzz", opts)
+vim.keymap.set("n", "j", "jzz", opts)
+
 -- file save and quitting mappings
-vim.keymap.set({ "n", "v" }, "<laader>ww", "<cmd>wa<CR>", opts)   -- vim
-vim.keymap.set({ "n", "v" }, "<leader>wa", "<cmd>wa<CR>", opts)   -- vim
-vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w<CR>", opts)     -- vim
-vim.keymap.set({ "n", "v" }, "<leader>wq", "<cmd>wq<CR>", opts)   -- vim
+vim.keymap.set({ "n", "v" }, "<laader>ww", "<cmd>wa<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>wa", "<cmd>wa<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>w", "<cmd>w<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>wq", "<cmd>wq<CR>", opts) -- vim
 vim.keymap.set({ "n", "v" }, "<leader>wqa", "<cmd>wqa<CR>", opts) -- vim
-vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>qa!<CR>", opts)  -- vim
-vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>bd<CR>", opts)    -- vim
-vim.keymap.set({ "n", "v" }, "<leader>qq", "<cmd>bd!<CR>", opts)  -- vim
+vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>qa!<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>q", "<cmd>bd<CR>", opts) -- vim
+vim.keymap.set({ "n", "v" }, "<leader>qq", "<cmd>bd!<CR>", opts) -- vim
 -- vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>%bd|e#<CR>", opts)
 vim.keymap.set({ "n", "v" }, "<leader>qa", "<cmd>%bdelete|edit#|bdelete#<CR>", opts)
 
@@ -76,8 +78,8 @@ vim.keymap.set("n", "<leader>ref", function()
 end, opts)
 
 vim.g.VM_maps = {
-	["Find Under"]      = "<C-d>",
-	["Select All"]      = "<leader>ra",
-	["Add Cursor Down"] = '<C-A-j>',
-	["Add Cursor Up"]   = '<C-A-k>',
+	["Find Under"] = "<C-d>",
+	["Select All"] = "<leader>ra",
+	["Add Cursor Down"] = "<C-A-j>",
+	["Add Cursor Up"] = "<C-A-k>",
 }

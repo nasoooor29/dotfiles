@@ -11,19 +11,6 @@ local servers = {
 	sqls = {},
 	bashls = {},
 	ansiblels = {},
-	lua_ls = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
-		},
-	},
 	stylua = {},
 	templ = {},
 	["ansible-lint"] = {},
@@ -45,6 +32,19 @@ local servers = {
 			enable = true,
 			experimental = {
 				enable = true,
+			},
+		},
+	},
+	lua_ls = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				library = {
+					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+					[vim.fn.stdpath("config") .. "/lua"] = true,
+				},
 			},
 		},
 	},

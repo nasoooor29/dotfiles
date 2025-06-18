@@ -13,18 +13,21 @@ return {
 		local servers = require("servers")
 		require("mason").setup()
 
-		---@diagnostic disable-next-line: unused-local
-		local on_attach = function(client, bufnr)
-			local bufopts = { noremap = true, silent = true, buffer = bufnr }
-			local t = require("telescope.builtin")
-			vim.keymap.set("n", "gd", t.lsp_definitions, bufopts)
-			vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
-			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, bufopts)
-		end
+		local bufopts = { noremap = true, silent = true }
+		local t = require("telescope.builtin")
+		vim.keymap.set("n", "gd", t.lsp_definitions, bufopts)
+		vim.keymap.set("n", "gr", t.lsp_references, bufopts) -- added for references
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, bufopts)
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.jump({ count = -1, float = true })
+		end, bufopts)
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.jump({ count = 1, float = true })
+		end, bufopts)
+		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, bufopts)
+		-- ---@diagnostic disable-next-line: unused-local
+		-- local on_attach = function(client, bufnr) end
 
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
 
@@ -36,7 +39,7 @@ return {
 				function(server_name)
 					local server = servers[server_name] or {}
 					require("lspconfig")[server_name].setup({
-						on_attach = on_attach,
+						-- on_attach = on_attach,
 						capabilities = vim.tbl_deep_extend(
 							"force",
 							vim.lsp.protocol.make_client_capabilities(),

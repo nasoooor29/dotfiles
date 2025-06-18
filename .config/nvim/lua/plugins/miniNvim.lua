@@ -11,6 +11,7 @@ local StatusLineOpts = {
 			end
 
 			local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 200 })
+
 			local filename = MiniStatusline.section_filename({ trunc_width = 140 })
 			local location = MiniStatusline.section_location({ trunc_width = 400 })
 			local search = MiniStatusline.section_searchcount({ trunc_width = 75 })

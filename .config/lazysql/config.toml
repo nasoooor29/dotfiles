@@ -4,7 +4,7 @@ DisableSidebar = false
 
 [[database]]
 Name = 'data.db'
-URL = 'data.db'
+URL = 'visory.db'
 Provider = 'sqlite3'
 Username = ''
 Password = ''

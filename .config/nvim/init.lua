@@ -1,3 +1,7 @@
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")
 require("opts")
 require("keymaps")
 require("wsl")
@@ -16,6 +20,14 @@ require("lazy").setup({
 	{ import = "plugins" },
 	{ import = "plugins.langs" },
 }, {
+	ui = {
+		border = "rounded",
+		size = {
+			width = 0.8,
+			height = 0.8,
+		},
+	},
+
 	install = {
 		colorscheme = { "catppuccin-mocha" },
 	},

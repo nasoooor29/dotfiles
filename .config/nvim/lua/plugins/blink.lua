@@ -1,13 +1,12 @@
 return {
 	-- add blink.compat
 	{
-		'saghen/blink.compat',
+		"saghen/blink.compat",
 		-- use the latest release, via version = '*', if you also use the latest release for blink.cmp
-		version = '*',
+		version = "*",
 		-- lazy.nvim will automatically load the plugin when it's required by blink.cmp
 		lazy = true,
 		-- make sure to set opts so that lazy.nvim calls blink.compat's setup
-		opts = {},
 	},
 	{
 		"Saghen/blink.cmp",
@@ -25,7 +24,7 @@ return {
 		},
 
 		-- use a release tag to download pre-built binaries
-		version = '1.*',
+		version = "1.*",
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
@@ -48,12 +47,13 @@ return {
 					"exact",
 					"score",
 					"sort_text",
-				}
+				},
 			},
 
 			sources = {
-				-- default = { "lsp", "path", "snippets", "buffer", "html-css" },
+				-- default = { "lsp", "path", "snippets", "copilot", "html-css" },
 				default = { "lsp", "path", "snippets", "html-css" },
+
 				providers = {
 					snippets = {
 						max_items = 10,
@@ -62,11 +62,19 @@ return {
 					buffer = {
 						max_items = 10,
 					},
+
+					-- copilot = {
+					-- 	name = "copilot",
+					-- 	module = "blink-cmp-copilot",
+					-- 	kind = "Copilot",
+					-- 	score_offset = -100,
+					-- 	async = true,
+					-- },
 					["html-css"] = {
 						name = "html-css",
-						module = "blink.compat.source"
-					}
-				}
+						module = "blink.compat.source",
+					},
+				},
 			},
 			snippets = { preset = "luasnip" },
 			completion = {
@@ -85,5 +93,5 @@ return {
 			},
 		},
 		opts_extend = { "sources.default" },
-	}
+	},
 }

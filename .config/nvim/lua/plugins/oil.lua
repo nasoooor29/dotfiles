@@ -1,3 +1,14 @@
+-- vim.keymap.set("n", "<leader>fe", function()
+-- 	local f = require("fyler")
+-- 	f.show()
+-- end, { desc = "Open parent directory" })
+-- return {
+-- 	{
+-- 		"A7Lavinraj/fyler.nvim",
+-- 		dependencies = { "echasnovski/mini.icons" },
+-- 		opts = {},
+-- 	},
+-- }
 return {
 	"stevearc/oil.nvim",
 	---@module 'oil'
@@ -10,6 +21,10 @@ return {
 
 		float = {
 			max_width = 40,
+			win_options = {
+				winblend = 0,
+			},
+
 			override = function(defaults)
 				-- align to the left
 				defaults["col"] = 2
