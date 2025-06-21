@@ -1,3 +1,24 @@
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	callback = function()
+		local buf_name = vim.api.nvim_buf_get_name(0)
+		if not string.match(buf_name, "NeogitStatus") then
+			return
+		end
+
+		vim.keymap.set("n", "<leader>g", require("neogit").close, { desc = "close neogit" })
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave" }, {
+	callback = function()
+		local buf_name = vim.api.nvim_buf_get_name(0)
+		if not string.match(buf_name, "NeogitStatus") then
+			return
+		end
+		vim.keymap.set("n", "<leader>g", require("neogit").open, { desc = "open neogit" })
+	end,
+})
+
 return {
 
 	{
@@ -11,11 +32,43 @@ return {
 		opts = {
 			kind = "floating",
 		},
+		keys = {
+			{
+				"<leader>g",
+				function()
+					require("neogit").open()
+				end,
+				desc = "Open neogit",
+			},
+		},
 	},
+
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {},
 		-- NOTE: shortcuts PLZ
+		keys = {
+			{
+				"<leader>gv",
+				":Gitsigns select_hunk<CR>",
+				desc = "Select hunk",
+			},
+			{
+				"gs",
+				":Gitsigns stage_hunk<CR>",
+				desc = "Stage hunk",
+			},
+			{
+				"[g",
+				":Gitsigns prev_hunk<CR>",
+				desc = "Go to previous hunk",
+			},
+			{
+				"]g",
+				":Gitsigns next_hunk<CR>",
+				desc = "Go to next hunk",
+			},
+		},
 	},
 	{
 		"akinsho/git-conflict.nvim",
