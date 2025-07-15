@@ -12,6 +12,7 @@ return {
 		--   If not available, we use `mini` as the fallback
 		"rcarriga/nvim-notify",
 	},
+	enabled = false,
 	config = function()
 		-- require("nui").setup()
 		-- require("nvim-notify").setup()

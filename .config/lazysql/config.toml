@@ -4,7 +4,7 @@ DisableSidebar = false
 
 [[database]]
 Name = 'data.db'
-URL = 'visory.db'
+URL = 'data.db'
 Provider = 'sqlite3'
 Username = ''
 Password = ''
@@ -35,5 +35,29 @@ Password = ''
 Hostname = ''
 Port = ''
 DBName = 'postgres'
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'db1'
+URL = 'postgresql://postgres:pg@nasoooor.1jz.cc:54321?sslmode=disable'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = ''
+URLParams = ''
+Commands = []
+
+[[database]]
+Name = 'lizarb'
+URL = 'lizarb.db'
+Provider = 'sqlite3'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = ''
 URLParams = ''
 Commands = []

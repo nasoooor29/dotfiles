@@ -22,6 +22,9 @@ if [[ ! -n "${actions[$choosen]}" ]]; then
     return
 fi
 chmod +x "${actions[$choosen]}"
-if ! STYLE=1 output=$("${actions[$choosen]}" 2>&1); then
-    notify-send "An error happened" "$output"
-fi
+# Execute the selected script
+"${actions[$choosen]}"
+
+# if ! STYLE=1 output=$("${actions[$choosen]}" 2>&1); then
+#     # notify-send "An error happened" "$output"
+# fi

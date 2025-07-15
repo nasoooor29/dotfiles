@@ -2,6 +2,7 @@ return {
 	-- themes i may wanna switch to later
 	"akinsho/horizon.nvim",
 	"folke/tokyonight.nvim",
+	"isobit/vim-caddyfile",
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -14,7 +15,7 @@ return {
 					config = function()
 						require("transparent").clear_prefix("Oil")
 						require("transparent").clear_prefix("MiniStatusline")
-						require("transparent").clear_prefix("Avante")
+						-- require("transparent").clear_prefix("Avante")
 						require("transparent").clear_prefix("Float")
 						require("transparent").setup({
 							-- table: additional groups that should be cleared

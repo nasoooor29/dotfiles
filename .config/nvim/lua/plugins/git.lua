@@ -1,47 +1,47 @@
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	callback = function()
-		local buf_name = vim.api.nvim_buf_get_name(0)
-		if not string.match(buf_name, "NeogitStatus") then
-			return
-		end
-
-		vim.keymap.set("n", "<leader>g", require("neogit").close, { desc = "close neogit" })
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "BufLeave" }, {
-	callback = function()
-		local buf_name = vim.api.nvim_buf_get_name(0)
-		if not string.match(buf_name, "NeogitStatus") then
-			return
-		end
-		vim.keymap.set("n", "<leader>g", require("neogit").open, { desc = "open neogit" })
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+-- 	callback = function()
+-- 		local buf_name = vim.api.nvim_buf_get_name(0)
+-- 		if not string.match(buf_name, "NeogitStatus") then
+-- 			return
+-- 		end
+--
+-- 		vim.keymap.set("n", "<leader>g", require("neogit").close, { desc = "close neogit" })
+-- 	end,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "BufLeave" }, {
+-- 	callback = function()
+-- 		local buf_name = vim.api.nvim_buf_get_name(0)
+-- 		if not string.match(buf_name, "NeogitStatus") then
+-- 			return
+-- 		end
+-- 		vim.keymap.set("n", "<leader>g", require("neogit").open, { desc = "open neogit" })
+-- 	end,
+-- })
 
 return {
 
-	{
-		"NeogitOrg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
-			-- Only one of these is needed.
-			"nvim-telescope/telescope.nvim", -- optional
-		},
-		opts = {
-			kind = "floating",
-		},
-		keys = {
-			{
-				"<leader>g",
-				function()
-					require("neogit").open()
-				end,
-				desc = "Open neogit",
-			},
-		},
-	},
+	-- {
+	-- 	"NeogitOrg/neogit",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim", -- required
+	-- 		"sindrets/diffview.nvim", -- optional - Diff integration
+	-- 		-- Only one of these is needed.
+	-- 		"nvim-telescope/telescope.nvim", -- optional
+	-- 	},
+	-- 	opts = {
+	-- 		kind = "floating",
+	-- 	},
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>g",
+	-- 			function()
+	-- 				require("neogit").open()
+	-- 			end,
+	-- 			desc = "Open neogit",
+	-- 		},
+	-- 	},
+	-- },
 
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",

@@ -31,6 +31,7 @@
     "body": [
       "if err != nil {",
       "\tslog.Error(\"error happened\", \"err\", err)",
+      "\thttp.Error(w, \"Internal Server Error\", http.StatusInternalServerError)",
       "\treturn",
       "}"
     ],
