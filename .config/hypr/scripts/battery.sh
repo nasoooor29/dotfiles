@@ -22,7 +22,7 @@ while true; do
     if [ "$bat_lvl" -le "$LOW_BATTERY_THRESHOLD" ]; then
         # Set to power-saver mode when battery is low
         powerprofilesctl set "power-saver"
-        notify-send --urgency=CRITICAL "Battery Low" "Level: ${bat_lvl}%"
+        notify-send -t 2000 --urgency=CRITICAL "Battery Low" "Level: ${bat_lvl}%"
         paplay "$SOUND_EFFECT"
         sleep "$SLEEP_DURATION_LOW"
     else
