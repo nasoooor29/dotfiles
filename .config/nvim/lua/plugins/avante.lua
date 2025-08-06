@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 vim.keymap.set({ "v", "n" }, "<leader>cc", function()
 	require("codecompanion").toggle()
 end, { silent = true, desc = "Code Companion: Toggle" })
@@ -31,6 +32,49 @@ return {
 			"zbirenbaum/copilot.lua",
 		},
 		opts = {
+			system_prompt = function(opts)
+				return "You are an AI assistant working in Neovim. Do not ask the user if he want to apply the suggested changes, instead just apply or use the tool you need."
+			end,
+
+			---@type CodeCompanion.Strategies
+			strategies = {
+				context = {},
+				selected = {},
+				---@type CodeCompanion.Chat
+				chat = {
+					adapter = {
+						name = "copilot",
+						model = "claude-sonnet-4",
+					},
+					tools = {
+						groups = {
+							["agent_grp"] = {
+								description = "A custom agent combining tools",
+								system_prompt = "Describe what the agent should do",
+								tools = {
+									"cmd_runner",
+									"mcp",
+									"insert_edit_into_file",
+									"grep_search",
+									"file_search",
+									"create_file",
+									"read_file",
+								},
+								opts = {
+
+									default_tools = {
+										"agent_grp", -- Use the agent group as the default tool
+									},
+									collapse_tools = true, -- When true, show as a single group reference instead of individual tools
+									auto_submit_errors = true, -- Send any errors to the LLM automatically?
+									auto_submit_success = true, -- Send any successful output to the LLM automatically?
+								},
+							},
+						},
+					},
+				},
+			},
+			---@type CodeCompanion.Extensions
 			extensions = {
 				mcphub = {
 					callback = "mcphub.extensions.codecompanion",
